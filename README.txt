@@ -37,9 +37,11 @@ $ virtualenv tayong
 $ source tayong/bin/activate
 
 4.모듈설치
-$ pip install --upgrade pip
-$ pip install flask
-$ pip install zappa
+pip install --upgrade pip
+pip install flask
+pip install zappa
+pip install pymysql 
+pip install flask_sqlalchemy
 
 5. 깃에서 폴더 다운받기
 1) deactive 
@@ -56,3 +58,6 @@ localhost:4000에 들어가서 확인해보면 페이지 뜹니다.
 
 7. 배포해보기
 zappa deploy dev 
+
+
+

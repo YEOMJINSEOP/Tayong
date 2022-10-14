@@ -41,14 +41,15 @@ $ pip install --upgrade pip
 $ pip install flask
 $ pip install zappa
 
-5. 깃허브에서 받은 폴더를 가상환경 tayong 내부 경로에 넣어 주세요.
+5. 명령 프롬프트에서 tayong 내부 경로로 이동 후, 
+git clone https://github.com/98snapdragon/TAYONG.git tayong_test
  
 6. 로컬에서 테스트
 
-cd\zappa_test1
 python run.py test
 
 localhost:4000에 들어가서 확인해보면 페이지 뜹니다.
 
 
-6.
+7. 배포해보기
+zappa deploy dev 

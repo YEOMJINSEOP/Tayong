@@ -41,12 +41,15 @@ $ pip install --upgrade pip
 $ pip install flask
 $ pip install zappa
 
-5. 명령 프롬프트에서 tayong 내부 경로로 이동 후, 
-git clone https://github.com/98snapdragon/TAYONG.git tayong_test
+5. 깃에서 폴더 다운받기
+1) deactive 
+2) 명령 프롬프트에서 tayong 폴더로 이동 후, 
+3) git clone https://github.com/98snapdragon/TAYONG.git tayong_test
  
 6. 로컬에서 테스트
-
-python run.py test
+1) 가상환경 진입하기 tayong\Scripts\activate.bat
+2) cd tayong\tayong_test 명령어로 폴더 내부로 진입
+3) 실행해보기 python run.py test
 
 localhost:4000에 들어가서 확인해보면 페이지 뜹니다.
 

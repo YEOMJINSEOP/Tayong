@@ -22,14 +22,50 @@ def create_app(test_config=None):
 app = Flask(__name__, static_url_path='')
 
 
-@app.route('/test', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
      
-     return '7시간을 투자해 만들어낸 소중한 페이지...'
+     return '가장 처음 뜨는 화면입니다. 타용에 대한 설명이 나옵니다.'
 
-@app.route('/', methods=['GET'])
+@app.route('/login', methods=['GET'])
 def index1():
-     return 'asdjdsdas'
+     return '로그인 페이지 입니다.'
+
+@app.route('/signin', methods=['GET'])
+def index1():
+     return '회원가입을 하는 페이지 입니다.'
+
+@app.route('/signinsuccess', methods=['GET'])
+def index1():
+     return '회원가입을 완료하고 축하하는 페이지 입니다.'
+
+@app.route('/mypage', methods=['GET'])
+def index1():
+     return '내 정보를 볼 수 있는 페이지 입니다.'
+
+@app.route('/chatlist', methods=['GET'])
+def index1():
+     return '채팅방 리스트를 볼 수 있는 페이지 입니다.'
+
+@app.route('/chat', methods=['GET'])
+def index1():
+     return '채팅방입니다.'
+
+@app.route('/main', methods=['GET'])
+def index1():
+     return '메인 홈페이지 입니다. 위치를 지정할 수 있습니다.'
+
+@app.route('/list', methods=['GET'])
+def index1():
+     return '택시를 타려는 모임의 목록이 뜨는 페이지 입니다.'
+
+@app.route('/addmeeting', methods=['GET'])
+def index1():
+     return '새로운 모임 모집글을 작성하는 페이지 입니다. '
+
+@app.route('/detail', methods=['GET'])
+def index1():
+     return '하나의 모임 모집글에 대한 자세한 설명이 뜨는 페이지 입니다.'
 
 
 

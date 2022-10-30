@@ -1,6 +1,11 @@
 #run.py
 import sys
 import config
+import logging
+import pymysql
+import dbinfo
+import json
+
 
 from flask import Flask, redirect, request, jsonify, url_for, render_template
 from db_connect import db
@@ -17,14 +22,76 @@ def create_app(test_config=None):
     db.init_app(app)
 
 
+connection = pymysql.connect(
+    host = dbinfo.db_host,
+    user = dbinfo.db_username,
+    passwd = dbinfo.db_password,
+    db = dbinfo.db_name,
+    port = dbinfo.db_port
+    )
 
+def lambda_handler(event, context):
+    cursor = connection.cursor() # DB에 접속 및 DB 객체를 가져옴
+    cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
+
+    rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+
+    for row in rows:
+        print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+        
+    results = [{
+        'name' : row[0],
+        'nickname' : row[1],
+        'passwd' : (row[2]),
+        'birthdate' : (row[3]),
+        'email' : (row[4]),
+        'phoneno' : (row[5]),
+        'profile url' : (row[6]),
+        'id' : (row[7]),
+    }for row in rows]
+    return {
+    'statusCode': 200,
+    'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': json.dumps(results),
+        "isBase64Encoded": False
+    }
+
+def db_fetch():
+    cursor = connection.cursor() # DB에 접속 및 DB 객체를 가져옴
+    cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
+    rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+    for row in rows:
+        print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+        
+    results = [{
+        'name' : row[0],
+        'nickname' : row[1],
+        'passwd' : (row[2]),
+        'birthdate' : (row[3]),
+        'email' : (row[4]),
+        'phoneno' : (row[5]),
+        'profile url' : (row[6]),
+        'id' : (row[7]),
+    }for row in rows]
+    return {
+    'statusCode': 200,
+    'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': json.dumps(results),
+        "isBase64Encoded": False
+    }
 
 app = Flask(__name__, static_url_path='')
 
 
+
 @app.route('/', methods=['GET'])
 def index():
-     
      return '가장 처음 뜨는 화면입니다. 타용에 대한 설명이 나옵니다.'
 
 @app.route('/login', methods=['GET'])
@@ -57,8 +124,7 @@ def index7():
 
 @app.route('/list', methods=['GET'])
 def index8():
-     return '택시를 타려는 모임의 목록이 뜨는 페이지 입니다.'
-
+     return db_fetch()
 @app.route('/addmeeting', methods=['GET'])
 def index9():
      return '새로운 모임 모집글을 작성하는 페이지 입니다. '
@@ -67,6 +133,9 @@ def index9():
 def index10():
      return '하나의 모임 모집글에 대한 자세한 설명이 뜨는 페이지 입니다.'
 
+@app.route('/mypage', methods=['GET'])
+def index11():
+     return '마이 페이지 입니다.'
 
 
 if __name__ == '__main__':

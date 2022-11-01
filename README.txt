@@ -59,5 +59,5 @@ localhost:4000에 들어가서 확인해보면 페이지 뜹니다.
 7. 배포해보기
 zappa deploy dev 
 
-
+-10/22일 amplify 초기설정과 연결, erd 작성 완료
 

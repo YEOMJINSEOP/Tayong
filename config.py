@@ -1,4 +1,4 @@
-from msilib import Table
+#from msilib import Table
 
 
 aws_db = {

@@ -22,8 +22,8 @@ def create_app(test_config=None):
 		
     db.init_app(app)
 
-
-connection = pymysql.connect(
+def create_connection():
+    return pymysql.connect(
     host = dbinfo.db_host,
     user = dbinfo.db_username,
     passwd = dbinfo.db_password,
@@ -32,55 +32,63 @@ connection = pymysql.connect(
     )
 
 def lambda_handler(event, context):
-    cursor = connection.cursor() # DB에 접속 및 DB 객체를 가져옴
-    cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
 
-    rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
 
-    for row in rows:
-        print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
-        
-    results = [{
-        'name' : row[0],
-        'nickname' : row[1],
-        'passwd' : (row[2]),
-        'birthdate' : (row[3]),
-        'email' : (row[4]),
-        'phoneno' : (row[5]),
-        'profile url' : (row[6]),
-        'id' : (row[7]),
-    }for row in rows]
-    return {
-    'statusCode': 200,
-    'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        'body': json.dumps(results),
-        "isBase64Encoded": False
-    }
+        for row in rows:
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+            
+        results = [{
+            'name' : row[0],
+            'nickname' : row[1],
+            'passwd' : (row[2]),
+            'birthdate' : (row[3]),
+            'email' : (row[4]),
+            'phoneno' : (row[5]),
+            'profile url' : (row[6]),
+            'id' : (row[7]),
+        }for row in rows]
+        return {
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
+    
 
 def db_fetch():
-    cursor = connection.cursor() # DB에 접속 및 DB 객체를 가져옴
-    cursor.execute("select M_Starting_point, M_Destination from Meeting;") # SQL 문장을 DB 서버에 보냄
-    rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-    for row in rows:
-        print(f"{row[0]} {row[1]} ")
-        
-    results = [{
-        'starting point' : row[0],
-        'destination' : row[1],
-    }for row in rows]
-    return {
+    connection = create_connection()
     
-    'statusCode': 200,
-    'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        "body":json.dumps(results),
-        "isBase64Encoded": False
-    }
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select M_Starting_point, M_Destination from Meeting;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]} {row[1]} ")
+            
+        results = [{
+            'departure' : row[0],
+            'arrival' : row[1]
+        }for row in rows]
+        
+
+        return {
+        
+        'body': json.dumps(results)
+        }
+    finally:
+        cursor.close()
+
 
 app = Flask(__name__, static_url_path='')
 
@@ -118,11 +126,11 @@ def index6():
 def index7():
      return '메인 홈페이지 입니다. 위치를 지정할 수 있습니다.'
 
-@app.route('/list', methods=['POST'])
+@app.route('/list')
 def index8():
      return db_fetch()
 
-@app.route('/addmeeting', methods=['GET'])
+@app.route('/addmeeting')
 def index9():
      return '새로운 모임 모집글을 작성하는 페이지 입니다. '
 

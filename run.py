@@ -112,7 +112,7 @@ def index5():
 
 @app.route('/chat', methods=['GET'])
 def index6():
-     return '채팅방입니다.'
+     return db_fetch()
 
 @app.route('/main', methods=['GET'])
 def index7():

@@ -21,7 +21,7 @@ function MeetList(props) {
     .then(res => res.json())
     .then(data => {
       console.log('데이터를 잘 받아왔습니다.');
-      setMeetList(data);
+      console.log(data);
     });
   }, [])
   
@@ -50,7 +50,7 @@ function MeetList(props) {
         </div>    
       </div>
       <ul className={styles.list}>
-        {meetList.map((item) => {
+        {/* {meetList.map((item) => {
           if(item.departure === depLoc && item.arrival === arrLoc){
             return (
               <
@@ -58,7 +58,7 @@ function MeetList(props) {
                />
               ) 
           }
-        })}
+        })} */}
       </ul>
     </div>
   );

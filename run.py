@@ -5,11 +5,10 @@ import logging
 import pymysql
 import dbinfo
 import json
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 
 from flask import Flask, redirect, request, jsonify, url_for, render_template
 from db_connect import db
-
 def create_app(test_config=None):
     app = Flask(__name__)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
@@ -84,11 +83,39 @@ def db_fetch():
 
         return {
         
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+        
+    finally:
+        cursor.close()
+
+def db_write():
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]}")
+            
+        results = [{
+            'location' : row[0]
+
+        }for row in rows]
+        
+        return {
+        
         'body': json.dumps(results)
         }
     finally:
         cursor.close()
-
 
 app = Flask(__name__, static_url_path='')
 
@@ -118,7 +145,7 @@ def index4():
 def index5():
      return '채팅방 리스트를 볼 수 있는 페이지 입니다.'
 
-@app.route('/chat', methods=['GET'])
+@app.route('/chat', methods=['POST'])
 def index6():
      return db_fetch()
 
@@ -126,13 +153,13 @@ def index6():
 def index7():
      return '메인 홈페이지 입니다. 위치를 지정할 수 있습니다.'
 
-@app.route('/list')
+@app.route('/list',methods=['GET'])
 def index8():
      return db_fetch()
 
 @app.route('/addmeeting')
 def index9():
-     return '새로운 모임 모집글을 작성하는 페이지 입니다. '
+     return db_write()
 
 @app.route('/detail', methods=['GET'])
 def index10():

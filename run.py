@@ -36,7 +36,6 @@ def lambda_handler(event, context):
     try:
         cursor=connection.cursor()
         cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
-
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
 
         for row in rows:
@@ -65,7 +64,7 @@ def lambda_handler(event, context):
         cursor.close()
     
 
-def db_fetch():
+def db_fetch(): 
     connection = create_connection()
     
     try:
@@ -95,6 +94,36 @@ def db_fetch():
     finally:
         cursor.close()
 
+def db_location():
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Location_table;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]}")
+            
+        results = [{
+            'id' : 1,
+            'name' : row[0]
+        }for row in rows]
+        
+
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+        
+    finally:
+        cursor.close()  
+
 def db_write():
     connection = create_connection()
     
@@ -102,11 +131,13 @@ def db_write():
         cursor=connection.cursor()
         cursor.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        
         for row in rows:
             print(f"{row[0]}")
             
         results = [{
-            'location' : row[0]
+            
+            'name' : row[0]
 
         }for row in rows]
         
@@ -122,7 +153,7 @@ app = Flask(__name__, static_url_path='')
 
 
 @app.route('/', methods=['GET'])
-def index():
+def index(): 
      return '가장 처음 뜨는 화면입니다. 타용에 대한 설명이 나옵니다.'
 
 @app.route('/login', methods=['GET'])
@@ -157,9 +188,9 @@ def index7():
 def index8():
      return db_fetch()
 
-@app.route('/addmeeting')
+@app.route('/getlocation',methods=['GET'])
 def index9():
-     return db_write()
+     return db_location()
 
 @app.route('/detail', methods=['GET'])
 def index10():

@@ -76,7 +76,7 @@ def db_location():
             print(f"{row[0]}  ")
             
         results = [{
-            'id' : 1,
+            'id' : row,
             'name' : row[0]
         }for row in rows]
         

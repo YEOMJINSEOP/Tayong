@@ -42,14 +42,14 @@ function MeetDetail(props) {
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');
       console.log(data);
-      setDeparture(JSON.parse(data['body'])[0].departure);
-      setArrival(JSON.parse(data['body'])[0].arrival);
-      setRemainingTime(JSON.parse(data['body'])[0].remainingTime);
-      setRecruitment(JSON.parse(data['body'])[0].recruitment);
-      setTransport(JSON.parse(data['body'])[0].transport);
-      setTitle(JSON.parse(data['body'])[0].title);
-      setContent(JSON.parse(data['body'])[0].content);
-      setUserId(JSON.parse(data['body'])[0].userId);
+      setDeparture(JSON.parse(data['body'])[meetId-1].departure);
+      setArrival(JSON.parse(data['body'])[meetId-1].arrival);
+      setRemainingTime(JSON.parse(data['body'])[meetId-1].remainingTime);
+      setRecruitment(JSON.parse(data['body'])[meetId-1].recruitment);
+      setTransport(JSON.parse(data['body'])[meetId-1].transport);
+      setTitle(JSON.parse(data['body'])[meetId-1].title);
+      setContent(JSON.parse(data['body'])[meetId-1].content);
+      setUserId(JSON.parse(data['body'])[meetId-1].userId);
     });
   }, [])
 

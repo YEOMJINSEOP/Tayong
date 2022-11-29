@@ -34,13 +34,14 @@ function MeetList(props) {
   // }, [])
 
   useEffect(() => {
-    fetch('/data/meet.json')
+    fetch('http://localhost:4000/getmeeting')
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      setMeetList(data);
-    });
-  }, [])
+      console.log("위치 데이터를 받아왔습니다🥕")
+      setMeetList(JSON.parse(data['body']));
+      console.log(JSON.parse(data['body']));
+    })
+  }, []);
 
   
   return (

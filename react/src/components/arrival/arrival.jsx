@@ -9,12 +9,12 @@ function Arrival({onSet}) {
   const [inputStr, setInputStr] = useState('');
 
   useEffect(() => {
-    fetch('data/location.json')
+    fetch('http://localhost:4000/getlocation')
     .then(res => res.json())
     .then(data => {
       console.log("위치 데이터를 받아왔습니다🥕")
-      setLocation(data);
-      console.log(data);
+      setLocation(JSON.parse(data['body']));
+      console.log(JSON.parse(data['body']));
     })
   }, []);
 

@@ -64,32 +64,7 @@ def lambda_handler(event, context):
         cursor.close()
     
 
-def db_fetch(): 
-    connection = create_connection()
-    
-    try:
-        cursor=connection.cursor()
-        cursor.execute("select M_Starting_point, M_Destination from Meeting;") # SQL 문장을 DB 서버에 보냄
-        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-        for row in rows:
-            print(f"{row[0]} {row[1]} ")
-            
-        results = [{
-            'departure' : row[0],
-            'arrival' : row[1]
-        }for row in rows]
-        
 
-        return {
-        
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
 def db_location(): 
     connection = create_connection()
     
@@ -119,7 +94,39 @@ def db_location():
     finally:
         cursor.close()
 
+def db_meeting(): 
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Meeting;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+            
+        results = [{
+            'id' : row[0],
+            'userId' : row[1],
+            'departure' : row[5],
+            'arrival' : row[4],
+            'recruitment' : row[6],
+            'remainingTime' : row[3],
+            'transport' : "택시"
+        }for row in rows]
+        
 
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
 
 def db_write():
     connection = create_connection()
@@ -153,45 +160,14 @@ app = Flask(__name__, static_url_path='')
 def index(): 
      return '가장 처음 뜨는 화면입니다. 타용에 대한 설명이 나옵니다.'
 
-@app.route('/login', methods=['GET'])
-def index1():
-     return '로그인 페이지 입니다.'
-
-@app.route('/signin', methods=['GET'])
-def index2():
-     return '회원가입을 하는 페이지 입니다.'
-
-@app.route('/signinsuccess', methods=['GET'])
-def index3():
-     return '회원가입을 완료하고 축하하는 페이지 입니다.'
-
-@app.route('/mypage', methods=['GET'])
-def index4():
-     return '내 정보를 볼 수 있는 페이지 입니다.'
-
-@app.route('/chatlist', methods=['GET'])
-def index5():
-     return '채팅방 리스트를 볼 수 있는 페이지 입니다.'
-
-@app.route('/chat', methods=['POST'])
-def index6():
-     return db_fetch()
-
-@app.route('/main', methods=['GET'])
-def index7():
-     return '메인 홈페이지 입니다. 위치를 지정할 수 있습니다.'
-
-@app.route('/list',methods=['GET'])
-def index8():
-     return db_fetch()
 
 @app.route('/getlocation',methods=['GET'])
 def index9():
      return db_location()
 
-@app.route('/detail', methods=['GET'])
+@app.route('/getmeeting', methods=['GET'])
 def index10():
-     return '하나의 모임 모집글에 대한 자세한 설명이 뜨는 페이지 입니다.'
+     return db_meeting()
 
 @app.route('/mypage', methods=['GET'])
 def index11():

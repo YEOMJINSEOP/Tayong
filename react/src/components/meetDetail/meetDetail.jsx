@@ -37,19 +37,19 @@ function MeetDetail(props) {
   // );
 
   useEffect(() => {
-    fetch('data/meetDetail.json')
+    fetch('http://localhost:4000/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');
       console.log(data);
-      setDeparture(data[0].departure);
-      setArrival(data[0].arrival);
-      setRemainingTime(data[0].remainingTime);
-      setRecruitment(data[0].recruitment);
-      setTransport(data[0].transport);
-      setTitle(data[0].title);
-      setContent(data[0].content);
-      setUserId(data[0].userId);
+      setDeparture(JSON.parse(data['body'])[0].departure);
+      setArrival(JSON.parse(data['body'])[0].arrival);
+      setRemainingTime(JSON.parse(data['body'])[0].remainingTime);
+      setRecruitment(JSON.parse(data['body'])[0].recruitment);
+      setTransport(JSON.parse(data['body'])[0].transport);
+      setTitle(JSON.parse(data['body'])[0].title);
+      setContent(JSON.parse(data['body'])[0].content);
+      setUserId(JSON.parse(data['body'])[0].userId);
     });
   }, [])
 

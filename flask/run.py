@@ -128,6 +128,43 @@ def db_meeting():
     finally:
         cursor.close()
 
+def db_meetdetail(): 
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Meeting;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]}{row[8]} ")
+            
+        results = [{
+            'id' : row[0],
+            'userId' : row[1],
+            'departure' : row[5],
+            'arrival' : row[4],
+            'recruitment' : row[6],
+            'remainingTime' : row[3],
+            'transport' : "택시",
+            'title':row[7],
+            'content':row[8]
+
+        }for row in rows]
+        
+
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
+
 def db_write():
     connection = create_connection()
     
@@ -169,9 +206,9 @@ def index9():
 def index10():
      return db_meeting()
 
-@app.route('/mypage', methods=['GET'])
+@app.route('/getmeetdetail', methods=['GET'])
 def index11():
-     return '마이 페이지 입니다.'
+     return db_meetdetail()
 
 
 if __name__ == '__main__':

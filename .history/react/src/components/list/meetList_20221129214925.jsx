@@ -4,7 +4,7 @@ import {v4 as uuidV4} from 'uuid';
 import styles from './meetList.module.css';
 import { FaArrowRight } from 'react-icons/fa';
 import {json, useNavigate, useParams } from 'react-router-dom';
-import Meet from '../meet/meet';
+import Meet from '../meet/meet';
 
 
 function MeetList(props) {

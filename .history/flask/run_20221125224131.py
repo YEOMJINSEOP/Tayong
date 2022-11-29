@@ -90,7 +90,11 @@ def db_fetch():
             'body': json.dumps(results),
             "isBase64Encoded": False
         }
-def db_location(): 
+        
+    finally:
+        cursor.close()
+
+def db_location():
     connection = create_connection()
     
     try:
@@ -98,7 +102,7 @@ def db_location():
         cursor.execute("select * from Location_table;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         for row in rows:
-            print(f"{row[0]}  ")
+            print(f"{row[0]}")
             
         results = [{
             'id' : 1,
@@ -116,10 +120,9 @@ def db_location():
             'body': json.dumps(results),
             "isBase64Encoded": False
         }
+        
     finally:
-        cursor.close()
-
-
+        cursor.close()  
 
 def db_write():
     connection = create_connection()

@@ -5,7 +5,7 @@ import { FiCalendar} from 'react-icons/fi';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+//axios.defaults.withCredentials = true;
 function Form(props) {
   const navigate = useNavigate();
 
@@ -34,15 +34,21 @@ function Form(props) {
       transport: transport,
       title: title,
       content: content
+
     }
 
     console.log(data);
 
     axios
-    .post("url", data)
+    .post("http://localhost:4000/postform", data,{
+      'headers': {
+        'Access-Control-Allow-Origin': '*',
+        withCredentials : true
+      }
+    })
     .then(
       (res) =>{
-        console.log(res);
+        console.log(res.data);
         console.log("데이터 전송이 완료되었습니다🎉");
       } 
       );

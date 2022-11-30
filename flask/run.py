@@ -165,6 +165,39 @@ def db_meetdetail():
     finally:
         cursor.close()
 
+
+def handle_post():
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
+        #params_str=params['arrival']
+
+        
+        sql_sentence="insert into Meeting values (7,\"j2u3n4\",\"0\",\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'])
+        # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
+        #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
+
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        #params_str =''
+        # for key in params.keys():
+        #     params_str += '{}:{} \n'.format(key,params[key])
+        return sql_sentence
+    finally:
+        
+        cursor.close()
+
+
+
+
+
+
+
+
+
 def db_write():
     connection = create_connection()
     
@@ -195,7 +228,7 @@ app = Flask(__name__, static_url_path='')
 
 @app.route('/', methods=['GET'])
 def index(): 
-     return '가장 처음 뜨는 화면입니다. 타용에 대한 설명이 나옵니다.'
+     return db_write()
 
 
 @app.route('/getlocation',methods=['GET'])
@@ -210,6 +243,9 @@ def index10():
 def index11():
      return db_meetdetail()
 
+@app.route('/postform',methods = [ 'GET','POST'])
+def index12():
+     return handle_post()
 
 if __name__ == '__main__':
  if len(sys.argv) > 1:

@@ -13,12 +13,10 @@ function SignUpForm(props) {
     phone: phone
   }
 
-  // console.log(signUpData);
-
   const url = ""; // 저장할 DB 주소
-  
+
   axios
-  .post(url, signUpData)
+  .post(url, singUpData)
   .then(
     (res) => {
       console.log(res);

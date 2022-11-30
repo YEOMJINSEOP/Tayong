@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './signUpForm.module.css';
-import axios from 'axios';
+
 function SignUpForm(props) {
 
   const [email, setEmail] = useState("");
@@ -13,12 +13,10 @@ function SignUpForm(props) {
     phone: phone
   }
 
-  // console.log(signUpData);
-
   const url = ""; // 저장할 DB 주소
-  
+
   axios
-  .post(url, signUpData)
+  .post(url, userData)
   .then(
     (res) => {
       console.log(res);

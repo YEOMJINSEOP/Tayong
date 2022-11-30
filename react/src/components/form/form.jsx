@@ -40,7 +40,8 @@ function Form(props) {
     console.log(data);
 
     axios
-    .post("http://localhost:4000/postform", data,{
+    //.post("http://localhost:4000/postform", data,{
+      .post("https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/postform", data,{
       'headers': {
         'Access-Control-Allow-Origin': '*',
         withCredentials : true

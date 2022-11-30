@@ -20,7 +20,7 @@ function MeetList(props) {
 
 
   // useEffect(() => {
-  //   fetch('/list', {
+  //   fetch('https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
   //     headers: {
   //       'Accept': 'application/json'
   //     }
@@ -35,7 +35,11 @@ function MeetList(props) {
 
   useEffect(() => {
     //fetch('http://localhost:4000/getmeeting')
-    fetch('https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting')
+    fetch('/getmeeting', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
     .then(res => res.json())
     .then(data => {
       console.log("위치 데이터를 받아왔습니다🥕")

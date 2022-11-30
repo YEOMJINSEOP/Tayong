@@ -33,14 +33,14 @@ function SignUpForm(props) {
         <div className={styles.email}>
           <label htmlFor="email">이메일</label>
           <div className={styles.authContainer}>
-            <input type="email"  id="email" name="email" onChange={(e) => {setEmail(e.target.value)}} required/>
+            <input type="email"  id="email" name="email" required/>
             <button className={styles.authBtn} type="submit">인증</button>
           </div>
         </div>
 
         <div className={styles.password}>
           <label htmlFor="password">비밀번호</label>
-          <input type="password" id="password" name="password" onChange={(e) => {setPassword(e.target.value)}} required />
+          <input type="password" id="password" name="password" required />
         </div>
 
         <div className={styles.password}>
@@ -51,7 +51,7 @@ function SignUpForm(props) {
         <div className={styles.phone}>
           <label htmlFor="phone">휴대폰 인증</label>
           <div className={styles.authContainer}>
-            <input type="tel"  id="phone" name="phone" onChange={(e) => {setPhone(e.target.value)}} required/>
+            <input type="tel"  id="phone" name="phone" required/>
             <button className={styles.authBtn} type="submit">인증</button>
           </div>
         </div>

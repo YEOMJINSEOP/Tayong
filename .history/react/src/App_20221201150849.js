@@ -6,8 +6,6 @@ import Detail from './pages/Detail';
 import Create from './pages/Create';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Participate from './pages/Participate';
-
 
 const router = createBrowserRouter([
   {
@@ -40,11 +38,6 @@ const router = createBrowserRouter([
     path: "/signup/*",
     element: <SignUp/>,
     errorElement:  <p>Error Page🐶: signUp</p>
-  },
-  {
-    path: "/participate/*",
-    element: <Participate/>,
-    errorElement:  <p>Error Page🐶: Participate</p>
   }
 ])
 

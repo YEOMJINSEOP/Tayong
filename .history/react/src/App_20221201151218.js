@@ -6,8 +6,7 @@ import Detail from './pages/Detail';
 import Create from './pages/Create';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Participate from './pages/Participate';
-
+import ParticipateComponent from './components/Participate/ParticipateComponent';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/participate/*",
-    element: <Participate/>,
+    element: <ParticipateComponent/>,
     errorElement:  <p>Error Page🐶: Participate</p>
   }
 ])

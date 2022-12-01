@@ -1,0 +1,46 @@
+@import '../../../App.module.css';
+.container{
+    width: 100%;
+    height: 100%;
+  }
+
+.top{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
+
+.right{
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10px;;
+}
+
+.border{
+    border-radius: 10px;
+    border: 1px solid grey;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.orangeText{
+    color: #FF9C55;
+    margin-right: 20px;
+    width: 30%;
+}

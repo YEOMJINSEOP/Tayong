@@ -81,6 +81,7 @@ function Form(props) {
           <div className={styles.remainingTime}>
             <label className={styles.formLabel} htmlFor='remainingTime'>마감시간</label>
             <input type="date" id='remainingTime' name='remainingTime' onChange={(e) => {setRemainingTime(e.target.value)}}/>
+            <FiCalendar className={styles.calendarIcon}/>
           </div>
           
           <div className={styles.recruitment}>

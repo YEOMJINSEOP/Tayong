@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import styles from './arrival.module.css';
+import React, { useState } from 'react';
+import styles from './departure.module.css';
 
 import { FaSearch } from 'react-icons/fa';
-
-function Arrival({onSet}) {
+import { useEffect } from 'react';
+function Departure({onSet}) {
 
   const [location, setLocation] = useState([]);
   const [inputStr, setInputStr] = useState('');
@@ -13,7 +13,7 @@ function Arrival({onSet}) {
     fetch('/getlocation')
     .then(res => res.json())
     .then(data => {
-      console.log("위치 데이터를 받아왔습니다🐥");
+      console.log("위치 데이터를 받아왔습니다🥕")
       setLocation(JSON.parse(data['body']));
       console.log(JSON.parse(data['body']));
     })
@@ -29,26 +29,27 @@ function Arrival({onSet}) {
     e.target.parentNode.style.visibility = 'hidden';
   }
 
+
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.arrival}>     
-          <div className={styles.inputBox}>
-            <input
-                className={styles.input}
-                type="text"
-                id='arrival'
-                name='arrival'
-                value = {inputStr}
-                onChange = {
-                  (e) => {
-                    setInputStr(e.target.value);
-                  }
+      <div className={styles.departure}>
+        <div className={styles.inputBox}>
+          <input
+              className={styles.input}
+              type="text"
+              id='departure'
+              name='departure'
+              value = {inputStr}
+              onChange = {
+                (e) => {
+                  setInputStr(e.target.value);
                 }
-            />
-            <FaSearch className={styles.searchIcon}/>
-          </div>
+              }
+          />
+          <FaSearch className={styles.searchIcon}/>
+        </div>
 
-          <div className={styles.searchDropDown}>
+        <div className={styles.searchDropDown}>
               <ul>
                 {location.filter((loc) => {
                   if(inputStr == ""){return}
@@ -63,10 +64,11 @@ function Arrival({onSet}) {
                 )
                 }
               </ul>
-          </div>
-      </div>
+        </div>
+
+      </div>      
     </form>
   );
 }
 
-export default Arrival;
+export default Departure;

@@ -8,10 +8,10 @@ function Departure({onSet}) {
   const [inputStr, setInputStr] = useState('');
   
   const url = 'https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
-
+  
   useEffect(() => {
+    //fetch('http://localhost:4000/getlocation')
     getData(url)
-    .then(res => res['data'])
     .then(data => {
       console.log("위치 데이터를 받아왔습니다🥕")
       setLocation(JSON.parse(data['body']));

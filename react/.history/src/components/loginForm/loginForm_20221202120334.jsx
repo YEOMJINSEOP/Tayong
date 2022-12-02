@@ -3,7 +3,6 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './loginForm.module.css';
-import postData from '../../service/postData';
 
 function LoginForm(props) {
   const navigate = useNavigate();

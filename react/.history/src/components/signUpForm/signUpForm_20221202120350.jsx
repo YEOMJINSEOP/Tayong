@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './signUpForm.module.css';
 import axios from 'axios';
-import postData from '../../service/postData';
 function SignUpForm(props) {
 
   const [email, setEmail] = useState("");

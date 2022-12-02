@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import styles from './departure.module.css';
+import styles from './arrival.module.css';
 import getData from '../../service/getData';
+
 import { FaSearch } from 'react-icons/fa';
-function Departure({onSet}) {
+
+function Arrival({onSet}) {
 
   const [location, setLocation] = useState([]);
   const [inputStr, setInputStr] = useState('');
-  
-  const url = 'https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
 
+  const url = 'https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
+  
   useEffect(() => {
     getData(url)
-    .then(res => res['data'])
     .then(data => {
-      console.log("위치 데이터를 받아왔습니다🥕")
+      console.log("위치 데이터를 받아왔습니다🐥");
       setLocation(JSON.parse(data['body']));
       console.log(JSON.parse(data['body']));
     })
@@ -29,27 +30,26 @@ function Departure({onSet}) {
     e.target.parentNode.style.visibility = 'hidden';
   }
 
-
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.departure}>
-        <div className={styles.inputBox}>
-          <input
-              className={styles.input}
-              type="text"
-              id='departure'
-              name='departure'
-              value = {inputStr}
-              onChange = {
-                (e) => {
-                  setInputStr(e.target.value);
+      <div className={styles.arrival}>     
+          <div className={styles.inputBox}>
+            <input
+                className={styles.input}
+                type="text"
+                id='arrival'
+                name='arrival'
+                value = {inputStr}
+                onChange = {
+                  (e) => {
+                    setInputStr(e.target.value);
+                  }
                 }
-              }
-          />
-          <FaSearch className={styles.searchIcon}/>
-        </div>
+            />
+            <FaSearch className={styles.searchIcon}/>
+          </div>
 
-        <div className={styles.searchDropDown}>
+          <div className={styles.searchDropDown}>
               <ul>
                 {location.filter((loc) => {
                   if(inputStr == ""){return}
@@ -64,11 +64,10 @@ function Departure({onSet}) {
                 )
                 }
               </ul>
-        </div>
-
-      </div>      
+          </div>
+      </div>
     </form>
   );
 }
 
-export default Departure;
+export default Arrival;

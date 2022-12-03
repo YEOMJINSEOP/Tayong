@@ -16,7 +16,7 @@ function SignUpForm(props) {
 
   // console.log(signUpData);
 
-  const url = ""; // 저장할 DB 주소
+  const url = "https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/register"; // 저장할 DB 주소
   postData(url, signUpData);
 
   return (

@@ -168,36 +168,6 @@ def db_meetdetail():
         cursor.close()
 
 
-def handle_post():
-    connection = create_connection()
-    try:
-        cursor=connection.cursor()
-        params = json.loads(request.get_data(), encoding='utf-8')
-        if len(params) == 0:
-            return 'No parameter'
-        #params_str=params['arrival']
-
-        
-        sql_sentence="insert into Meeting values (7,\"j2u3n4\",\"0\",\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'])
-        # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
-        #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
-
-        cursor.execute(sql_sentence)
-        connection.commit( )
-        #params_str =''
-        # for key in params.keys():
-        #     params_str += '{}:{} \n'.format(key,params[key])
-        return sql_sentence
-    finally:
-        
-        cursor.close()
-
-
-
-
-
-
-
 
 
 def db_write():
@@ -227,40 +197,66 @@ def db_write():
 app = Flask(__name__, static_url_path='')
 
 
+def handle_post():
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
+        #params_str=params['arrival']
 
+        
+        sql_sentence="insert into Meeting values (7,\"j2u3n4\",\"0\",\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'])
+        # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
+        #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
 
-
-
-
-
-
-
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        #params_str =''
+        # for key in params.keys():
+        #     params_str += '{}:{} \n'.format(key,params[key])
+        return sql_sentence
+    finally:
+        
+        cursor.close()
 
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterForm(request.form)
-    if request.method == 'POST' and form.validate():
-        email = form.email.data
-        username = form.username.data
-        password = sha256_crypt.encrypt(str(form.password.data))
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
 
-        # Create cursor
-        cur = db.connection.cursor()
+        sql_sentence="insert into users values (\"{}\",\"{}\",\"{}\");".format(params['email'],params['password'],params['phone'])
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        return sql_sentence
 
-        # Execute query
-        cur.execute("INSERT INTO users(email, username, password) VALUES(%s, %s, %s)", (email, username, password))
+        # ####################################################
+        # form = RegisterForm(request.form)
+        # if request.method == 'POST' and form.validate():
+        #     email = form.email.data
+        #     username = form.username.data
+        #     password = sha256_crypt.encrypt(str(form.password.data))
 
-        # Commit to DB
-        db.connection.commit()
+        #     # Create cursor
+        #     cur = connection.cursor()
 
-        # Close connection
+        #     # Execute query
+        #     cur.execute("INSERT INTO users VALUES(\"%s\",\" %s\", \"%s\")", (email, username, password))
+        #     #cur.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
+        #     # Commit to DB
+        #     connection.commit()
+
+        #     #flash('You are now registered and can log in', 'success')
+
+        #     return "INSERT INTO users VALUES(\"%s\",\" %s\", \"%s\")", (email, username, password)
+    finally:
         cur.close()
-
-        flash('You are now registered and can log in', 'success')
-
-        return redirect(url_for('login'))
-
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -279,20 +275,20 @@ def login():
         # SAFE TRANSACTION
         # result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
 
-        if result > 0:
+        if result > 0: 
             # Get stored hash
             data = cur.fetchone()
             password = data['password']
 
             # Compare Passwords
-            if sha256_crypt.verify(password_candidate, password):
+            if sha256_crypt.verify(password_candidate, password): #로그인 성공
                 # Passed
                 session['logged_in'] = True
                 session['username'] = username
 
                 flash('You are now logged in', 'success')
                 return redirect(url_for('dashboard'))
-            else:
+            else:                                        #로그인 실패
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
             # Close connection

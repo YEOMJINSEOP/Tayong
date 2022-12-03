@@ -32,38 +32,7 @@ def create_connection():
     port = dbinfo.db_port
     )
 
-def lambda_handler(event, context):
-    connection = create_connection()
-    
-    try:
-        cursor=connection.cursor()
-        cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
-        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
 
-        for row in rows:
-            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
-            
-        results = [{
-            'name' : row[0],
-            'nickname' : row[1],
-            'passwd' : (row[2]),
-            'birthdate' : (row[3]),
-            'email' : (row[4]),
-            'phoneno' : (row[5]),
-            'profile url' : (row[6]),
-            'id' : (row[7]),
-        }for row in rows]
-        return {
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
-    finally:
-        cursor.close()
     
 
 
@@ -144,29 +113,29 @@ def db_meetdetail():
 
 
 
-def db_write():
-    connection = create_connection()
+# def db_write():
+#     connection = create_connection()
     
-    try:
-        cursor=connection.cursor()
-        cursor.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
-        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+#     try:
+#         cursor=connection.cursor()
+#         cursor.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
+#         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         
-        for row in rows:
-            print(f"{row[0]}")
+#         for row in rows:
+#             print(f"{row[0]}")
             
-        results = [{
+#         results = [{
             
-            'name' : row[0]
+#             'name' : row[0]
 
-        }for row in rows]
+#         }for row in rows]
         
-        return {
+#         return {
         
-        'body': json.dumps(results)
-        }
-    finally:
-        cursor.close()
+#         'body': json.dumps(results)
+#         }
+#     finally:
+#         cursor.close()
 
 app = Flask(__name__, static_url_path='')
 
@@ -330,8 +299,8 @@ def register():
 # Check if user logged in
 
 @app.route('/', methods=['GET'])
-def index(): 
-     return db_write()
+def index22(): 
+     return "f"
 
 
 @app.route('/getlocation',methods=['GET'])

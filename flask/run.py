@@ -228,7 +228,9 @@ def db_location():
 def login():
     connection = create_connection()
     global loginVal
-    loginVal=0
+    global nowId
+    loginVal='0'
+    nowId='0'
     try: 
         cursor=connection.cursor()
         params = json.loads(request.get_data(), encoding='utf-8')
@@ -250,6 +252,7 @@ def login():
             #비밀번호 맞는지 구현
             if results[0]['password']==params['password']: 
                 loginVal=1
+                nowId=results[0]['email']
                 return "로그인 성공"
             else:
                 loginVal=0
@@ -293,11 +296,13 @@ def login():
 def loginValue():
    
     if loginVal==1:
-        result={"loginSuccess":"1"}
-        return '1'
+        result={"loginSuccess":"1",
+                "loginId":"%s"%(nowId)}
+        return result
     else:
-        result={"loginSuccess":"0"}
-        return '0'
+        result={"loginSuccess":"0",
+                "loginId":'0'}
+        return result
 
 
 # User Register

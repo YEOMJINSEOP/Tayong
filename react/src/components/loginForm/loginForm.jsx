@@ -30,7 +30,8 @@ function LoginForm(props) {
     setTimeout(function() {
       getData(getUrl)
       .then(data => {
-        console.log(data.data)
+        console.log(JSON.parse(data.data['loginSuccess']))
+        console.log((data.data['loginId'])) //로그인된 아이디 
   
       })  
     }, 1000);

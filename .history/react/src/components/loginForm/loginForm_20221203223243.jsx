@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './loginForm.module.css';
 import postData from '../../service/postData';
-import getData from '../../service/getData';
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -22,15 +21,8 @@ function LoginForm(props) {
 
     console.log(userData);
 
-    const postUrl = "http://localhost:4000/login";
-    const getUrl = "" // loginSuccess 받아올 주소
-    postData(postUrl, userData);
-
-    // 여기서 loginSuccess 받아옵니다.
-    getData(getUrl)
-    .then(data => {
-      console.log(data)
-    })
+    const url = "http://localhost:4000/login";
+    postData(url, userData);
 
     navigate('/');
   }

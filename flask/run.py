@@ -7,8 +7,10 @@ import dbinfo
 import json
 from flask_cors import CORS,cross_origin
 
-from flask import Flask, redirect, request, jsonify, url_for, render_template
+from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session, logging
 from db_connect import db
+from forms import RegisterForm
+
 def create_app(test_config=None):
     app = Flask(__name__)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
@@ -225,6 +227,82 @@ def db_write():
 app = Flask(__name__, static_url_path='')
 
 
+
+
+
+
+
+
+
+
+
+# User Register
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        email = form.email.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+
+        # Create cursor
+        cur = db.connection.cursor()
+
+        # Execute query
+        cur.execute("INSERT INTO users(email, username, password) VALUES(%s, %s, %s)", (email, username, password))
+
+        # Commit to DB
+        db.connection.commit()
+
+        # Close connection
+        cur.close()
+
+        flash('You are now registered and can log in', 'success')
+
+        return redirect(url_for('login'))
+
+
+# User login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Get Form Fields
+        username = request.form['username']
+        password_candidate = request.form['password']
+
+        # Create cursor
+        cur = db.connection.cursor()
+        cmd = "SELECT * FROM users WHERE username = '%s'" % username
+        result = cur.execute(cmd)
+        print(result)
+        # Get user by username
+        # SAFE TRANSACTION
+        # result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+
+        if result > 0:
+            # Get stored hash
+            data = cur.fetchone()
+            password = data['password']
+
+            # Compare Passwords
+            if sha256_crypt.verify(password_candidate, password):
+                # Passed
+                session['logged_in'] = True
+                session['username'] = username
+
+                flash('You are now logged in', 'success')
+                return redirect(url_for('dashboard'))
+            else:
+                error = 'Invalid login'
+                return render_template('login.html', error=error)
+            # Close connection
+            cur.close()
+        else:
+            error = 'Username not found'
+            return render_template('login.html', error=error)
+
+
+# Check if user logged in
 
 @app.route('/', methods=['GET'])
 def index(): 

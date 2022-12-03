@@ -56,9 +56,7 @@ button{
 @media screen and (max-width: 768px){
 
   .btn {
-    font-size: 11px;
-    width:fit-content;
-    margin-left: 12px;
+    font-size: 10px;
   }
   .navbarBtn{
     display: flex;

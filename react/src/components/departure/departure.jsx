@@ -7,8 +7,8 @@ function Departure({onSet}) {
   const [location, setLocation] = useState([]);
   const [inputStr, setInputStr] = useState('');
   
-  const url = 'https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
-
+  //const url = 'https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
+  const url = 'http://localhost:4000/getlocation'
   useEffect(() => {
     getData(url)
     .then(res => res['data'])

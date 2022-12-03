@@ -21,7 +21,7 @@ function LoginForm(props) {
 
     console.log(userData);
 
-    const url = "http://localhost:4000/login";
+    const url = "";
     postData(url, userData);
 
   }
@@ -44,7 +44,7 @@ function LoginForm(props) {
           <input type="password" id="password" name="password" onChange={(e) => {setPassword(e.target.value)}} required />
         </div>
         
-        <input className={styles.submitBtn} onClick={submitHandler} type="submit" value="로그인" />
+        <input className={styles.submitBtn} type="submit" value="로그인" />
 
         <div className={styles.extraFunc}>
           <p>아이디/비밀번호 찾기</p>

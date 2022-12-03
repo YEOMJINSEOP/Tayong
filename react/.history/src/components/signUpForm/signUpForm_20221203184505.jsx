@@ -6,8 +6,7 @@ function SignUpForm(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [phone, setPhone] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,13 +14,12 @@ function SignUpForm(props) {
     let signUpData = {
       email: email,
       password: password,
-      passwordCheck: passwordCheck,
-      nickname: nickname
+      phone: phone
     }
 
     console.log(signUpData);
 
-    const url = "http://localhost:4000/register"; // 저장할 DB 주소
+    const url = ""; // 저장할 DB 주소
     postData(url, signUpData);
 
   }
@@ -47,13 +45,13 @@ function SignUpForm(props) {
 
         <div className={styles.password}>
           <label htmlFor="passwordCheck">비밀번호 확인</label>
-          <input type="password" id="passwordCheck" name="passwordCheck" onChange={(e) => {setPasswordCheck(e.target.value)}}required />
+          <input type="password" id="passwordCheck" name="passwordCheck" required />
         </div>
 
         <div className={styles.nickname}>
           <label htmlFor="nickname">닉네임</label>
           <div className={styles.authContainer}>
-            <input type="text"  id="nickname" name="nickname" onChange={(e) => {setNickname(e.target.value)}} required/>
+            <input type="text"  id="nickname" name="nickname" onChange={(e) => {setPhone(e.target.value)}} required/>
           </div>
         </div>
 

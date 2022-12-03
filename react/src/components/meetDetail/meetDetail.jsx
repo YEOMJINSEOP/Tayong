@@ -23,7 +23,7 @@ function MeetDetail(props) {
 
   let param = useParams();
   let meetId = param['*'];
-  console.log(meetId);
+
 
   // meetId에 해당하는 데이터를 받아오기
   // const url = './meet.json';
@@ -37,20 +37,26 @@ function MeetDetail(props) {
   // );
 
   useEffect(() => {
-    //fetch('http://localhost:4000/getmeetdetail')
-    fetch('https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+    fetch('http://localhost:4000/getmeetdetail')
+    //fetch('https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');
       console.log(data);
-      setDeparture(JSON.parse(data['body'])[meetId-1].departure);
-      setArrival(JSON.parse(data['body'])[meetId-1].arrival);
-      setRemainingTime(JSON.parse(data['body'])[meetId-1].remainingTime);
-      setRecruitment(JSON.parse(data['body'])[meetId-1].recruitment);
-      setTransport(JSON.parse(data['body'])[meetId-1].transport);
-      setTitle(JSON.parse(data['body'])[meetId-1].title);
-      setContent(JSON.parse(data['body'])[meetId-1].content);
-      setUserId(JSON.parse(data['body'])[meetId-1].userId);
+      var k=1;
+      for (var i = 0; i < JSON.parse(data['body']).length; i++) {
+        if(JSON.parse(data['body'])[i].title==meetId){
+            k=i;
+        }
+      }
+      setDeparture(JSON.parse(data['body'])[k].departure);
+      setArrival(JSON.parse(data['body'])[k].arrival);
+      setRemainingTime(JSON.parse(data['body'])[k].remainingTime);
+      setRecruitment(JSON.parse(data['body'])[k].recruitment);
+      setTransport(JSON.parse(data['body'])[k].transport);
+      setTitle(JSON.parse(data['body'])[k].title);
+      setContent(JSON.parse(data['body'])[k].content);
+      setUserId(JSON.parse(data['body'])[k].id);
     });
   }, [])
 

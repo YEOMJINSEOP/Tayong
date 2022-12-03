@@ -67,53 +67,29 @@ def lambda_handler(event, context):
     
 
 
-def db_location(): 
-    connection = create_connection()
-    
-    try:
-        cursor=connection.cursor()
-        cursor.execute("select * from Location_table;") # SQL 문장을 DB 서버에 보냄
-        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-        for row in rows:
-            print(f"{row[0]}  ")
-            
-        results = [{
-            'id' : row,
-            'name' : row[0]
-        }for row in rows]
-        
 
-        return {
-        
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
-    finally:
-        cursor.close()
+
+
 
 def db_meeting(): 
     connection = create_connection()
     
     try:
         cursor=connection.cursor()
-        cursor.execute("select * from Meeting;") # SQL 문장을 DB 서버에 보냄
+        cursor.execute("select * from Meetings2;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         for row in rows:
             print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
             
         results = [{
-            'id' : row[0],
-            'userId' : row[1],
-            'departure' : row[5],
-            'arrival' : row[4],
-            'recruitment' : row[6],
-            'remainingTime' : row[3],
-            'transport' : "택시"
+            'remainingTime' : row[0],
+            'arrival' : row[1],
+            'departure' : row[2],
+            'recruitment' : row[3],
+            'title' : row[4],
+            'content' : row[5],
+            'transport' : row[6],
+            'id': row[7]
         }for row in rows]
         
 
@@ -135,22 +111,20 @@ def db_meetdetail():
     
     try:
         cursor=connection.cursor()
-        cursor.execute("select * from Meeting;") # SQL 문장을 DB 서버에 보냄
+        cursor.execute("select * from Meetings2;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         for row in rows:
-            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]}{row[8]} ")
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
             
         results = [{
-            'id' : row[0],
-            'userId' : row[1],
-            'departure' : row[5],
-            'arrival' : row[4],
-            'recruitment' : row[6],
-            'remainingTime' : row[3],
-            'transport' : "택시",
-            'title':row[7],
-            'content':row[8]
-
+            'remainingTime' : row[0],
+            'arrival' : row[1],
+            'departure' : row[2],
+            'recruitment' : row[3],
+            'title' : row[4],
+            'content' : row[5],
+            'transport' : row[6],
+            'id': row[7]
         }for row in rows]
         
 
@@ -207,7 +181,7 @@ def handle_post():
         #params_str=params['arrival']
 
         
-        sql_sentence="insert into Meeting values (7,\"j2u3n4\",\"0\",\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'])
+        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],params['title'])
         # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
         #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
 
@@ -220,6 +194,98 @@ def handle_post():
     finally:
         
         cursor.close()
+def db_location(): 
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Location_table;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]}  ")
+            
+        results = [{
+            'id' : row,
+            'name' : row[0]
+        }for row in rows]
+        
+
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
+
+
+# User login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    connection = create_connection()
+    try: 
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
+        cursor.execute("SELECT * FROM new_user WHERE email = \"{}\"".format(params['email']))
+        ##cursor.execute("SELECT * FROM new_user")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(f"{row[0]}  ")
+        
+ 
+        results = [{
+            'email' : row[0],
+            'password' : row[1]
+        }for row in rows]
+
+        if results[0]['email']==params['email']: #아이디가 같으면
+            #비밀번호 맞는지 구현
+            if results[0]['password']==params['password']: 
+                return "로그인 성공"
+            else:
+                return "비밀번호가 다릅니다."
+        else: #아이디가 없으면
+            return "일치하는 아이디가 없습니다."
+        # cmd = "SELECT * FROM new_user WHERE \"email\" = \"{}\"".format(params['email'])
+        # result=cursor.execute(cmd)
+        #result1=cursor.fetchall()
+        #connection.commit() #여기????
+        # Get user by username
+        # SAFE TRANSACTION
+        # result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+
+        # if result >= 0: 
+        #     # Get stored hash
+        #     data = cursor.fetchone()
+        #     password = params['password']
+        #     return password
+        #     # Compare Passwords
+        #     # if sha256_crypt.verify(password_candidate, password): #로그인 성공
+        #     #     # Passed
+        #     #     session['logged_in'] = True
+        #     #     session['email'] = params['email']
+
+        #     #     return "good"
+        #     # else:                                        #로그인 실패
+        #     #     error = 'Invalid login'
+        #     #     return error
+        # else:
+        #     error = 'Username not found'
+        #     return error
+    
+
+    finally:
+        cursor.close()
+
+
+
 
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
@@ -228,74 +294,19 @@ def register():
     try:
         cursor=connection.cursor()
         params = json.loads(request.get_data(), encoding='utf-8')
+        
         if len(params) == 0:
             return 'No parameter'
 
-        sql_sentence="insert into users values (\"{}\",\"{}\",\"{}\");".format(params['email'],params['password'],params['phone'])
+        sql_sentence="insert into new_user values (\"{}\",\"{}\",\"{}\");".format(params['email'],params['password'],params['nickname'])
         cursor.execute(sql_sentence)
         connection.commit( )
         return sql_sentence
 
-        # ####################################################
-        # form = RegisterForm(request.form)
-        # if request.method == 'POST' and form.validate():
-        #     email = form.email.data
-        #     username = form.username.data
-        #     password = sha256_crypt.encrypt(str(form.password.data))
-
-        #     # Create cursor
-        #     cur = connection.cursor()
-
-        #     # Execute query
-        #     cur.execute("INSERT INTO users VALUES(\"%s\",\" %s\", \"%s\")", (email, username, password))
-        #     #cur.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
-        #     # Commit to DB
-        #     connection.commit()
-
-        #     #flash('You are now registered and can log in', 'success')
-
-        #     return "INSERT INTO users VALUES(\"%s\",\" %s\", \"%s\")", (email, username, password)
     finally:
-        cur.close()
+        cursor.close()
 
-# User login
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        # Get Form Fields
-        username = request.form['username']
-        password_candidate = request.form['password']
 
-        # Create cursor
-        cur = db.connection.cursor()
-        cmd = "SELECT * FROM users WHERE username = '%s'" % username
-        result = cur.execute(cmd)
-        print(result)
-        # Get user by username
-        # SAFE TRANSACTION
-        # result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
-
-        if result > 0: 
-            # Get stored hash
-            data = cur.fetchone()
-            password = data['password']
-
-            # Compare Passwords
-            if sha256_crypt.verify(password_candidate, password): #로그인 성공
-                # Passed
-                session['logged_in'] = True
-                session['username'] = username
-
-                flash('You are now logged in', 'success')
-                return redirect(url_for('dashboard'))
-            else:                                        #로그인 실패
-                error = 'Invalid login'
-                return render_template('login.html', error=error)
-            # Close connection
-            cur.close()
-        else:
-            error = 'Username not found'
-            return render_template('login.html', error=error)
 
 
 # Check if user logged in

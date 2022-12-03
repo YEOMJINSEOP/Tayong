@@ -21,7 +21,7 @@ function LoginForm(props) {
 
     console.log(userData);
 
-    const url = "http://localhost:4000/login";
+    const url = "";
     postData(url, userData);
 
   }

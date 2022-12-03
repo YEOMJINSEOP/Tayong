@@ -23,14 +23,18 @@ function LoginForm(props) {
     console.log(userData);
 
     const postUrl = "http://localhost:4000/login";
-    const getUrl = "" // loginSuccess 받아올 주소
+    const getUrl = "http://localhost:4000/loginValue" // loginSuccess 받아올 주소
     postData(postUrl, userData);
 
     // 여기서 loginSuccess 받아옵니다.
-    getData(getUrl)
-    .then(data => {
-      console.log(data)
-    })
+    setTimeout(function() {
+      getData(getUrl)
+      .then(data => {
+        console.log(data.data)
+  
+      })  
+    }, 1000);
+    
 
     navigate('/');
   }

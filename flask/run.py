@@ -222,12 +222,13 @@ def db_location():
         }
     finally:
         cursor.close()
-
-
+#loginVal=0
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     connection = create_connection()
+    global loginVal
+    loginVal=0
     try: 
         cursor=connection.cursor()
         params = json.loads(request.get_data(), encoding='utf-8')
@@ -248,11 +249,14 @@ def login():
         if results[0]['email']==params['email']: #아이디가 같으면
             #비밀번호 맞는지 구현
             if results[0]['password']==params['password']: 
-                return {"loginSuccess":"1"}
+                loginVal=1
+                return "로그인 성공"
             else:
-                return {"loginSuccess":"0"}
+                loginVal=0
+                return "비번 틀림"
         else: #아이디가 없으면
-            return {"loginSuccess":"0"}
+            loginVal=0
+            return "아이디 없음"
         # cmd = "SELECT * FROM new_user WHERE \"email\" = \"{}\"".format(params['email'])
         # result=cursor.execute(cmd)
         #result1=cursor.fetchall()
@@ -285,6 +289,15 @@ def login():
         cursor.close()
 
 
+@app.route('/loginValue', methods=['GET'])
+def loginValue():
+   
+    if loginVal==1:
+        result={"loginSuccess":"1"}
+        return '1'
+    else:
+        result={"loginSuccess":"0"}
+        return '0'
 
 
 # User Register

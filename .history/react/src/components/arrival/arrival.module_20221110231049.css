@@ -1,22 +1,8 @@
 @import '../../App.module.css';
 
 
-.departure{
+.arrival{
   margin: 0 3rem;
-}
-
-.info{
-  font-size: 20px;
-  color: var(--color-black);
-  text-align: center;
-  padding-bottom: 0.5rem;
-}
-
-
-.info span{
-  font-size: 26px;
-  font-weight: var(--weight-pretendard-medium);
-  color: var(--color-orange);
 }
 
 .inputBox{
@@ -33,6 +19,7 @@
   align-items: center;
 }
 
+
 .input{
   border: none;
   outline: none;
@@ -41,17 +28,16 @@
   text-align: center;
 }
 
+
 .searchIcon{
   width: 28px;
   height: 28px;
   color: var(--color-orange);
 }
 
-
 .ocos{
   font-family: var(--font-family-leferibase-bold);
 }
-
 
 
 .searchDropDown ul{
@@ -81,11 +67,4 @@
 
 /* 
   border: 1px solid var(--color-orange); */
-}
-
-@media screen and (max-width: 768px){
-  .searchIcon{
-    width: 20px;
-    height: 20px;
-  }
 }

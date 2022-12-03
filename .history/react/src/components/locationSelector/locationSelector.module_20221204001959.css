@@ -93,14 +93,7 @@
 
 .arrow{
   transform: rotate(90deg);
-}
-
-.departure{
-  margin-bottom: 30px;
-}
-
-.arrival{
-  margin-top: 30px;
+  margin-top: 20px;
 }
   
 

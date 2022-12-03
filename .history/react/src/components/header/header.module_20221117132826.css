@@ -52,16 +52,3 @@ button{
   padding: 0;
   cursor: pointer;
 }
-
-@media screen and (max-width: 768px){
-
-  .btn {
-    font-size: 11px;
-    width:fit-content;
-    margin-left: 12px;
-  }
-  .navbarBtn{
-    display: flex;
-    justify-content: right;
-  }
-}

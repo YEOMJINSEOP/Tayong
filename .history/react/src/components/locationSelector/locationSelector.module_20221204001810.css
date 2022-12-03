@@ -81,26 +81,13 @@
   
   
 .info span{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: var(--weight-pretendard-medium);
     color: var(--color-orange);
 }
   
 .ocos{
-    font-size: 22px;
     font-family: var(--font-family-leferibase-bold);
-}
-
-.arrow{
-  transform: rotate(90deg);
-}
-
-.departure{
-  margin-bottom: 30px;
-}
-
-.arrival{
-  margin-top: 30px;
 }
   
 

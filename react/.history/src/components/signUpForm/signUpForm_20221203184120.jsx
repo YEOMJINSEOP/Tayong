@@ -8,22 +8,16 @@ function SignUpForm(props) {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    let signUpData = {
-      email: email,
-      password: password,
-      phone: phone
-    }
-
-    console.log(signUpData);
-
-    const url = ""; // 저장할 DB 주소
-    postData(url, signUpData);
-
+  let signUpData = {
+    email: email,
+    password: password,
+    phone: phone
   }
 
+  // console.log(signUpData);
+
+  const url = ""; // 저장할 DB 주소
+  postData(url, signUpData);
 
   return (
 
@@ -55,7 +49,7 @@ function SignUpForm(props) {
           </div>
         </div>
 
-        <button className={styles.submitBtn} onClick={submitHandler}>회원가입</button>
+        <button className={styles.submitBtn}>회원가입</button>
       </div>
       
     </>

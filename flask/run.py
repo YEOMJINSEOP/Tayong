@@ -248,11 +248,11 @@ def login():
         if results[0]['email']==params['email']: #아이디가 같으면
             #비밀번호 맞는지 구현
             if results[0]['password']==params['password']: 
-                return "로그인 성공"
+                return {"loginSuccess":"1"}
             else:
-                return "비밀번호가 다릅니다."
+                return {"loginSuccess":"0"}
         else: #아이디가 없으면
-            return "일치하는 아이디가 없습니다."
+            return {"loginSuccess":"0"}
         # cmd = "SELECT * FROM new_user WHERE \"email\" = \"{}\"".format(params['email'])
         # result=cursor.execute(cmd)
         #result1=cursor.fetchall()

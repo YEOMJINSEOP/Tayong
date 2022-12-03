@@ -2,7 +2,7 @@
 
 .logInContainer{
     position: absolute;
-    top: 18%;
+    top: 22%;
   
     width: 100%;
     display: flex;
@@ -101,15 +101,15 @@ label {
   cursor: pointer;
 }
 
-.nickname {
+.phone {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 40px;
 }
 
-.nickname input{
-  width: 390px;
+.phone input{
+  width: 302px;
   height: 48px;
 
   border: 1px solid #CCCCCC;

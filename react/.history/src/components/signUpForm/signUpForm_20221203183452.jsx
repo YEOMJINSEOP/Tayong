@@ -42,14 +42,12 @@ function SignUpForm(props) {
           <input type="password" id="passwordCheck" name="passwordCheck" required />
         </div>
 
-        <div className={styles.nickname}>
-          <label htmlFor="nickname">닉네임</label>
+        <div className={styles.phone}>
+          <label htmlFor="phone">휴대폰 인증</label>
           <div className={styles.authContainer}>
-            <input type="text"  id="nickname" name="nickname" onChange={(e) => {setPhone(e.target.value)}} required/>
+            <input type="tel"  id="phone" name="phone" onChange={(e) => {setPhone(e.target.value)}} required/>
           </div>
         </div>
-
-        <button className={styles.submitBtn}>회원가입</button>
       </div>
       
     </>

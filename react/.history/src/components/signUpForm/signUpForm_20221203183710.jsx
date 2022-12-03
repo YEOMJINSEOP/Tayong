@@ -48,8 +48,6 @@ function SignUpForm(props) {
             <input type="text"  id="nickname" name="nickname" onChange={(e) => {setPhone(e.target.value)}} required/>
           </div>
         </div>
-
-        <button className={styles.submitBtn}>회원가입</button>
       </div>
       
     </>

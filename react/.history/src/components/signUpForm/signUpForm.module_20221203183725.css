@@ -2,7 +2,7 @@
 
 .logInContainer{
     position: absolute;
-    top: 18%;
+    top: 22%;
   
     width: 100%;
     display: flex;
@@ -109,7 +109,7 @@ label {
 }
 
 .nickname input{
-  width: 390px;
+  width: 302px;
   height: 48px;
 
   border: 1px solid #CCCCCC;

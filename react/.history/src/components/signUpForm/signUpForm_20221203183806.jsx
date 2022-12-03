@@ -49,7 +49,7 @@ function SignUpForm(props) {
           </div>
         </div>
 
-        <button className={styles.submitBtn}>회원가입</button>
+        <button>회원가입</button>
       </div>
       
     </>

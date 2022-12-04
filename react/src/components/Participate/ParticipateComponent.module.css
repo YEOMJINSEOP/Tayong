@@ -1,9 +1,10 @@
 @import '../../App.module.css';
-.container{
+
+.container {
     position: fixed;
     height: 80%;
     width: 100%;
-    top:71px;
+    top: 71px;
 
     display: flex;
     flex-direction: row;
@@ -11,9 +12,9 @@
     justify-content: center;
     padding: 30px;
     box-sizing: border-box;
-  }
+}
 
-.containertwo{
+.containertwo {
     width: 80vw;
     height: 100%;
     display: flex;
@@ -21,7 +22,7 @@
     box-sizing: border-box;
 }
 
-.leftcontainer{
+.leftcontainer {
     display: flex;
     width: 50%;
     height: 100%;
@@ -30,22 +31,22 @@
     box-sizing: border-box;
 }
 
-.rightcontainer{
+.rightcontainer {
     display: flex;
     width: 50%;
     height: 100%;
     margin-left: 30px;
-    
+
 }
 
-.top{
+.top {
     display: flex;
     width: 100%;
     height: 15%;
     margin-bottom: 30px;
 }
 
-.bottom{
+.bottom {
     display: flex;
     width: 100%;
     height: 85%;

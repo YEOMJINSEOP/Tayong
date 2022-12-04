@@ -140,7 +140,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
-          <button className={styles.btn_join}><a href="localhost:5000/chat">채팅하기</a></button>
+          <button className={styles.btn_join}><a href="http://localhost:5000/chat">채팅하기</a></button>
           <button className={styles.btn_backToList} onClick={() => {
             navigate(-1);
           }}>목록으로</button>

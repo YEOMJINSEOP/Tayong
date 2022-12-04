@@ -19,20 +19,6 @@ function MeetList(props) {
   console.log(param['*'].split('/'));
 
 
-  // useEffect(() => {
-  //   fetch('https://ill8bpyr5b.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
-  //     headers: {
-  //       'Accept': 'application/json'
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log('모임 데이터를 받아왔습니다🥕');
-  //     console.log(data);
-  //     console.log(JSON.parse(data['body']));
-  //   });
-  // }, [])
-
   useEffect(() => {
     //fetch('http://localhost:4000/getmeeting',{
     fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {

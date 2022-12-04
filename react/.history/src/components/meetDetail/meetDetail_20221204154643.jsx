@@ -12,6 +12,7 @@ function MeetDetail(props) {
   const navigate = useNavigate();
 
 
+  // const [meetId, setMeetId] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [remainingTime, setRemainingTime] = useState("");
@@ -39,33 +40,23 @@ function MeetDetail(props) {
       })  
   }, [])
 
+  let param = useParams();
+  let meetId = param['*'];
+  console.log("meetId:", meetId);
 
   // 참여하기 버튼 누르면 id와 meetId 전송하기
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
     const joinUrl = ""
-
-    // 로그인 되어있지 않으면 경고창을 띄웁니다.
-    if(loginId == '로그인'){
-      alert('참여하려면 로그인이 필요합니다');
+    let joinData = {
+      loginId: loginId,
+      meetId: meetId
     }
-
-    // 로그인 되어있으면 참여 데이터를 전송하고, 해당 모임 페이지로 이동합니다. 이때 meetTitle로 url 이동합니다.
-    else{
-      let joinData = {
-        loginId: loginId,
-        meetTitle: title
-      }
-      console.log('joinData', joinData);
-      postData(joinUrl, joinData);
-      navigate(`/participate/${meetTitle}`);
-    }
+    console.log('joinData', joinData);
+    postData(joinUrl, joinData)
+    navigate('/participate')
   }
-
   //----------------------------------------------//
-  let param = useParams();
-  let meetTitle = param['*'];
-  console.log("meetTitle:", meetTitle);
 
   useEffect(() => {
     //fetch('http://localhost:4000/getmeetdetail')
@@ -76,11 +67,10 @@ function MeetDetail(props) {
       console.log(data['body']);
       var k=1;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-        if(JSON.parse(data['body'])[i].title==meetTitle){
+        if(JSON.parse(data['body'])[i].title==meetId){
             k=i;
         }
       }
-
       setDeparture(JSON.parse(data['body'])[k].departure);
       setArrival(JSON.parse(data['body'])[k].arrival);
       setRemainingTime(JSON.parse(data['body'])[k].remainingTime);

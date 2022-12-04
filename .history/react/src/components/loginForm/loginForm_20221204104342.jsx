@@ -40,13 +40,8 @@ function LoginForm(props) {
         }
         else{
           alert('이메일 또는 비밀번호를 확인해주세요');
-          console.log('로그인 실패');
         }
       }
-      )
-      .catch(
-        () => 
-        console.warn('서버에서 데이터를 받아오는 데에 문제가 있습니다.')
       )
     }, 1000);
     

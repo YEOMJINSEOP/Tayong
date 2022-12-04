@@ -46,7 +46,7 @@ function LoginForm(props) {
       )
       .catch(
         () => 
-        console.warn('서버에서 데이터를 받아오는 데에 문제가 있습니다.')
+        console.error('서버 연결에 문제가 있습니다.')
       )
     }, 1000);
     

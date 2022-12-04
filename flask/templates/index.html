@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Room</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        console.log('http://' + document.domain + ':' + location.port)
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        var nickName = 'User';
+        socket.on('connect', function(){
+                var connect_string = 'new_connect';
+                socket.send(connect_string);
+        });
+
+        socket.on('message', function(msg){
+                // console.log(type(msg));
+                if(msg.type === 'normal'){
+           
+                    $('#messages').append(msg.message);
+                }else{
+                        $('#messages').append('<li>' + msg.message + '</li>');
+                }
+                console.log('Received Message : '+msg.type);
+        });
+
+        $('#sendbutton').on('click', function(){
+                socket.send($('#nickname').val()+': ');
+                socket.send($('#myMessage').val()+'<br>');
+                $('#myMessage').val('');
+          
+        });
+        $('#sendbutton').on('click', function(){
+            $("#nickset").attr("disabled", true);
+            $("#nickname").attr("disabled", true);
+    });
+        $('#nickset').on('click', function(){
+            $("#nickset").attr("disabled", true);
+            $("#nickname").attr("disabled", true);
+    });
+    });
+  </script>
+  <ul id="messages"></ul>
+  <input type="text" id="myMessage">
+  <button id="sendbutton">Send</button>
+
+  <ul id="nick"></ul>
+  <input type="text" id="nickname">
+  <button id="nickset">닉네임 설정</button>
+
+</body>
+</html>

@@ -44,13 +44,9 @@ function MeetDetail(props) {
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
     const joinUrl = ""
-
-    // 로그인 되어있지 않으면 경고창을 띄웁니다.
     if(loginId == '로그인'){
       alert('참여하려면 로그인이 필요합니다');
     }
-
-    // 로그인 되어있으면 참여 데이터를 전송하고, 해당 모임 페이지로 이동합니다. 이때 meetTitle로 url 이동합니다.
     else{
       let joinData = {
         loginId: loginId,
@@ -58,7 +54,7 @@ function MeetDetail(props) {
       }
       console.log('joinData', joinData);
       postData(joinUrl, joinData);
-      navigate(`/participate/${meetTitle}`);
+      navigate('/participate');
     }
   }
 
@@ -68,8 +64,8 @@ function MeetDetail(props) {
   console.log("meetTitle:", meetTitle);
 
   useEffect(() => {
-    fetch('http://localhost:4000/getmeetdetail')
-    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+    //fetch('http://localhost:4000/getmeetdetail')
+    fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');

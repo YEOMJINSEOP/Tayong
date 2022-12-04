@@ -5,19 +5,17 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import getData from '../../service/getData';
-import postData from '../../service/postData';
 
 function MeetDetail(props) {
 
   const navigate = useNavigate();
-
 
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [remainingTime, setRemainingTime] = useState("");
   const [recruitment, setRecruitment] = useState("");
   const [transport, setTransport] = useState("");
-  const [hostId, setHostId] = useState("");
+  const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -26,8 +24,6 @@ function MeetDetail(props) {
   const imgTransport = 'https://img.freepik.com/free-photo/man-driving-car-from-rear-view_1359-494.jpg?w=1800&t=st=1667398765~exp=1667399365~hmac=8304fbbb3ab8792ecbc4535a7e8d5241ae499a2c44d4922f5de295d8b8df3d8f';
   const imgTaxi = 'https://img.freepik.com/free-photo/taxi-sign-roof-top-car_74190-1728.jpg?w=1800&t=st=1667398413~exp=1667399013~hmac=efcccc4afa78711c2ff1407418bf496be6c0ddf73fe37c1c3ecf06f936d5bc24'; 
 
-
-  //-----------------추가된 부분 --------------------//
   // 로그인 정보 받아오기
   useEffect(() => {
     //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
@@ -39,48 +35,38 @@ function MeetDetail(props) {
       })  
   }, [])
 
+  const onParticipateHandler = () => {
 
-  // 참여하기 버튼 누르면 id와 meetId 전송하기
-  const onJoinHandler = () => {
-    // 참여하는 loginId를 participateUrl로 post합니다.
-    const joinUrl = ""
-
-    // 로그인 되어있지 않으면 경고창을 띄웁니다.
-    if(loginId == '로그인'){
-      alert('참여하려면 로그인이 필요합니다');
-    }
-
-    // 로그인 되어있으면 참여 데이터를 전송하고, 해당 모임 페이지로 이동합니다. 이때 meetTitle로 url 이동합니다.
-    else{
-      let joinData = {
-        loginId: loginId,
-        meetTitle: title
-      }
-      console.log('joinData', joinData);
-      postData(joinUrl, joinData);
-      navigate(`/participate/${meetTitle}`);
-    }
   }
 
-  //----------------------------------------------//
   let param = useParams();
-  let meetTitle = param['*'];
-  console.log("meetTitle:", meetTitle);
+  let meetId = param['*'];
+
+
+  // meetId에 해당하는 데이터를 받아오기
+  // const url = './meet.json';
+  // axios.get(url)
+  // .then(
+  //   (res) => {
+  //     console.log(res);
+  //     console.log("데이터를 받아왔습니다🎉");
+  //     // setDeparture(res.departure)
+  //   }
+  // );
 
   useEffect(() => {
-    fetch('http://localhost:4000/getmeetdetail')
-    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+    //fetch('http://localhost:4000/getmeetdetail')
+    fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');
-      console.log(data['body']);
+      console.log(data);
       var k=1;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-        if(JSON.parse(data['body'])[i].title==meetTitle){
+        if(JSON.parse(data['body'])[i].title==meetId){
             k=i;
         }
       }
-
       setDeparture(JSON.parse(data['body'])[k].departure);
       setArrival(JSON.parse(data['body'])[k].arrival);
       setRemainingTime(JSON.parse(data['body'])[k].remainingTime);
@@ -88,10 +74,7 @@ function MeetDetail(props) {
       setTransport(JSON.parse(data['body'])[k].transport);
       setTitle(JSON.parse(data['body'])[k].title);
       setContent(JSON.parse(data['body'])[k].content);
-      setHostId(JSON.parse(data['body'])[k].id);
-
-      console.log('title', JSON.parse(data['body'])[k].title );
-      console.log('id', setHostId(JSON.parse(data['body'])[k].id));
+      setUserId(JSON.parse(data['body'])[k].id);
     });
   }, [])
 
@@ -119,8 +102,8 @@ function MeetDetail(props) {
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
-              <div className={styles.userAvatar}></div>
-              <p>{hostId}</p>
+              <div className={styles.userAvatar}>🐯</div>
+              <p>{userId}</p>
             </div>
           </div>
         </div>
@@ -142,7 +125,8 @@ function MeetDetail(props) {
         </div>
 
         <div className={styles.btns}>
-          <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
+          <button className={styles.btn_join} onClick={() => {onParticipateHandler(), navigate('/participate')}}>참여하기</button>
+          <button className={styles.btn_chat}>채팅하기</button>
           <button className={styles.btn_backToList} onClick={() => {
             navigate(-1);
           }}>목록으로</button>

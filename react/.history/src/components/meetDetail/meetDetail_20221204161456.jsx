@@ -68,8 +68,8 @@ function MeetDetail(props) {
   console.log("meetTitle:", meetTitle);
 
   useEffect(() => {
-    fetch('http://localhost:4000/getmeetdetail')
-    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+    //fetch('http://localhost:4000/getmeetdetail')
+    fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       console.log('모임 데이터를 받아왔습니다🥕');

@@ -34,8 +34,8 @@ function MeetList(props) {
   // }, [])
 
   useEffect(() => {
-    //fetch('http://localhost:4000/getmeeting',{
-    fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
+    fetch('http://localhost:4000/getmeeting',{
+    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
       headers: {
         'Accept': 'application/json'
       }
@@ -81,7 +81,7 @@ function MeetList(props) {
           if(item.departure === depLoc && item.arrival === arrLoc){
             return (
               <Meet
-                key = {item.id}
+                key = {item.title}
                 id={item.id}
                 userId={item.userId}
                 departure={item.departure}

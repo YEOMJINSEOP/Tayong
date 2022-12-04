@@ -33,7 +33,8 @@ def create_connection():
     port = dbinfo.db_port
     )
 
-
+loginVal='0'
+nowId='0'
     
 
 
@@ -151,7 +152,7 @@ def handle_post():
         #params_str=params['arrival']
 
         
-        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],params['title'])
+        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],nowId)
         # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
         #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
 
@@ -193,8 +194,7 @@ def db_location():
     finally:
         cursor.close()
 
-loginVal='0'
-nowId='0'
+
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -24,6 +24,7 @@ def create_app(test_config=None):
     db.init_app(app)
 
 def create_connection():
+
     return pymysql.connect(
     host = dbinfo.db_host,
     user = dbinfo.db_username,
@@ -191,7 +192,9 @@ def db_location():
         }
     finally:
         cursor.close()
-#loginVal=0
+
+loginVal='0'
+nowId='0'
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():

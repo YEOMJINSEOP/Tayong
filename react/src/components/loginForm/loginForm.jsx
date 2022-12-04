@@ -22,10 +22,10 @@ function LoginForm(props) {
 
     console.log(userData);
 
-   // const postUrl = "http://localhost:4000/login";
-    const postUrl = "https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/login"
-   // const getUrl = "http://localhost:4000/loginValue" // loginSuccess 받아올 주소
-   const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
+    const postUrl = "http://localhost:4000/login"
+   // const postUrl = "https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/login"
+    const getUrl = "http://localhost:4000/loginValue" // loginSuccess 받아올 주소
+   //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
     postData(postUrl, userData);
 
     // 여기서 loginSuccess 받아옵니다.

@@ -29,7 +29,8 @@ function Header(props) {
   }
 
   useEffect(() => {
-    const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
+    //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
+    const getUrl = "http://localhost:4000/loginValue"
     getData(getUrl)
       .then(data => {
         const isLoginSucceed = JSON.parse(data.data['loginSuccess']);

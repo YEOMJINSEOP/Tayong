@@ -43,7 +43,7 @@ function MeetDetail(props) {
   // 참여하기 버튼 누르면 id와 meetId 전송하기
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
-    const joinUrl = ""
+    const joinUrl = "http://localhost:4000/participate"
 
     // 로그인 되어있지 않으면 경고창을 띄웁니다.
     if(loginId == '로그인'){
@@ -72,8 +72,6 @@ function MeetDetail(props) {
     //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
-      console.log('모임 데이터를 받아왔습니다🥕');
-      console.log(data['body']);
       var k=1;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].title==param['*'].split('/')[0]){
@@ -91,8 +89,6 @@ function MeetDetail(props) {
       setContent(JSON.parse(data['body'])[k].content);
       setHostId(JSON.parse(data['body'])[k].id);
 
-      console.log('title', JSON.parse(data['body'])[k].title );
-      console.log('id', setHostId(JSON.parse(data['body'])[k].id));
     });
   }, [])
 

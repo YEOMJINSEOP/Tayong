@@ -163,8 +163,31 @@ def handle_post():
         #     params_str += '{}:{} \n'.format(key,params[key])
         return sql_sentence
     finally:
-        
         cursor.close()
+
+def getparticipate():
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
+        #params_str=params['arrival']
+
+        sql_sentence="insert into Meetparticipate values (\"{}\",\"{}\",\"{}\",\"{}\",\"{}\");".format(params['meetTitle'],params['loginId'],params['loginId'],params['loginId'],params['loginId'])
+        # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
+        #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
+
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        #params_str =''
+        # for key in params.keys():
+        #     params_str += '{}:{} \n'.format(key,params[key])
+        return sql_sentence
+    finally:
+        cursor.close()
+
+
 def db_location(): 
     connection = create_connection()
     
@@ -317,6 +340,10 @@ def index10():
 @app.route('/getmeetdetail', methods=['GET'])
 def index11():
      return db_meetdetail()
+
+@app.route('/participate', methods=['GET','POST'])
+def index23():
+     return getparticipate()
 
 @app.route('/postform',methods = [ 'GET','POST'])
 def index12():

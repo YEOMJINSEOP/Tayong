@@ -64,8 +64,8 @@ function MeetDetail(props) {
 
   //----------------------------------------------//
   let param = useParams();
-  let meetTitle = param['*'];
-  console.log("meetTitle:", meetTitle);
+
+  
 
   useEffect(() => {
     fetch('http://localhost:4000/getmeetdetail')
@@ -76,8 +76,9 @@ function MeetDetail(props) {
       console.log(data['body']);
       var k=1;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-        if(JSON.parse(data['body'])[i].title==meetTitle){
+        if(JSON.parse(data['body'])[i].title==param['*'].split('/')[0]){
             k=i;
+            
         }
       }
 

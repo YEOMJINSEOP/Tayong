@@ -69,7 +69,7 @@ function MeetList(props) {
               <Meet
                 key = {item.title}
                 id={item.id}
-                userId={item.userId}
+                title={item.title}
                 departure={item.departure}
                 arrival={item.arrival}
                 recruitment={item.recruitment}

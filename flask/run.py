@@ -322,6 +322,20 @@ def index11():
 def index12():
      return handle_post()
 
+@app.route('/delete',methods = [ 'GET'])
+def delete():
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        
+        sql_sentence="delete from Meetings2;"
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        return sql_sentence
+
+    finally:
+        cursor.close()
+
 if __name__ == '__main__':
  if len(sys.argv) > 1:
      app.debug = True

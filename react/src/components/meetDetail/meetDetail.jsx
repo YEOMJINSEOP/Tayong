@@ -58,7 +58,7 @@ function MeetDetail(props) {
       }
       console.log('joinData', joinData);
       postData(joinUrl, joinData);
-      navigate(`/participate/${meetTitle}`);
+      navigate(`/participate/${joinData.meetTitle}`);
     }
   }
 

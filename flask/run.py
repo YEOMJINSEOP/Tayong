@@ -37,9 +37,59 @@ loginVal='0'
 nowId='0'
     
 
+def showparticipate():
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Meetparticipate2;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]} {row[1]}")
+            
+        results = [{
 
+            'id': row[0],
+            'randomKey':row[1]
+        }for row in rows]
+        
 
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
 
+def deleteparticipate():
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("delete from Meetparticipate2;") # SQL 문장을 DB 서버에 보냄
+        connection.commit()
+
+   
+        
+
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': '*',
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
 
 
 def db_meeting(): 
@@ -198,7 +248,7 @@ def exitparticipate():  #모임 나가기 버튼
         if len(params) == 0:
             return 'No parameter'
 
-        sql_sentence="delete Meetparticipate2 where Id = \"{}\");".format(params['loginId'])     
+        sql_sentence="delete from Meetparticipate2 where Id = \"{}\");".format(params['loginId'])     
         cursor.execute(sql_sentence)
         connection.commit( )
         return sql_sentence
@@ -359,11 +409,17 @@ def index10():
 @app.route('/getmeetdetail', methods=['GET'])
 def index11():
      return db_meetdetail()
-
+@app.route('/deleteparticipate', methods=['GET','POST'])
+def index26():   
+     return deleteparticipate()
+ 
 @app.route('/participate', methods=['GET','POST'])
 def index23():
-    
      return getparticipate()
+ 
+@app.route('/showparticipate', methods=['GET','POST'])
+def index27():
+     return showparticipate()
  
 @app.route('/exitparticipate', methods=['GET','POST'])
 def index55():

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import BoxLayout from '../components/boxLayout/BoxLayout';
 import styles from './Member.module.css';
 import User from '../components/User/User';
+import getData from '../../../service/getData';
 
 export default function Member() {
   
@@ -13,9 +14,15 @@ export default function Member() {
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;
-        }
+            console.log(JSON.parse(data['body'])[i].Id);
+
+
+
+          }
+        
+
       }
-      console.log(JSON.parse(data['body'])[i].Id)
+      
       //JSON.parse(data['body'])[i].Id 값이 참여자 데이터
     })
   }, []);

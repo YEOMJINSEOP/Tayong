@@ -50,7 +50,7 @@ def db_meeting():
         cursor.execute("select * from Meetings2;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         for row in rows:
-            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} {row[8]} ")
             
         results = [{
             'remainingTime' : row[0],
@@ -60,7 +60,8 @@ def db_meeting():
             'title' : row[4],
             'content' : row[5],
             'transport' : row[6],
-            'id': row[7]
+            'id': row[7],
+            'randomKey':row[8]
         }for row in rows]
         
 
@@ -85,7 +86,7 @@ def db_meetdetail():
         cursor.execute("select * from Meetings2;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
         for row in rows:
-            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} {row[8]}")
             
         results = [{
             'remainingTime' : row[0],
@@ -95,7 +96,8 @@ def db_meetdetail():
             'title' : row[4],
             'content' : row[5],
             'transport' : row[6],
-            'id': row[7]
+            'id': row[7],
+            'randomKey':row[8]
         }for row in rows]
         
 
@@ -114,31 +116,6 @@ def db_meetdetail():
 
 
 
-
-# def db_write():
-#     connection = create_connection()
-    
-#     try:
-#         cursor=connection.cursor()
-#         cursor.execute("insert into Location_table values (\"Seoul\");") # SQL 문장을 DB 서버에 보냄
-#         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-        
-#         for row in rows:
-#             print(f"{row[0]}")
-            
-#         results = [{
-            
-#             'name' : row[0]
-
-#         }for row in rows]
-        
-#         return {
-        
-#         'body': json.dumps(results)
-#         }
-#     finally:
-#         cursor.close()
-
 app = Flask(__name__, static_url_path='')
 
 
@@ -152,7 +129,7 @@ def handle_post():
         #params_str=params['arrival']
 
         
-        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],nowId)
+        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],nowId,params['randomKey'])
         # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
         #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
 
@@ -165,7 +142,7 @@ def handle_post():
     finally:
         cursor.close()
 
-def getparticipate():
+def getparticipate(): #참여하기 버튼
     connection = create_connection()
     try:
         cursor=connection.cursor()
@@ -174,10 +151,8 @@ def getparticipate():
             return 'No parameter'
         #params_str=params['arrival']
 
-        sql_sentence="insert into Meetparticipate values (\"{}\",\"{}\",\"{}\",\"{}\",\"{}\");".format(params['meetTitle'],params['loginId'],params['loginId'],params['loginId'],params['loginId'])
-        # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
-        #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
-
+        sql_sentence="insert into Meetparticipate2 values (\"{}\",\"{}\");".format(params['loginId'],params['randomKey'])
+        # Pk를 Id에, 모임정보에 randomKey값을,
         cursor.execute(sql_sentence)
         connection.commit( )
         #params_str =''
@@ -186,6 +161,22 @@ def getparticipate():
         return sql_sentence
     finally:
         cursor.close()
+        
+def exitparticipate():  #모임 나가기 버튼
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        params = json.loads(request.get_data(), encoding='utf-8')
+        if len(params) == 0:
+            return 'No parameter'
+
+        sql_sentence="delete Meetparticipate2 where Id = \"{}\");".format(params['loginId'])     
+        cursor.execute(sql_sentence)
+        connection.commit( )
+        return sql_sentence
+    finally:
+        cursor.close()
+
 
 
 def db_location(): 
@@ -343,8 +334,12 @@ def index11():
 
 @app.route('/participate', methods=['GET','POST'])
 def index23():
+    
      return getparticipate()
-
+@app.route('/exitparticipate', methods=['GET','POST'])
+def index55():
+     return exitparticipate()
+ 
 @app.route('/postform',methods = [ 'GET','POST'])
 def index12():
      return handle_post()

@@ -65,9 +65,11 @@ function MeetList(props) {
       <ul className={styles.list}>
         {meetList.map((item) => {
           if(item.departure === depLoc && item.arrival === arrLoc){
+            
             return (
               <Meet
-                key = {item.randomKey} // key 값을 randomKey로 설정
+                randomKey = {item.randomKey} // key 값을 randomKey로 설정
+                key={item.randomKey}
                 id={item.id}
                 title={item.title}
                 departure={item.departure}

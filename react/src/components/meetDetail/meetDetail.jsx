@@ -73,14 +73,14 @@ function MeetDetail(props) {
     //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
-      var k=1;
+      var k=0;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;
             
         }
       }
-
+      console.log("dd"+param['*'].split('/'));
       setDeparture(JSON.parse(data['body'])[k].departure);
       setArrival(JSON.parse(data['body'])[k].arrival);
       setRemainingTime(JSON.parse(data['body'])[k].remainingTime);

@@ -162,6 +162,34 @@ def getparticipate(): #참여하기 버튼
     finally:
         cursor.close()
         
+def sendparticipate(): #현재 참여자 보내기
+    connection = create_connection()
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from Meetparticipate2 ;") # SQL 문장을 DB 서버에 보냄
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+        for row in rows:
+            print(f"{row[0]} {row[1]} ")
+            
+        results = [{
+            'Id' : row[0],
+            'randomKey' : row[1],
+  
+        }for row in rows]
+        return {
+        
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
+    
+        
 def exitparticipate():  #모임 나가기 버튼
     connection = create_connection()
     try:
@@ -336,9 +364,14 @@ def index11():
 def index23():
     
      return getparticipate()
+ 
 @app.route('/exitparticipate', methods=['GET','POST'])
 def index55():
      return exitparticipate()
+ 
+@app.route('/sendparticipate', methods=['GET','POST'])
+def index56():
+     return sendparticipate()
  
 @app.route('/postform',methods = [ 'GET','POST'])
 def index12():

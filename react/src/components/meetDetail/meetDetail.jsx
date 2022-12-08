@@ -79,13 +79,14 @@ function MeetDetail(props) {
     fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      
       var k=0;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;
             
         }
+        
       }
       console.log("dd"+param['*'].split('/'));
       setDeparture(JSON.parse(data['body'])[k].departure);
@@ -98,7 +99,8 @@ function MeetDetail(props) {
       setHostId(JSON.parse(data['body'])[k].id);
       setRandomKey(JSON.parse(data['body'])[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
       // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
-      console.log("here!",{randomKey});
+      console.log("here!",JSON.parse(data['body'])[k].randomKey);
+      
     });
   }, [])
   //----------------------------------------------//

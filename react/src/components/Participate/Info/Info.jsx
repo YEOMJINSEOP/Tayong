@@ -20,7 +20,7 @@ function Info(props) {
   const [hostId, setHostId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const [randomKey, setRandomKey] = useState("");
   const [loginId, setLoginId] = useState("로그인");
 
   const imgTransport = 'https://img.freepik.com/free-photo/man-driving-car-from-rear-view_1359-494.jpg?w=1800&t=st=1667398765~exp=1667399365~hmac=8304fbbb3ab8792ecbc4535a7e8d5241ae499a2c44d4922f5de295d8b8df3d8f';
@@ -31,7 +31,7 @@ function Info(props) {
   // 로그인 정보 받아오기
   useEffect(() => {
     //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
-    const getUrl = "http://localhost:4000/loginValue"
+    const getUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
     getData(getUrl)
       .then(data => {
         const loginId = data.data['loginId'];
@@ -43,7 +43,7 @@ function Info(props) {
   // 참여하기 버튼 누르면 id와 meetId 전송하기
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
-    const joinUrl = "http://localhost:4000/participate"
+    const joinUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/participate"
 
     // 로그인 되어있지 않으면 경고창을 띄웁니다.
     if (loginId == '로그인') {
@@ -68,13 +68,13 @@ function Info(props) {
 
 
   useEffect(() => {
-    fetch('http://localhost:4000/getmeetdetail')
+    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
       //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
       .then(res => res.json())
       .then(data => {
-        var k = 1;
+        var k = 0;
         for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-          if (JSON.parse(data['body'])[i].title == param['*'].split('/')[0]) {
+          if (JSON.parse(data['body'])[i].randomKey == param['*'].split('/')[0]) {
             k = i;
 
           }
@@ -88,7 +88,7 @@ function Info(props) {
         setTitle(JSON.parse(data['body'])[k].title);
         setContent(JSON.parse(data['body'])[k].content);
         setHostId(JSON.parse(data['body'])[k].id);
-
+        setRandomKey(JSON.parse(data['body'])[k].randomKey);
       });
   }, [])
 

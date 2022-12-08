@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function Member(props) {
 
   const [userList, setUserList] = useState([]);
-  const url = 'http://localhost:4000/sendparticipate'
+  const url = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/sendparticipate'
   let param = useParams();
   var k = 0;
   useEffect(() => {

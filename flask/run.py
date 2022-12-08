@@ -223,8 +223,7 @@ def sendparticipate(): #현재 참여자 보내기
             
         results = [{
             'Id' : row[0],
-            'randomKey' : row[1],
-  
+            'randomKey' : row[1]
         }for row in rows]
         return {
         
@@ -395,7 +394,7 @@ def register():
 
 @app.route('/', methods=['GET'])
 def index22(): 
-     return "f"
+     return "fasdasd"
 
 
 @app.route('/getlocation',methods=['GET'])

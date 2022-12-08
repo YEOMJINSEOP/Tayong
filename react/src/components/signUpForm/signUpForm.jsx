@@ -24,7 +24,7 @@ function SignUpForm(props) {
 
     console.log(signUpData);
 
-    const postUrl = "http://localhost:4000/register"; // 저장할 DB 주소
+    const postUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/register"; // 저장할 DB 주소
     //const postUrl = "https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/register";
     postData(postUrl, signUpData);
     navigate('/login');

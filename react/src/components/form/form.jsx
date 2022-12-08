@@ -49,7 +49,7 @@ function Form(props) {
 
     console.log(data);
     //const url = 'https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-    const url ='http://localhost:4000/postform'
+    const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform'
     postData(url, data)
     navigate('/'); // 메인 페이지로 이동 -> 나중에 상세 페이지 이동으로 바꾸면 좋을 듯)
 

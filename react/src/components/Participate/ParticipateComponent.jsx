@@ -22,7 +22,7 @@ export default function ParticipateComponent() {
                     </div>
                 </div>
                 <div className={styles.rightcontainer}>
-                    <Chat />
+                    {user ? <Chat /> : <SignIn />}
                 </div>
             </div>
 

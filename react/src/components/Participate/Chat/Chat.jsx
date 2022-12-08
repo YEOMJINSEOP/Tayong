@@ -1,40 +1,58 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useParams} from "react";
 import BoxLayout from "../components/boxLayout/BoxLayout";
 import styles from './Cha.css';
 import { auth, db } from "../firebase";
 import SendMessage from "./SendMessage";
-import SignOut from "./SignOut";
+// import SignOut from "./SignOut";
+import uuid from 'react-uuid';
 
 function Chat() {
     const scroll = useRef()
     const [messages, setMessages] = useState([])
+    const [meetUUID, setMeetUUID] = useState("temp uuid");
+    const url = ' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/sendparticipate';
+    // useEffect(() => {
+    //     db.collection('messages').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+    //         setMessages(snapshot.docs.map(doc => doc.data()))
+    //     })
+    // }, [])
     useEffect(() => {
-        db.collection('messages').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()))
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            {
+            const meetUUID = (JSON.parse(data['body'])[0].randomKey);
+            db.collection('tayongMessage').doc('chat').collection(meetUUID).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+                setMessages(snapshot.docs.map(doc => doc.data()))
+                console.log(meetUUID);
+            })
+          }
         })
-    }, [])
+      }, [])
+
     return (
         <div className="container">
             <div>채팅하기</div>
             <div className="box">
-                <div style={{overflowY:"scroll", width: '100%'}}>
+                <div className="chatbox">
                     {/* <SignOut /> */}
                     <div className="msgs">
                         {messages.map(({id, text, photoURL, uid}) => (
                             <div key={id}>
-                                
-                                <div  className={`msg ${uid ==null ? 'sent' : 'received'}`}>
+                                <div  className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`}>
+                                {/* <div  className={`msg {'sent'}`}> */}
                                     <img src={photoURL} alt=""/>
                                     <p>{text}</p>
                                 </div>
                             </div>
                         ))}
+                        <div ref={scroll}></div> 
                     </div>
-                    
-                    <SendMessage scroll={scroll} />   
-                    <div ref={scroll}></div> 
+                    <div>
+                        <SendMessage scroll={scroll} />   
+                        
+                    </div>
                 </div>
-            
             </div>
         </div>
     )

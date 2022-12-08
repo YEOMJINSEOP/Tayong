@@ -12,7 +12,6 @@ export default function Member() {
     getData(url)
     .then(res => res['data'])
     .then(data => {
-      var k=0;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;

@@ -3,7 +3,6 @@ import BoxLayout from '../components/boxLayout/BoxLayout';
 import styles from './Member.module.css';
 import User from '../components/User/User';
 import getData from '../../../service/getData';
-import { useParams } from 'react-router-dom';
 
 export default function Member() {
   let param = useParams();
@@ -12,7 +11,6 @@ export default function Member() {
     getData(url)
     .then(res => res['data'])
     .then(data => {
-      var k=0;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;

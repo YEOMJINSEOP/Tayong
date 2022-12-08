@@ -30,7 +30,6 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
       <img 
       src= {selectImg()}
       alt="transport img" 
-      className={styles.transportImg}
       />
     </div>
     <div className={styles.infoLocation}>
@@ -46,7 +45,7 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
     </div>
     <div className={styles.infoSet}>
       <div className={styles.infoRecruitment}>
-        <p>출발일</p>
+        <p>모집인원</p>
       {recruitment}
       </div>
       <div className={styles.infoTime}>

@@ -5,7 +5,7 @@ import logging
 import pymysql
 import dbinfo
 import json
-# from Flask_Cors import CORS,cross_origin
+from Flask_Cors import CORS,cross_origin
 
 from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session, logging
 from db_connect import db

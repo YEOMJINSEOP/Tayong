@@ -12,7 +12,7 @@ function SendMessage({ scroll, meetUUID }) {
         e.preventDefault()
         const {uid, photoURL} = auth.currentUser
 
-        await db.collection('tayongMessage').doc('chat').collection(meetUUID).add({
+        await db.collection('tayongMessage').doc('chat').collection({meetUUID}).add({
             text: msg,
             photoURL,
             uid,

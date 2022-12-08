@@ -12,13 +12,13 @@ import getData from '../../service/getData';
 
 export default function ParticipateComponent() { 
 
-  
+    let meetUUID = "";
     const [uid, setUid] = useState("");
     let param = useParams();
     console.log(param['*']);
-    const meetUUID = param['*'];
-    // setUid(meetUUID);
-    // console.log("look at", uid);
+    meetUUID = param['*'];
+    setUid(meetUUID);
+    console.log("look at", uid);
 
   
     const [user] = useAuthState(auth)
@@ -27,7 +27,7 @@ export default function ParticipateComponent() {
             <div className={styles.containertwo}>
                 <div className={styles.leftcontainer}>
                     <div className={styles.top}>
-                        <Member />
+                        {/* <Member /> */}
                     </div>
 
                     <div className={styles.bottom}>
@@ -35,7 +35,7 @@ export default function ParticipateComponent() {
                     </div>
                 </div>
                 <div className={styles.rightcontainer}>
-                    {user ? <Chat meetUUID={meetUUID} /> : <SignIn />}
+                    {user ? <Chat meetUUID={uid} /> : <SignIn />}
                 </div>
             </div>
 

@@ -7,12 +7,12 @@ import firebase from 'firebase/compat/app';
 function SendMessage({ scroll, meetUUID }) {
     const [msg, setMsg] = useState('')
     console.log("snedmessage", {meetUUID});
-
+    const meetUUIDs = {meetUUID};
     async function sendMessage(e){
         e.preventDefault()
         const {uid, photoURL} = auth.currentUser
 
-        await db.collection('tayongMessage').doc('chat').collection(meetUUID).add({
+        await db.collection('tayongMessage').doc('chat').collection(meetUUIDs).add({
             text: msg,
             photoURL,
             uid,

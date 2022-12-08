@@ -7,7 +7,7 @@ import firebase from 'firebase/compat/app';
 function SendMessage({ scroll, meetUUID }) {
     const [msg, setMsg] = useState('')
     console.log("snedmessage", {meetUUID});
-
+    const meetUUID = {meetUUID};
     async function sendMessage(e){
         e.preventDefault()
         const {uid, photoURL} = auth.currentUser

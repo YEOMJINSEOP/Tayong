@@ -61,11 +61,11 @@ function MeetDetail(props) {
     else{
       let joinData = {
         loginId: loginId,
-        randomKey: {randomKey}  // 참여하기 버튼을 누르면 로그인 한 아이디와, randomKey가 joinData로 전송됩니다.
+        randomKey: randomKey  // 참여하기 버튼을 누르면 로그인 한 아이디와, randomKey가 joinData로 전송됩니다.
       }
       console.log('joinData', joinData);
       postData(joinUrl, joinData);
-      navigate(`/participate/${randomKey}`);
+      navigate(`/participate/${joinData.randomKey}`);
     }
   }
 
@@ -88,7 +88,7 @@ function MeetDetail(props) {
         }
         
       }
-      // console.log("dd"+param['*'].split('/'));
+      console.log("dd"+param['*'].split('/'));
       setDeparture(JSON.parse(data['body'])[k].departure);
       setArrival(JSON.parse(data['body'])[k].arrival);
       setRemainingTime(JSON.parse(data['body'])[k].remainingTime);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Chat from './Chat/Chat';
 import Info from './Info/Info';
 import Member from './Member/Member';
@@ -6,21 +6,8 @@ import styles from './ParticipateComponent.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import SignIn from './Chat/SignIn';
 import { auth } from './firebase';
-import { useParams } from 'react-router-dom';
-import getData from '../../service/getData';
 
-
-export default function ParticipateComponent() { 
-
-  
-    const [uid, setUid] = useState("");
-    let param = useParams();
-    console.log(param['*']);
-    const meetUUID = param['*'];
-    // setUid(meetUUID);
-    // console.log("look at", uid);
-
-  
+export default function ParticipateComponent() {
     const [user] = useAuthState(auth)
     return (
         <div className={styles.container}>
@@ -35,7 +22,7 @@ export default function ParticipateComponent() {
                     </div>
                 </div>
                 <div className={styles.rightcontainer}>
-                    {user ? <Chat meetUUID={meetUUID} /> : <SignIn />}
+                    {user ? <Chat /> : <SignIn />}
                 </div>
             </div>
 

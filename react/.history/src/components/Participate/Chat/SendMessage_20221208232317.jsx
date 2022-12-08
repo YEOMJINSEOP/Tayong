@@ -4,14 +4,33 @@ import { db, auth } from '../firebase';
 // import firebase from 'firebase';
 import firebase from 'firebase/compat/app';
 
-function SendMessage({ scroll, meetUUID }) {
+function SendMessage({ scroll }) {
     const [msg, setMsg] = useState('')
-    console.log("snedmessage", {meetUUID});
+    const [meetUUID, setMeetUUID] = useState("temp uuid"); // 추가
+
+    const url = ' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/sendparticipate';
+     useEffect(() => {
+         fetch(url)
+         .then(res => res.json())
+         .then(data => {
+             {
+             setMeetUUID(JSON.parse(data['body'])[0].randomKey);
+           }
+         });
+       }, []) // 추가
 
     async function sendMessage(e){
         e.preventDefault()
         const {uid, photoURL} = auth.currentUser
 
+        // await db.collection('messages').add({
+        //     text: msg,
+        //     photoURL,
+        //     uid,
+        //     createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        // })
+        // setMsg('')
+        // scroll.current.scrollIntoView({ behavior: 'smooth' })
         await db.collection('tayongMessage').doc('chat').collection(meetUUID).add({
             text: msg,
             photoURL,

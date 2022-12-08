@@ -12,14 +12,21 @@ import getData from '../../service/getData';
 
 export default function ParticipateComponent() { 
 
-  
-    const [uid, setUid] = useState("");
+    let meetUUID = "";
+    const url = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/sendparticipate'
     let param = useParams();
-    console.log(param['*']);
-    const meetUUID = param['*'];
-    // setUid(meetUUID);
-    // console.log("look at", uid);
-
+    var k = 0;
+    useEffect(() => {
+      getData(url)
+        .then(res => res['data'])
+        .then(data => {
+          const newList = JSON.parse(data['body']).filter((data)=>data.randomKey === param['*'].split('/')[0]);
+          console.log("PC NewList", newList);
+          console.log("parse", JSON.parse(data['body'])[0].randomKey);
+          meetUUID = JSON.parse(data['body'])[0].randomKey
+          console.log("final", meetUUID);
+        })
+    }, []);
   
     const [user] = useAuthState(auth)
     return (

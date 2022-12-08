@@ -12,12 +12,20 @@ function Chat({meetUUID}) {
     const scroll = useRef()
     const [messages, setMessages] = useState([]);
 
-    console.log("CHAT!!", meetUUID);
+    console.log("CHAT!!", {meetUUID});
     useEffect(() => {
-        db.collection('tayongMessage').doc('chat').collection(meetUUID).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()))
-            // console.log("meetUUID", meetUUID);
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            {
+            const meetUUID = {meetUUID};
+            db.collection('tayongMessage').doc('chat').collection(meetUUID).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+                setMessages(snapshot.docs.map(doc => doc.data()))
+                // console.log("meetUUID", meetUUID);
+            })
+          }
         })
+
       }, [])
 
     
@@ -41,7 +49,7 @@ function Chat({meetUUID}) {
                         <div ref={scroll}></div> 
                     </div>
                     <div>
-                        <SendMessage scroll={scroll} meetUUID={meetUUID} />   
+                        <SendMessage scroll={scroll} />   
                         
                     </div>
                 </div>

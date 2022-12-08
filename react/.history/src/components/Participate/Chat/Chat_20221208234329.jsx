@@ -5,22 +5,27 @@ import { auth, db } from "../firebase";
 import SendMessage from "./SendMessage";
 // import SignOut from "./SignOut";
 import uuid from 'react-uuid';
-import getData from '../../../service/getData';
 
-
-function Chat({meetUUID}) {
+function Chat() {
     const scroll = useRef()
     const [messages, setMessages] = useState([]);
 
-    console.log("CHAT!!", meetUUID);
+    console.log("CHAT!!");
+    const url = ' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/sendparticipate';
     useEffect(() => {
-        db.collection('tayongMessage').doc('chat').collection(meetUUID).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()))
-            // console.log("meetUUID", meetUUID);
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            {
+            const meetUUID = (JSON.parse(data['body'])[0].randomKey);
+            db.collection('tayongMessage').doc('chat').collection(meetUUID).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+                setMessages(snapshot.docs.map(doc => doc.data()))
+                console.log("meetUUID", meetUUID);
+            })
+          }
         })
-      }, [])
 
-    
+      }, [])
 
     return (
         <div className="container">
@@ -41,7 +46,7 @@ function Chat({meetUUID}) {
                         <div ref={scroll}></div> 
                     </div>
                     <div>
-                        <SendMessage scroll={scroll} meetUUID={meetUUID} />   
+                        <SendMessage scroll={scroll} />   
                         
                     </div>
                 </div>

@@ -41,7 +41,7 @@ function Chat({meetUUID}) {
                         <div ref={scroll}></div> 
                     </div>
                     <div>
-                        <SendMessage scroll={scroll} meetUUID={meetUUID} />   
+                        <SendMessage scroll={scroll} />   
                         
                     </div>
                 </div>

@@ -222,4 +222,12 @@ textarea{
 }
 
 @media screen and (max-width: 768px){
+
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  .locationContainer {
+    flex-direction: column;
+  }
 }

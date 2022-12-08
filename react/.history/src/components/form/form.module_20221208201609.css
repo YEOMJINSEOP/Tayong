@@ -222,4 +222,13 @@ textarea{
 }
 
 @media screen and (max-width: 768px){
+
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  .departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content{
+    display: flex;
+    flex-direction: column;
+  }
 }

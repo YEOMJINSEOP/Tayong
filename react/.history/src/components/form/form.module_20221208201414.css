@@ -222,4 +222,70 @@ textarea{
 }
 
 @media screen and (max-width: 768px){
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  .locationContainer{
+    width: 400px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .imgTransport{
+    width: 400px;
+  }
+
+  .locAndUserContainer{
+    width: 400px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .departure{
+    width: 200px;
+  }
+
+  .arrival{
+    width: 200px;
+  }
+  .title{
+    width: 400px;
+  }
+  .info{
+    width: 400px;
+  }
+
+  .recruitment{
+    width: 100px;
+  }
+
+
+  .remainingTime{
+    width: 300px;
+  }
+
+  .container{
+  }
+
+  .userInfoInfo {
+    width: 60px;
+    margin: 0;
+    padding-right: 10px;
+  }
+  
+  .content{
+    width: 400px;
+  }
+
+  .btns{
+    width: 400px;
+  }
+
+  button {
+    width: 150px;
+  }
 }

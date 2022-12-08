@@ -216,7 +216,7 @@ button {
     width: 400px;
   }
   .info{
-    width: 400px;
+    width: 200px;
   }
 
   .recruitment{
@@ -225,30 +225,10 @@ button {
 
 
   .remainingTime{
-    width: 300px;
+    width: 100px;
   }
 
   .container{
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .userInfoInfo {
-    width: 60px;
-    margin: 0;
-    padding-right: 10px;
-  }
-  
-  .content{
-    width: 400px;
-  }
-
-  .btns{
-    width: 400px;
-  }
-
-  button {
-    width: 150px;
+    padding-left: 80px;
   }
 }

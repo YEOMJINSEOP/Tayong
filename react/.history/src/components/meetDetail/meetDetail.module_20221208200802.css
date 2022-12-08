@@ -229,9 +229,7 @@ button {
   }
 
   .container{
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 80px;
   }
 
   .userInfoInfo {
@@ -240,15 +238,4 @@ button {
     padding-right: 10px;
   }
   
-  .content{
-    width: 400px;
-  }
-
-  .btns{
-    width: 400px;
-  }
-
-  button {
-    width: 150px;
-  }
 }

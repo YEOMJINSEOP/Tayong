@@ -229,26 +229,6 @@ button {
   }
 
   .container{
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .userInfoInfo {
-    width: 60px;
-    margin: 0;
-    padding-right: 10px;
-  }
-  
-  .content{
-    width: 400px;
-  }
-
-  .btns{
-    width: 400px;
-  }
-
-  button {
-    width: 150px;
+    padding-left: 80px;
   }
 }

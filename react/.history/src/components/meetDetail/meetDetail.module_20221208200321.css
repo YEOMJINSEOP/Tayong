@@ -194,61 +194,8 @@ button {
 
 
 @media screen and (max-width: 768px){
-  .imgTransport{
-    width: 400px;
-  }
-
-  .locAndUserContainer{
-    width: 400px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .departure{
-    width: 200px;
-  }
-
-  .arrival{
-    width: 200px;
-  }
-  .title{
-    width: 400px;
-  }
-  .info{
-    width: 400px;
-  }
-
-  .recruitment{
-    width: 100px;
-  }
-
-
-  .remainingTime{
-    width: 300px;
-  }
-
   .container{
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .userInfoInfo {
-    width: 60px;
-    margin: 0;
-    padding-right: 10px;
-  }
-  
-  .content{
-    width: 400px;
-  }
-
-  .btns{
-    width: 400px;
-  }
-
-  button {
-    width: 150px;
+    padding-left: 300px;
+    padding-right: 300p;x
   }
 }

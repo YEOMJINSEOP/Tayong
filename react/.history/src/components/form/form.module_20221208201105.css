@@ -220,6 +220,3 @@ textarea{
   color: var(--color-white);
   line-height: 14px;
 }
-
-@media screen and (max-width: 768px){
-}

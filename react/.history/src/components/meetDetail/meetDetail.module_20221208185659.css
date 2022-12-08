@@ -110,11 +110,6 @@
   margin-right: 0;
 }
 
-.recruitment p {
-  margin: 0;
-  font-size: 12px;
-}
-
 .remainingTime {
   width: 288px;
   height: 53px;
@@ -168,7 +163,19 @@ button {
   color: orange;
 }
 
-.btn_chat a {
-  text-decoration: none;
-  color: var(--color-white);
+@media screen and (max-width: 768px){
+
+  .container{
+    position: absolute;
+    top: 12%;
+  
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    background-color: lightblue;
+  }
+
 }

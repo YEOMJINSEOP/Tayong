@@ -99,7 +99,6 @@ function MeetDetail(props) {
       setHostId(JSON.parse(data['body'])[k].id);
       setRandomKey(JSON.parse(data['body'])[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
       // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
-      console.log("here!",{randomKey});
     });
   }, [])
   //----------------------------------------------//
@@ -151,7 +150,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
-          <button className={styles.btn_chat}><a href="http://tayongchat.s3-website.ap-northeast-2.amazonaws.com/">채팅하기</a></button>
+          <button className={styles.btn_chat}><a href="http://localhost:5000/chat">채팅하기</a></button>
           <button className={styles.btn_backToList} onClick={() => {
             navigate(-1);
           }}>목록으로</button>

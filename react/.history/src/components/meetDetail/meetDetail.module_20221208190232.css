@@ -110,11 +110,6 @@
   margin-right: 0;
 }
 
-.recruitment p {
-  margin: 0;
-  font-size: 12px;
-}
-
 .remainingTime {
   width: 288px;
   height: 53px;
@@ -170,5 +165,4 @@ button {
 
 .btn_chat a {
   text-decoration: none;
-  color: var(--color-white);
 }

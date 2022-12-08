@@ -20,7 +20,8 @@ function MeetList(props) {
 
 
   useEffect(() => {
-    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
+    fetch('http://localhost:4000/getmeeting',{
+    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
       headers: {
         'Accept': 'application/json'
       }

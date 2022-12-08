@@ -96,7 +96,7 @@
 }
 
 
-.meetUl{
+.list{
   /* background-color: green; */
   position :absolute;
   width: 80vw;
@@ -121,7 +121,7 @@
 
 @media screen and (max-width: 1860px){
 
-  .meetUl{
+  .list{
     display: grid;
     grid-template-columns: repeat(4, auto);
   
@@ -139,13 +139,12 @@
 
 @media screen and (max-width: 1520px){
   
-  .meetUl{
+  .list{
     display: grid;
     grid-template-columns: repeat(3, auto);
   
     column-gap: 20px;
     row-gap:  20px;
-    padding: 0;
   }
 
   /* .meet{
@@ -163,12 +162,12 @@
     top: 100px;
   }
   
-  .meetUl{
+  .list{
     display: grid;
     grid-template-columns: repeat(2, auto);
+  
     column-gap: 20px;
     row-gap:  20px;
-    padding: 0;
   }
 
   .btn_create{
@@ -192,15 +191,14 @@
 
   .btn_create{
     position: fixed;
-    top: 220px;
+    top: 2500px;
     right: 35%;
   }
 
   
-  .meetUl{
+  .list{
     display: flex;
     flex-direction: column;
-    padding: 0;
   }
 
 }

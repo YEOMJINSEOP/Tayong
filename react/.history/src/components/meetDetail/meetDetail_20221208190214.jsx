@@ -37,8 +37,8 @@ function MeetDetail(props) {
   //-----------------참여하기 버튼--------------------//
   // 로그인 정보 받아오기
   useEffect(() => {
-    
-    const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
+    //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
+    const getUrl = "http://localhost:4000/loginValue"
     getData(getUrl)
       .then(data => {
         const loginId = data.data['loginId'];
@@ -50,7 +50,7 @@ function MeetDetail(props) {
   // 참여하기 버튼 누르면 id와 meetId 전송하기
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
-    const joinUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/participate"
+    const joinUrl = "http://localhost:4000/participate"
 
     // 로그인 되어있지 않으면 경고창을 띄웁니다.
     if(loginId == '로그인'){
@@ -77,10 +77,10 @@ function MeetDetail(props) {
 
 
   useEffect(() => {
-    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+    fetch('http://localhost:4000/getmeetdetail')
+    //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       var k=0;
       for (var i = 0; i < JSON.parse(data['body']).length; i++) {
         if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
@@ -98,8 +98,7 @@ function MeetDetail(props) {
       setContent(JSON.parse(data['body'])[k].content);
       setHostId(JSON.parse(data['body'])[k].id);
       setRandomKey(JSON.parse(data['body'])[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
-      // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
-      console.log("here!",{randomKey});
+      setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
     });
   }, [])
   //----------------------------------------------//
@@ -151,7 +150,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
-          <button className={styles.btn_chat}><a href="http://tayongchat.s3-website.ap-northeast-2.amazonaws.com/">채팅하기</a></button>
+          <button className={styles.btn_chat}><a href="http://localhost:5000/chat">채팅하기</a></button>
           <button className={styles.btn_backToList} onClick={() => {
             navigate(-1);
           }}>목록으로</button>

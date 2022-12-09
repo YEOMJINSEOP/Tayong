@@ -12610,6 +12610,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sweetalert2@npm:^11.6.15":
+  version: 11.6.15
+  resolution: "sweetalert2@npm:11.6.15"
+  checksum: c8272447b97d213a008927c954a6bd467063a3120a324e2a808e52da4342d0f1bb540d5ad0f3faec9880824c1e070e1b2f7845fe83807cd58cd50cca97402be9
+  languageName: node
+  linkType: hard
+
 "symbol-tree@npm:^3.2.4":
   version: 3.2.4
   resolution: "symbol-tree@npm:3.2.4"
@@ -12703,6 +12710,7 @@ __metadata:
     react-router-dom: ^6.4.2
     react-scripts: 5.0.1
     react-uuid: ^2.0.0
+    sweetalert2: ^11.6.15
     uuid: ^9.0.0
     uuid4: ^2.0.3
     uuidv4: ^6.2.13

@@ -63,18 +63,13 @@ function Form(props) {
         navigate('/');
       }
       else{
-        alertML();
+        alert('게시글에 적절하지 않은 표현이 포함되어 있습니다.');
       }
     }
     )
 
     const alertML = () => {
-      Swal.fire({
-        title: 'AI has blocked you',
-        text: '적절하지 않은 내용이 발견됐습니다. 글을 수정해주세요.',
-        icon: 'warning',
-        confirmButtonText: '다시 작성하기'
-      })
+
     }
 
     // const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';

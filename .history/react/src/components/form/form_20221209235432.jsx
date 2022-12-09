@@ -70,10 +70,10 @@ function Form(props) {
 
     const alertML = () => {
       Swal.fire({
-        title: 'AI has blocked you',
-        text: '적절하지 않은 내용이 발견됐습니다. 글을 수정해주세요.',
-        icon: 'warning',
-        confirmButtonText: '다시 작성하기'
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Cool'
       })
     }
 

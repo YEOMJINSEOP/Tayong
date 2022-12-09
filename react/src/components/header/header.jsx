@@ -11,7 +11,7 @@ function Header(props) {
   const[loginSucceed, setLoginSucceed] = useState(1);
   
   const showLoginId = () => {
-    if(loginSucceed == 1){
+    if(loginSucceed == 1||loginSucceed == '1'){
       return loginId;
     }
     else{
@@ -20,7 +20,7 @@ function Header(props) {
   }
 
   const showSignUp = () => {
-    if(loginSucceed == 1){
+    if(loginSucceed == 1||loginSucceed == '1'){
       return "";
     }
     else{
@@ -33,9 +33,10 @@ function Header(props) {
     getData(getUrl)
       .then(data => {
         console.log(data);
-        const isLoginSucceed = JSON.parse(data.data['loginSuccess']);
-        const loginId = data.data['loginId'];
+        const isLoginSucceed = data.data[0]['loginSuccess'];
+        const loginId = data.data[0]['loginId'];
         console.log(isLoginSucceed);
+        //console.log(JSON.parse(data['nowId']))
         setLoginSucceed(isLoginSucceed);
         setLoginId(loginId);
       })  

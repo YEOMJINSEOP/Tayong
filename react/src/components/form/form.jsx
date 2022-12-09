@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import postData from '../../service/postData';
 import {v4 as uuidv4} from 'uuid';
 import Swal from 'sweetalert2';
-
+import getData from '../../service/getData';
 
 
 //axios.defaults.withCredentials = true;
@@ -22,7 +22,7 @@ function Form(props) {
   const [transport, setTransport] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const [nowId, setnowId] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -38,7 +38,7 @@ function Form(props) {
 
 
     // 전송하는 데이터에 randomKey 포함해 전달
-    let data = {
+    let postdata = {
       departure: departure,
       arrival: arrival,
       remainingTime: remainingTime,
@@ -46,9 +46,23 @@ function Form(props) {
       transport: transport,
       title: title,
       content: content,
-      randomKey: randomKey
+      randomKey: randomKey,
+      nowId: nowId
     }
-    console.log(data);
+    
+
+
+    const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
+    
+     getData(getUrl)
+       .then(data => {
+         console.log(data.data[0]['loginId']); //여기서 잘받아와지는데 
+         setnowId(data.data[0]['loginId']); // nowId에 값이 안들어가지네요..
+       })  
+
+    console.log(postdata);
+
+
 
     const MLurl =  'https://j99c2do1xe.execute-api.ap-northeast-2.amazonaws.com/tayong_stage/tayong_resource';
     axios.post(MLurl, `{"inputs": "${content}"}`)
@@ -59,7 +73,10 @@ function Form(props) {
         const MLresult = JSON.parse(res['data']['body'])[0]['label'];
       if(MLresult == 'LABEL_1'){
         const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-        postData(url, data);
+        
+          postData(url, postdata);
+        
+        
         navigate('/');
       }
       else{

@@ -10,6 +10,8 @@ from flask import Flask, flash, redirect, request, jsonify, url_for, render_temp
 from db_connect import db
 from forms import RegisterForm
 def lambda_handler(event, context):
+
+    
     connection = create_connection()
     
     try:
@@ -64,8 +66,6 @@ def create_connection():
     port = dbinfo.db_port
     )
 
-loginVal=''
-nowId=''
     
 
 def showparticipate():
@@ -101,22 +101,13 @@ def showparticipate():
 def deleteparticipate():
     connection = create_connection()
     
-    try:
-        cursor=connection.cursor()
-        cursor.execute("delete from Meetparticipate2;") # SQL 문장을 DB 서버에 보냄
-        connection.commit()
-        return {
-        
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': '*',
-            "isBase64Encoded": False
-        }
-    finally:
-        cursor.close()
+    
+    cursor=connection.cursor()
+    cursor.execute("delete from Meetparticipate2") # SQL 문장을 DB 서버에 보냄
+    connection.commit()
+    cursor.close()
+    return 'good delete'
+ 
 
 
 def db_meeting(): 
@@ -206,7 +197,7 @@ def handle_post():
         #params_str=params['arrival']
 
         
-        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],nowId,params['randomKey'])
+        sql_sentence="insert into Meetings2 values (\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\");".format(params['remainingTime'],params['arrival'],params['departure'],params['recruitment'],params['title'],params['content'],params['transport'],params['nowId'],params['randomKey'])
         # 글번호(primary key라서 중복되면 안됨), 아이디("실제 user테이블에 있는 id여야함 "), 시작시간, 끝나는시간, 도착지,사람수(숫자여야함),제목,글내용
         #sql_location="insert into Location_table values (\"{}\",\"{}\");".format('청와대','일본') #OK
 
@@ -268,18 +259,18 @@ def sendparticipate(): #현재 참여자 보내기
         
 def exitparticipate():  #모임 나가기 버튼
     connection = create_connection()
-    try:
-        cursor=connection.cursor()
-        params = json.loads(request.get_data(), encoding='utf-8')
-        if len(params) == 0:
-            return 'No parameter'
+    
+    cursor=connection.cursor()
+    cursor.execute("select nowId from loggedin")
+    rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
 
-        sql_sentence="delete from Meetparticipate2 where Id = \"{}\");".format(params['loginId'])     
-        cursor.execute(sql_sentence)
-        connection.commit( )
-        return sql_sentence
-    finally:
-        cursor.close()
+    sql_sentence="delete from Meetparticipate2 where Id = \"{}\";".format(rows[0][0])     
+    cursor.execute(sql_sentence)
+    connection.commit( )
+    cursor.close()
+    return {'body':rows[0][0]}
+    
+        
 
 
 
@@ -312,15 +303,22 @@ def db_location():
     finally:
         cursor.close()
 
+@app.route('/nowdb',methods=['GET'])
+def nowdb():
+    connection = create_connection()
+    cursor=connection.cursor()
+    cursor.execute("create table Meetparticipate2( loginId varchar(50) , randomKey varchar(100)  ) ")
+    connection.commit()
+    cursor.close()
+    return 1
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     connection = create_connection()
-    global loginVal
-    global nowId
-    loginVal='0'
-    nowId='0'
+    # global loginVal
+    # global nowId
+
     try: 
         cursor=connection.cursor()
         params = json.loads(request.get_data(), encoding='utf-8')
@@ -341,8 +339,11 @@ def login():
         if results[0]['email']==params['email']: #아이디가 같으면
             #비밀번호 맞는지 구현
             if results[0]['password']==params['password']: 
-                loginVal=1
-                nowId=results[0]['email']
+                # loginVal=1
+                # nowId=results[0]['email']
+
+                cursor.execute("insert into loggedin values(\"{}\",\"{}\")".format(results[0]['email'],1))
+                connection.commit()
                 return "로그인 성공"
             else:
                 loginVal=0
@@ -384,16 +385,27 @@ def login():
 
 @app.route('/loginValue', methods=['GET'])
 def loginValue():
-   
-    if loginVal==1:
-        result={"loginSuccess":"1",
-                "loginId":"%s"%(nowId)}
-        return result
-    else:
-        result={"loginSuccess":"0",
-                "loginId":'0'}
-        return result
+    connection = create_connection()
+    cursor=connection.cursor()
+    cursor.execute("select * from loggedin")
+    rows = cursor.fetchall()
+    results = [{
+            'loginId' : row[0],
+            'loginSuccess' : row[1]
+        }for row in rows]
 
+
+    cursor.close()
+    return json.dumps(results)
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    connection = create_connection()
+    cursor=connection.cursor()
+    cursor.execute("delete from loggedin")
+    connection.commit()
+    cursor.close()
+    return 'good'
 
 
 # User Register ---
@@ -436,7 +448,7 @@ def index10():
 @app.route('/getmeetdetail', methods=['GET'])
 def index11():
      return db_meetdetail()
-@app.route('/deleteparticipate', methods=['GET','POST'])
+@app.route('/deleteparticipate', methods=['GET'])
 def index26():   
      return deleteparticipate()
  

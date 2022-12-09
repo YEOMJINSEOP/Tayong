@@ -39,9 +39,9 @@ function MeetDetail(props) {
   useEffect(() => {
     
     const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
-    getData(`https://proxy.cors.sh/${getUrl}`)
+    getData(getUrl)
       .then(data => {
-        const loginId = data.data['loginId'];
+        const loginId = data.data[0]['loginId'];
         setLoginId(loginId);
       })  
   }, [])

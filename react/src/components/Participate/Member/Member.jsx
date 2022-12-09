@@ -31,18 +31,22 @@ export default function Member(props) {
                 //JSON.parse(data['body'])[i].Id 값이 참여자 데이터
       })
   }, []);
-
+  
   return (
+    
     <div className={styles.container}>
       <div>참여인원</div>
       <BoxLayout>
         <div className={styles.userContainer}>
           {userList.map((user) => (
+            
+
             <div style={{marginRight:'10px'}}>{user.Id}</div>
           ))}
         </div>
       </BoxLayout>
 
     </div>
+    
   )
 }

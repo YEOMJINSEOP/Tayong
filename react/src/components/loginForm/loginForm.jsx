@@ -11,10 +11,10 @@ function LoginForm(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const submitHandler = (e) => {
     e.preventDefault();
-
+    
     let userData = {
       email: email,
       password: password
@@ -32,10 +32,12 @@ function LoginForm(props) {
     setTimeout(function() {
       getData(getUrl)
       .then(data => {
-        const isLoginSucceed = JSON.parse(data.data['loginSuccess']);
-        const loginId = data.data['loginId'];
-        if(isLoginSucceed == 1){
-          console.log(`${loginId}님 환영합니다`);
+        console.log(data.data[0]['loginId'])
+        const isLoginSucceed = data.data[0]['loginSuccess'];
+        const loginId = data.data[0]['loginId'];
+        
+        if(data.data[0]['loginSuccess'] == 1){
+          console.log('님 환영합니다');
           navigate('/');
         }
         else{

@@ -178,12 +178,3 @@ button {
     border: 2px solid var(--color-orange);
     color: orange;
 }
-
-.userInfo{
-    display: flex;
-}
-
-.userInfoInfo{
-    color: var(--color-orange);
-    font-size: 12px;
-}

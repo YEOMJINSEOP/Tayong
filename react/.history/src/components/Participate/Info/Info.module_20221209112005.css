@@ -182,8 +182,3 @@ button {
 .userInfo{
     display: flex;
 }
-
-.userInfoInfo{
-    color: var(--color-orange);
-    font-size: 12px;
-}

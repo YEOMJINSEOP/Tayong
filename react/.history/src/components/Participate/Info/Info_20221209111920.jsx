@@ -118,7 +118,6 @@ function Info(props) {
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
-              <p className={styles.userInfoInfo}>모집자</p>
               <p>{hostId}</p>
             </div>
           </div>

@@ -87,7 +87,7 @@ function Info(props) {
         setTransport(JSON.parse(data['body'])[k].transport);
         setTitle(JSON.parse(data['body'])[k].title);
         setContent(JSON.parse(data['body'])[k].content);
-        setHostId(JSON.parse(data['body'])[k].id == 0? "user" : JSON.parse(data['body'])[k].id );
+        setHostId(JSON.parse(data['body'])[k].id);
         setRandomKey(JSON.parse(data['body'])[k].randomKey);
       });
   }, [])
@@ -118,7 +118,6 @@ function Info(props) {
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
-              <p className={styles.userInfoInfo}>모집자</p>
               <p>{hostId}</p>
             </div>
           </div>

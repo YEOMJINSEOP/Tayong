@@ -11,7 +11,7 @@ function Arrival({onSet}) {
 
   const url = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getlocation';
   useEffect(() => {
-   getData(`https://proxy.cors.sh/${url}`)
+   getData(url)
     .then(res => res['data'])
     .then(data => {
       console.log("위치 데이터를 받아왔습니다🥕")

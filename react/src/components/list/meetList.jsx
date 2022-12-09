@@ -18,9 +18,9 @@ function MeetList(props) {
   const arrLoc = param['*'].split('/')[1]
   console.log(param['*'].split('/'));
 
-  const url = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting'
+
   useEffect(() => {
-    fetch(`https://proxy.cors.sh/${url}`, {
+    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
       headers: {
         'Accept': 'application/json'
       }

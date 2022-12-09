@@ -23,14 +23,14 @@ function LoginForm(props) {
     console.log(userData);
 
     const postUrl = " https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/login"
-   // const postUrl = "https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/login"
+
     const getUrl = " https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue" // loginSuccess 받아올 주소
-   //const getUrl="https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
-    postData(`https://proxy.cors.sh/${postUrl}`, userData);
+
+    postData(postUrl, userData);
 
     // 여기서 loginSuccess 받아옵니다.
     setTimeout(function() {
-      getData(`https://proxy.cors.sh/${getUrl}`)
+      getData(getUrl)
       .then(data => {
         const isLoginSucceed = JSON.parse(data.data['loginSuccess']);
         const loginId = data.data['loginId'];

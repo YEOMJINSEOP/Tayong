@@ -75,10 +75,8 @@ function MeetDetail(props) {
 //-----------------데이터 받아오기-------------------//
   let param = useParams();
 
-  const meetUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail'
-  
   useEffect(() => {
-    fetch(`https://proxy.cors.sh/${meetUrl}`)
+    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
     .then(res => res.json())
     .then(data => {
       

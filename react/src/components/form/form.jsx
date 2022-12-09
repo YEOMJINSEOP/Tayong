@@ -51,15 +51,15 @@ function Form(props) {
     console.log(data);
 
     const MLurl =  'https://j99c2do1xe.execute-api.ap-northeast-2.amazonaws.com/tayong_stage/tayong_resource';
-    axios.post(`https://proxy.cors.sh/${MLurl}`, `{"inputs": "${content}"}`)
+    axios.post(MLurl, `{"inputs": "${content}"}`)
     .then(
       res => {
         console.log('🥲🥲🥲🥲',res);
         console.log(JSON.parse(res['data']['body'])[0]['label']);
         const MLresult = JSON.parse(res['data']['body'])[0]['label'];
       if(MLresult == 'LABEL_1'){
-        const postUrl =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-        postData(`https://proxy.cors.sh/${postUrl}`, data);
+        const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
+        postData(url, data);
         navigate('/');
       }
       else{
@@ -70,7 +70,7 @@ function Form(props) {
 
     const alertML = () => {
       Swal.fire({
-        title: 'AI has filtered your post',
+        title: 'AI has filtered your post.',
         text: '적절하지 않은 내용이 발견됐습니다. 글을 수정해주세요.',
         icon: 'warning',
         confirmButtonText: '다시 작성하기'

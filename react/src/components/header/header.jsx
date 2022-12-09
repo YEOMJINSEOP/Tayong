@@ -8,8 +8,8 @@ import getData from '../../service/getData';
 function Header(props) {
   const navigate = useNavigate();
   const[loginId, setLoginId] = useState("로그인");
-  const[loginSucceed, setLoginSucceed] = useState(0);
-
+  const[loginSucceed, setLoginSucceed] = useState(1);
+  
   const showLoginId = () => {
     if(loginSucceed == 1){
       return loginId;
@@ -30,15 +30,16 @@ function Header(props) {
 
   useEffect(() => {
     const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
-    getData(`https://proxy.cors.sh/${getUrl}`)
+    getData(getUrl)
       .then(data => {
+        console.log(data);
         const isLoginSucceed = JSON.parse(data.data['loginSuccess']);
         const loginId = data.data['loginId'];
         console.log(isLoginSucceed);
         setLoginSucceed(isLoginSucceed);
         setLoginId(loginId);
       })  
-  })
+  }, [])
 
   return (
     <>

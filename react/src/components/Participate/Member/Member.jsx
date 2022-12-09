@@ -20,7 +20,7 @@ export default function Member(props) {
         //     k = i;
         //     console.log("userId", JSON.parse(data['body'])[i].Id);
         //     // JSON.parse(data['body'])[i].Id
-        //     setUserList([...userList, JSON.parse(data['body'])[k].Id]);
+        //     //setUserList(JSON.parse(data['body'])[k].Id);
 
         //   }
 

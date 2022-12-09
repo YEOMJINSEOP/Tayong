@@ -187,3 +187,9 @@ button {
     color: var(--color-orange);
     font-size: 12px;
 }
+
+.btnOut {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    width: 100%;
+}

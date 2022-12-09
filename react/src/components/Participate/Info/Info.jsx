@@ -65,6 +65,16 @@ function Info(props) {
   //----------------------------------------------//
   let param = useParams();
 
+  const onClickHandler = () => {
+
+    const exitUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/exitparticipate";
+    let exitData = {
+      loginId: loginId
+    }
+    postData(exitUrl, exitData);
+    console.log("exitdData", exitData);
+  }
+
 
 
   useEffect(() => {
@@ -139,8 +149,8 @@ function Info(props) {
         <div className={styles.content}>
           <textarea cols="88" rows="5" maxLength="300" name='content' value={content} readOnly></textarea>
         </div>
-
       </div>
+      <button className={styles.btnOut} onClick = {onClickHandler}>모임 나가기</button>
     </div>
   );
 }

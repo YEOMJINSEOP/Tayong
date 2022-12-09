@@ -49,25 +49,14 @@ function Form(props) {
     console.log(data);
 
     const MLurl =  'https://j99c2do1xe.execute-api.ap-northeast-2.amazonaws.com/tayong_stage/tayong_resource';
-    // axios.post(MLurl, `{"inputs": "${content}"}`)
     axios.post(MLurl, `{"inputs": ${content}"}`)
     .then(
-      res => {
-        console.log('🥲🥲🥲🥲',res);
-        // const MLresult = res['data']['body'][0]['label'];
-      // if(MLresult == 'LABEL_1'){
-      //   console.log('LABEL_1');
-      //   const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-      //   postData(url, data);
-      //   navigate('/');
-      // }
-      // else{
-      //   alert('게시글에 적절하지 않은 표현이 포함되어 있습니다.');
-      // }
-    }
+      res => console.log('🥲🥲🥲🥲',res)
     )
 
-
+    const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
+    postData(url, data);
+    navigate('/'); // 메인 페이지로 이동 -> 나중에 상세 페이지 이동으로 바꾸면 좋을 듯)
 
   }
 

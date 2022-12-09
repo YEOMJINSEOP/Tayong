@@ -53,8 +53,8 @@ function Form(props) {
     .then(
       res => {
         console.log('🥲🥲🥲🥲',res);
-        console.log(JSON.parse(res['data']['body'])[0]['label']);
-        const MLresult = JSON.parse(res['data']['body'])[0]['label'];
+        console.log(JSON.parse(res['data']['body']));
+        const MLresult = JSON.parse(res['data']['body']).label;
       if(MLresult == 'LABEL_1'){
         const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
         postData(url, data);

@@ -247,21 +247,11 @@ textarea{
     flex-direction: column;
   }
 
-  .departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content{
+  .arrival{
     margin: 0;
-    width: 100%;
   }
-
-  .content{
-    height: 100px;
-  }
-
   .infoContainer{
     display: flex;
     flex-direction: column;
-  }
-
-  .btns{
-    justify-content: center;
   }
 }

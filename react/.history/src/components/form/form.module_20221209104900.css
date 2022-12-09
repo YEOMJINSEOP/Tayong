@@ -253,7 +253,7 @@ textarea{
   }
 
   .content{
-    height: 100px;
+    height: 20px;
   }
 
   .infoContainer{
@@ -262,6 +262,7 @@ textarea{
   }
 
   .btns{
-    justify-content: center;
+    display: fixed;
+    top: 20%;
   }
 }

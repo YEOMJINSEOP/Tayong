@@ -240,28 +240,6 @@ textarea{
 
 @media screen and (max-width: 768px){
   form{
-    width: 400px;
-  }
-  .locationContainer{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content{
-    margin: 0;
-    width: 100%;
-  }
-
-  .content{
-    height: 100px;
-  }
-
-  .infoContainer{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .btns{
-    justify-content: center;
+    width: 300px;
   }
 }

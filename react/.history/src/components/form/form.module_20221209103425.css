@@ -24,19 +24,6 @@
   text-align: left;
 }
 
-.formLabelRC{
-  font-family: var(--font-family-pretendard-regular);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  color: var(--color-orange);
-
-  width: 50px;
-  margin-left: 15px;
-
-  text-align: left;
-}
-
 input{
   font-family: var(--font-family-pretendard-regular);
   font-weight: 300;
@@ -239,29 +226,4 @@ textarea{
 }
 
 @media screen and (max-width: 768px){
-  form{
-    width: 400px;
-  }
-  .locationContainer{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content{
-    margin: 0;
-    width: 100%;
-  }
-
-  .content{
-    height: 100px;
-  }
-
-  .infoContainer{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .btns{
-    justify-content: center;
-  }
 }

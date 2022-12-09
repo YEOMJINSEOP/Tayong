@@ -262,6 +262,7 @@ textarea{
   }
 
   .btns{
-    justify-content: center;
+    display: fixed;
+    top: 20%;
   }
 }

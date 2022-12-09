@@ -252,16 +252,12 @@ textarea{
     width: 100%;
   }
 
-  .content{
-    height: 100px;
-  }
-
   .infoContainer{
     display: flex;
     flex-direction: column;
   }
 
-  .btns{
-    justify-content: center;
+  .btn_submit{
+    display: fixed;
   }
 }

@@ -260,8 +260,4 @@ textarea{
     display: flex;
     flex-direction: column;
   }
-
-  .btns{
-    justify-content: center;
-  }
 }

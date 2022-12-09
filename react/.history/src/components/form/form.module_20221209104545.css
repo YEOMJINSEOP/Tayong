@@ -253,15 +253,10 @@ textarea{
   }
 
   .content{
-    height: 100px;
+    width: 300px;
   }
-
   .infoContainer{
     display: flex;
     flex-direction: column;
-  }
-
-  .btns{
-    justify-content: center;
   }
 }

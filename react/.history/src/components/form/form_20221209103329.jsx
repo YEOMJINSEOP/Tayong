@@ -49,25 +49,24 @@ function Form(props) {
     console.log(data);
 
     const MLurl =  'https://j99c2do1xe.execute-api.ap-northeast-2.amazonaws.com/tayong_stage/tayong_resource';
-    axios.post(MLurl, `{"inputs": "${content}"}`)
+    // axios.post(MLurl, `{"inputs": "${content}"}`)
+    axios.post(MLurl, `{"inputs": ${content}"}`)
     .then(
       res => {
         console.log('🥲🥲🥲🥲',res);
-        const MLresult = res['data']['body'][0]['label'];
-      if(MLresult == 'LABEL_1'){
-        const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-        postData(url, data);
-        navigate('/');
-      }
-      else{
-        alert('게시글에 적절하지 않은 표현이 포함되어 있습니다.');
-      }
+        // const MLresult = res['data']['body'][0]['label'];
+      // if(MLresult == 'LABEL_1'){
+      //   console.log('LABEL_1');
+      //   const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
+      //   postData(url, data);
+      //   navigate('/');
+      // }
+      // else{
+      //   alert('게시글에 적절하지 않은 표현이 포함되어 있습니다.');
+      // }
     }
     )
 
-    // const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-    // postData(url, data);
-    // navigate('/');
 
 
   }
@@ -99,7 +98,7 @@ function Form(props) {
           </div>
           
           <div className={styles.recruitment}>
-            <label className={styles.formLabelRC} htmlFor='recruitment'>모집인원</label>
+            <label className={styles.formLabel} htmlFor='recruitment'>모집인원</label>
             <input type="text" id='recruitment' name='recruitment' maxLength='1' onChange={(e) => {setRecruitment(e.target.value)}}/>
             <p>명</p>
           </div>

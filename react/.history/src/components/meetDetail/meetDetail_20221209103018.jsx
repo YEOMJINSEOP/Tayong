@@ -17,7 +17,7 @@ function MeetDetail(props) {
   const [remainingTime, setRemainingTime] = useState("");
   const [recruitment, setRecruitment] = useState("");
   const [transport, setTransport] = useState("");
-  const [hostId, setHostId] = useState("user");
+  const [hostId, setHostId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [randomKey, setRandomKey] = useState("");
@@ -96,7 +96,7 @@ function MeetDetail(props) {
       setTransport(JSON.parse(data['body'])[k].transport);
       setTitle(JSON.parse(data['body'])[k].title);
       setContent(JSON.parse(data['body'])[k].content);
-      setHostId(JSON.parse(data['body'])[k].id == 0? "user" : JSON.parse(data['body'])[k].id );
+      setHostId(JSON.parse(data['body'])[k].id);
       setRandomKey(JSON.parse(data['body'])[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
       // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
       console.log("this meet UUID = ",JSON.parse(data['body'])[k].randomKey);
@@ -129,7 +129,7 @@ function MeetDetail(props) {
           <div className={styles.user}>
             <div className={styles.userInfo}>
               <div className={styles.userInfoInfo}>모집자</div>
-              {/* <div className={styles.userAvatar}></div> */}
+              <div className={styles.userAvatar}></div>
               <p>{hostId}</p>
             </div>
           </div>
@@ -152,11 +152,11 @@ function MeetDetail(props) {
         </div>
 
         <div className={styles.btns}>
+          <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
           {/* <button className={styles.btn_chat}><a href="http://tayongchat.s3-website.ap-northeast-2.amazonaws.com/">채팅하기</a></button> */}
           <button className={styles.btn_backToList} onClick={() => {
             navigate(-1);
           }}>목록으로</button>
-          <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
         </div>
     </div>
   );

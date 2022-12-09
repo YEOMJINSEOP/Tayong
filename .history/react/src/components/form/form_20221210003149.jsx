@@ -58,8 +58,8 @@ function Form(props) {
         console.log(JSON.parse(res['data']['body'])[0]['label']);
         const MLresult = JSON.parse(res['data']['body'])[0]['label'];
       if(MLresult == 'LABEL_1'){
-        const postUrl =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
-        postData(`https://proxy.cors.sh/${postUrl}`, data);
+        const url =' https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/postform';
+        postData(url, data);
         navigate('/');
       }
       else{

@@ -1,16 +1,47 @@
-#run.py
 import sys
 import config
 import logging
 import pymysql
 import dbinfo
 import json
-# from Flask_Cors import CORS,cross_origin
 
-from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session, logging
+
+from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session
 from db_connect import db
 from forms import RegisterForm
+def lambda_handler(event, context):
+    connection = create_connection()
+    
+    try:
+        cursor=connection.cursor()
+        cursor.execute("select * from User;") # SQL 문장을 DB 서버에 보냄
 
+        rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
+
+        for row in rows:
+            print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]} {row[7]} ")
+            
+        results = [{
+            'name' : row[0],
+            'nickname' : row[1],
+            'passwd' : (row[2]),
+            'birthdate' : (row[3]),
+            'email' : (row[4]),
+            'phoneno' : (row[5]),
+            'profile url' : (row[6]),
+            'id' : (row[7]),
+        }for row in rows]
+        return {
+        'statusCode': 200,
+        'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps(results),
+            "isBase64Encoded": False
+        }
+    finally:
+        cursor.close()
 def create_app(test_config=None):
     app = Flask(__name__)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
@@ -33,8 +64,8 @@ def create_connection():
     port = dbinfo.db_port
     )
 
-loginVal='0'
-nowId='0'
+loginVal=''
+nowId=''
     
 
 def showparticipate():
@@ -74,10 +105,6 @@ def deleteparticipate():
         cursor=connection.cursor()
         cursor.execute("delete from Meetparticipate2;") # SQL 문장을 DB 서버에 보냄
         connection.commit()
-
-   
-        
-
         return {
         
         'statusCode': 200,
@@ -368,7 +395,8 @@ def loginValue():
         return result
 
 
-# User Register
+
+# User Register ---
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     connection = create_connection()
@@ -377,7 +405,7 @@ def register():
         params = json.loads(request.get_data(), encoding='utf-8')
         
         if len(params) == 0:
-            return 'No parameter'
+            return 'No parameter!!WSW'
 
         sql_sentence="insert into new_user values (\"{}\",\"{}\",\"{}\");".format(params['email'],params['password'],params['nickname'])
         cursor.execute(sql_sentence)
@@ -392,9 +420,9 @@ def register():
 
 # Check if user logged in
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index22(): 
-     return "fasdasd"
+     return 'hello'
 
 
 @app.route('/getlocation',methods=['GET'])

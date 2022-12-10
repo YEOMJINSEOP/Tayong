@@ -268,7 +268,7 @@ def exitparticipate():  #모임 나가기 버튼
     cursor.execute(sql_sentence)
     connection.commit( )
     cursor.close()
-    return {'body':rows[0][0]}
+    return sql_sentence
     
         
 

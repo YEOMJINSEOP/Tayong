@@ -3,7 +3,7 @@ import BoxLayout from '../components/boxLayout/BoxLayout';
 import styles from './Member.module.css';
 import User from '../components/User/User';
 import getData from '../../../service/getData';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 export default function Member(props) {
 
@@ -26,9 +26,9 @@ export default function Member(props) {
 
         // }
         const newList = JSON.parse(data['body']).filter((data)=>data.randomKey === param['*'].split('/')[0]);
-        console.log(newList);
         setUserList(newList);
                 //JSON.parse(data['body'])[i].Id 값이 참여자 데이터
+
       })
   }, []);
   
@@ -40,7 +40,7 @@ export default function Member(props) {
         <div className={styles.userContainer}>
           {userList.map((user) => (
             
-
+            
             <div style={{marginRight:'10px'}}>{user.Id}</div>
           ))}
         </div>

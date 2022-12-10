@@ -71,8 +71,11 @@ function Info(props) {
     let exitData = {
       loginId: loginId
     }
-    postData(exitUrl, exitData);
+    //postData(exitUrl, exitData);
     console.log("exitdData", exitData);
+    getData(exitUrl).then((data) => {
+      console.log("모임나가기!",data);
+  });
     navigate(-1);
   }
 

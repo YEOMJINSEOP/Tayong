@@ -7,8 +7,8 @@ import getData from '../../service/getData';
 
 function Header(props) {
   const navigate = useNavigate();
-  const [loginId, setLoginId] = useState("로그인");
-  const [loginSucceed, setLoginSucceed] = useState(1);
+  const[loginId, setLoginId] = useState("로그인");
+  const[loginSucceed, setLoginSucceed] = useState(1);
   
   const showLoginId = () => {
     if(loginSucceed == 1||loginSucceed == '1'){
@@ -34,7 +34,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginSucceed(0);
+      loginSucceed = 0;
   });
   }
 

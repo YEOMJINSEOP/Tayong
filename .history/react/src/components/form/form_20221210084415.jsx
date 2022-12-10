@@ -22,23 +22,7 @@ function Form(props) {
   const [transport, setTransport] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [nowId, setNowId] = useState("");
-
-  const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
-    
-  getData(getUrl)
-    .then(data => {
-     console.log(data.data[0]);
-      console.log("🐼",data.data[0]['loginId']); //여기서 잘받아와지는데 
-      setNowId(data.data[0]['loginId']); // nowId에 값이 안들어가지네요..
-    }) 
-    
-    setTimeout(
-     ()=>{
-       console.log("🐥",nowId);
-     }, 1000
-    );
-
+  const [nowId, setnowId] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -66,6 +50,16 @@ function Form(props) {
       nowId: nowId
     }
     
+
+
+    const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
+    
+     getData(getUrl)
+       .then(data => {
+         console.log("🐼",data.data[0]['loginId']); //여기서 잘받아와지는데 
+         setnowId(data.data[0]['loginId']); // nowId에 값이 안들어가지네요..
+       })  
+
     console.log(postdata);
 
 

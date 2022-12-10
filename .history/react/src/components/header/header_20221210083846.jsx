@@ -7,8 +7,8 @@ import getData from '../../service/getData';
 
 function Header(props) {
   const navigate = useNavigate();
-  const [loginId, setLoginId] = useState("로그인");
-  const [loginSucceed, setLoginSucceed] = useState(1);
+  const[loginId, setLoginId] = useState("로그인");
+  const[loginSucceed, setLoginSucceed] = useState(1);
   
   const showLoginId = () => {
     if(loginSucceed == 1||loginSucceed == '1'){
@@ -19,23 +19,13 @@ function Header(props) {
     }
   }
 
-  const showLogOut = () => {
+  const showSignUp = () => {
     if(loginSucceed == 1||loginSucceed == '1'){
-      return "로그아웃"
+      return '회원가입'
     }
     else{
       return "";
     }
-  }
-
-  // logout 기능
-  const logOutHanlder = () => {
-    const logoutUrl  = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/logout";
-    getData(logoutUrl)
-    .then((data) => {
-      console.log("🎉",data);
-      setLoginSucceed(0);
-  });
   }
 
   useEffect(() => {
@@ -59,8 +49,8 @@ function Header(props) {
           navigate(`/`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
-          <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>
-          <button className={styles.btn} onClick={() => {logOutHanlder()}}>{showLogOut()}</button>
+          <button className={styles.btn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>
+          <button className={styles.btn} onClick={() => {navigate('/signup')}}>{showSignUp()}</button>
         </div>  
       </nav>
     </>

@@ -36,9 +36,9 @@ function Form(props) {
     setTimeout(
      ()=>{
        console.log("🐥",nowId);
-     }, 1000
+     }, 3000
     );
-
+    
   const submitHandler = (e) => {
     e.preventDefault();
 

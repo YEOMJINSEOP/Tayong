@@ -7,8 +7,8 @@ import getData from '../../service/getData';
 
 function Header(props) {
   const navigate = useNavigate();
-  const [loginId, setLoginId] = useState("로그인");
-  const [loginSucceed, setLoginSucceed] = useState(1);
+  const[loginId, setLoginId] = useState("로그인");
+  const[loginSucceed, setLoginSucceed] = useState(1);
   
   const showLoginId = () => {
     if(loginSucceed == 1||loginSucceed == '1'){
@@ -32,9 +32,8 @@ function Header(props) {
   const logOutHanlder = () => {
     const logoutUrl  = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/logout";
     getData(logoutUrl)
-    .then((data) => {
-      console.log("🎉",data);
-      setLoginSucceed(0);
+    .then((data) => {console.log("🎉",data),
+    loginSucceed = 0;
   });
   }
 

@@ -5,8 +5,9 @@ import pymysql
 import dbinfo
 import json
 
-
-from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session
+from flask_cors import CORS
+from flask_restx import Api
+from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session, make_response
 from db_connect import db
 from forms import RegisterForm
 def lambda_handler(event, context):
@@ -37,7 +38,8 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'headers': {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'http://tayongteam.s3-website.ap-northeast-2.amazonaws.com/',
+                'Access-Control-Allow-Credentials': True,
             },
             'body': json.dumps(results),
             "isBase64Encoded": False
@@ -281,25 +283,30 @@ def db_location():
         cursor=connection.cursor()
         cursor.execute("select * from Location_table;") # SQL 문장을 DB 서버에 보냄
         rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-        for row in rows:
-            print(f"{row[0]}  ")
+        
             
         results = [{
-            'id' : row,
+
             'name' : row[0]
         }for row in rows]
-        
 
-        return {
+        resp = make_response(jsonify(results))
+
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        # resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+
+        # return {
         
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': 'http://tayongteam.s3-website.ap-northeast-2.amazonaws.com/',
+        #         'Access-Control-Allow-Credentials': True,
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
 

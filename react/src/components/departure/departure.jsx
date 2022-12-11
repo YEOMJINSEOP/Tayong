@@ -13,9 +13,9 @@ function Departure({onSet}) {
     getData(url)
     .then(res => res['data'])
     .then(data => {
-      console.log("위치 데이터를 받아왔습니다🥕")
-      setLocation(JSON.parse(data['body']));
-      console.log(JSON.parse(data['body']));
+      console.log("위치 데이터를 받아왔습니다🥕",data)
+      setLocation(data);
+
     })
   }, []);
 

@@ -115,8 +115,6 @@
 
 .recruitment p {
     font-family: var(--font-family-pretendard-regular);
-    font-size: 13px;
-    padding: 0;
 }
 
 .recruitment input {
@@ -142,7 +140,6 @@
 
 .userInfo p{
     font-family: var(--font-family-pretendard-regular);
-    font-size: 13px;
 }
 
 .userAvatar {

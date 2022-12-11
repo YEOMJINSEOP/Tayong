@@ -113,12 +113,6 @@
     align-items: center;
 }
 
-.recruitment p {
-    font-family: var(--font-family-pretendard-regular);
-    font-size: 13px;
-    padding: 0;
-}
-
 .recruitment input {
     width: 20px;
     margin-left: 3px;
@@ -137,12 +131,8 @@
 
 
 .userInfo {
-    margin-left: 20px;
-}
-
-.userInfo p{
     font-family: var(--font-family-pretendard-regular);
-    font-size: 13px;
+    margin-left: 20px;
 }
 
 .userAvatar {

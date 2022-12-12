@@ -16,7 +16,7 @@ const postData = (url, data) => {
     }
   )
   .catch((error) => {
-    console.log(" POST Error🥲, but Data was : ",data);
+    console.log(data);
     console.log(error);
   })
 }

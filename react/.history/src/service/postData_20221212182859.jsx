@@ -15,10 +15,6 @@ const postData = (url, data) => {
       console.log("data post complete🥕");
     }
   )
-  .catch((error) => {
-    console.log(" POST Error🥲, but Data was : ",data);
-    console.log(error);
-  })
 }
 
 export default postData;

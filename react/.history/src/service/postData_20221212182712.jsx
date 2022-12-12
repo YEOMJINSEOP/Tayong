@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
 const postData = (url, data) => { 
   axios
   .post(url,data, {headers: {
@@ -15,10 +16,6 @@ const postData = (url, data) => {
       console.log("data post complete🥕");
     }
   )
-  .catch((error) => {
-    console.log(" POST Error🥲, but Data was : ",data);
-    console.log(error);
-  })
 }
 
 export default postData;

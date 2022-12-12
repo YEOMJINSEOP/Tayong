@@ -6,7 +6,6 @@ import { FaArrowRight } from 'react-icons/fa';
 import {json, useNavigate, useParams } from 'react-router-dom';
 import Meet from '../meet/meet';
 import { FiDatabase } from 'react-icons/fi';
-import getData from '../../service/getData';
 
 
 function MeetList(props) {
@@ -20,14 +19,21 @@ function MeetList(props) {
   const arrLoc = param['*'].split('/')[1]
   console.log(param['*'].split('/'));
 
-  const meetUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting'
+
   useEffect(() => {
-      getData(meetUrl)
-      .then(data => {
-        console.log("위치 데이터를 받아왔습니다🥕")
-        setMeetList(data['data']);
-        console.log(data);
-  })
+    fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting', {
+      headers: {
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("위치 데이터를 받아왔습니다🥕")
+      setMeetList(data);
+      console.log(data);
+    })
   }, []);
 
   

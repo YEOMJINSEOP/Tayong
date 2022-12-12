@@ -23,9 +23,11 @@ function MeetList(props) {
   const meetUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting'
   useEffect(() => {
       getData(meetUrl)
+      
+      .then(res => res.json())
       .then(data => {
         console.log("위치 데이터를 받아왔습니다🥕")
-        setMeetList(data['data']);
+        setMeetList(data);
         console.log(data);
   })
   }, []);

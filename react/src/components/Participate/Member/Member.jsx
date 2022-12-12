@@ -25,7 +25,7 @@ export default function Member(props) {
         //   }
 
         // }
-        const newList = JSON.parse(data['body']).filter((data)=>data.randomKey === param['*'].split('/')[0]);
+        const newList = data.filter((data)=>data.randomKey === param['*'].split('/')[0]);
         setUserList(newList);
                 //JSON.parse(data['body'])[i].Id 값이 참여자 데이터
 

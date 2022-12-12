@@ -81,25 +81,25 @@ function MeetDetail(props) {
     .then(data => {
       
       var k=0;
-      for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-        if(JSON.parse(data['body'])[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
             k=i;
             
         }
         
       }
       // console.log("dd"+param['*'].split('/'));
-      setDeparture(JSON.parse(data['body'])[k].departure);
-      setArrival(JSON.parse(data['body'])[k].arrival);
-      setRemainingTime(JSON.parse(data['body'])[k].remainingTime);
-      setRecruitment(JSON.parse(data['body'])[k].recruitment);
-      setTransport(JSON.parse(data['body'])[k].transport);
-      setTitle(JSON.parse(data['body'])[k].title);
-      setContent(JSON.parse(data['body'])[k].content);
-      setHostId(JSON.parse(data['body'])[k].id == 0? "user" : JSON.parse(data['body'])[k].id );
-      setRandomKey(JSON.parse(data['body'])[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
+      setDeparture(data[k].departure);
+      setArrival(data[k].arrival);
+      setRemainingTime(data[k].remainingTime);
+      setRecruitment(data[k].recruitment);
+      setTransport(data[k].transport);
+      setTitle(data[k].title);
+      setContent(data[k].content);
+      setHostId(data[k].id == 0? "user" : data[k].id );
+      setRandomKey(data[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
       // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
-      console.log("this meet UUID = ",JSON.parse(data['body'])[k].randomKey);
+      console.log("this meet UUID = ",data[k].randomKey);
       
     });
   }, [])

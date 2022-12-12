@@ -34,16 +34,19 @@ def lambda_handler(event, context):
             'profile url' : (row[6]),
             'id' : (row[7]),
         }for row in rows]
-        return {
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://tayongteam.s3-website.ap-northeast-2.amazonaws.com/',
-                'Access-Control-Allow-Credentials': True,
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        resp = make_response(jsonify(results))
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+        # return {
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': 'http://tayongteam.s3-website.ap-northeast-2.amazonaws.com/',
+        #         'Access-Control-Allow-Credentials': True,
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
 def create_app(test_config=None):
@@ -86,17 +89,19 @@ def showparticipate():
             'randomKey':row[1]
         }for row in rows]
         
-
-        return {
+        resp = make_response(jsonify(results))
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+        # return {
         
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': '*'
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
 
@@ -108,7 +113,10 @@ def deleteparticipate():
     cursor.execute("delete from Meetparticipate2") # SQL 문장을 DB 서버에 보냄
     connection.commit()
     cursor.close()
-    return 'good delete'
+    resp = make_response("delete from Meetparticipate2")
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+    
  
 
 
@@ -133,18 +141,20 @@ def db_meeting():
             'id': row[7],
             'randomKey':row[8]
         }for row in rows]
-        
+        resp = make_response(jsonify(results))
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
 
-        return {
+        # return {
         
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': '*'
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
 
@@ -169,18 +179,20 @@ def db_meetdetail():
             'id': row[7],
             'randomKey':row[8]
         }for row in rows]
-        
+        resp = make_response(jsonify(results))
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
 
-        return {
+        # return {
         
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': '*'
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
 
@@ -205,10 +217,10 @@ def handle_post():
 
         cursor.execute(sql_sentence)
         connection.commit( )
-        #params_str =''
-        # for key in params.keys():
-        #     params_str += '{}:{} \n'.format(key,params[key])
-        return sql_sentence
+        resp = make_response(sql_sentence)
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+
     finally:
         cursor.close()
 
@@ -218,7 +230,9 @@ def getparticipate(): #참여하기 버튼
         cursor=connection.cursor()
         params = json.loads(request.get_data(), encoding='utf-8')
         if len(params) == 0:
-            return 'No parameter'
+            resp = make_response('길이가 0')
+            resp.headers["Access-Control-Allow-Origin"] = "*"
+            return resp
         #params_str=params['arrival']
 
         sql_sentence="insert into Meetparticipate2 values (\"{}\",\"{}\");".format(params['loginId'],params['randomKey'])
@@ -228,7 +242,10 @@ def getparticipate(): #참여하기 버튼
         #params_str =''
         # for key in params.keys():
         #     params_str += '{}:{} \n'.format(key,params[key])
-        return sql_sentence
+        resp = make_response(sql_sentence)
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+
     finally:
         cursor.close()
         
@@ -245,16 +262,19 @@ def sendparticipate(): #현재 참여자 보내기
             'Id' : row[0],
             'randomKey' : row[1]
         }for row in rows]
-        return {
+        resp = make_response(jsonify(results))
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+        # return {
         
-        'statusCode': 200,
-        'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(results),
-            "isBase64Encoded": False
-        }
+        # 'statusCode': 200,
+        # 'headers': {
+        #         'Content-Type': 'application/json',
+        #         'Access-Control-Allow-Origin': '*'
+        #     },
+        #     'body': json.dumps(results),
+        #     "isBase64Encoded": False
+        # }
     finally:
         cursor.close()
     
@@ -270,7 +290,10 @@ def exitparticipate():  #모임 나가기 버튼
     cursor.execute(sql_sentence)
     connection.commit( )
     cursor.close()
-    return sql_sentence
+    resp = make_response(sql_sentence)
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+
     
         
 
@@ -291,9 +314,7 @@ def db_location():
         }for row in rows]
 
         resp = make_response(jsonify(results))
-
         resp.headers["Access-Control-Allow-Origin"] = "*"
-        # resp.headers["Access-Control-Allow-Origin"] = "*"
         return resp
 
         # return {
@@ -317,7 +338,10 @@ def nowdb():
     cursor.execute("create table Meetparticipate2( loginId varchar(50) , randomKey varchar(100)  ) ")
     connection.commit()
     cursor.close()
-    return 1
+    resp = make_response("nowdb")
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -351,13 +375,19 @@ def login():
 
                 cursor.execute("insert into loggedin values(\"{}\",\"{}\")".format(results[0]['email'],1))
                 connection.commit()
-                return "로그인 성공"
+                resp = make_response("insert into loggedin values(\"{}\",\"{}\")".format(results[0]['email'],1))
+                resp.headers["Access-Control-Allow-Origin"] = "*"
+                return resp
             else:
                 loginVal=0
-                return "비번 틀림"
+                resp = make_response("비번틀림")
+                resp.headers["Access-Control-Allow-Origin"] = "*"
+                return resp
         else: #아이디가 없으면
             loginVal=0
-            return "아이디 없음"
+            resp = make_response("아이디없음")
+            resp.headers["Access-Control-Allow-Origin"] = "*"
+            return resp
         # cmd = "SELECT * FROM new_user WHERE \"email\" = \"{}\"".format(params['email'])
         # result=cursor.execute(cmd)
         #result1=cursor.fetchall()
@@ -403,7 +433,10 @@ def loginValue():
 
 
     cursor.close()
-    return json.dumps(results)
+    resp = make_response(jsonify(results))
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
@@ -412,7 +445,9 @@ def logout():
     cursor.execute("delete from loggedin")
     connection.commit()
     cursor.close()
-    return 'good'
+    resp = make_response("delete from loggedin")
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
 
 
 # User Register ---
@@ -429,7 +464,10 @@ def register():
         sql_sentence="insert into new_user values (\"{}\",\"{}\",\"{}\");".format(params['email'],params['password'],params['nickname'])
         cursor.execute(sql_sentence)
         connection.commit( )
-        return sql_sentence
+        resp = make_response(sql_sentence)
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        return resp
+        
 
     finally:
         cursor.close()

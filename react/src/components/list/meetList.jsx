@@ -5,6 +5,7 @@ import styles from './meetList.module.css';
 import { FaArrowRight } from 'react-icons/fa';
 import {json, useNavigate, useParams } from 'react-router-dom';
 import Meet from '../meet/meet';
+import { FiDatabase } from 'react-icons/fi';
 
 
 function MeetList(props) {
@@ -28,8 +29,8 @@ function MeetList(props) {
     .then(res => res.json())
     .then(data => {
       console.log("위치 데이터를 받아왔습니다🥕")
-      setMeetList(JSON.parse(data['body']));
-      console.log(JSON.parse(data['body']));
+      setMeetList(data);
+      console.log(data);
     })
   }, []);
 

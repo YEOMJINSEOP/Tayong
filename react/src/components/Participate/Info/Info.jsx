@@ -34,7 +34,9 @@ function Info(props) {
     const getUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue"
     getData(getUrl)
       .then(data => {
-        const loginId = data.data[0]['loginId'];
+        //console.log('야ㅑㅑ',data.data[0].loginId);
+        
+        const loginId = data.data[0].loginId;
         setLoginId(loginId);
       })
   }, [])
@@ -86,23 +88,26 @@ function Info(props) {
       //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
       .then(res => res.json())
       .then(data => {
-        var k = 0;
-        for (var i = 0; i < JSON.parse(data['body']).length; i++) {
-          if (JSON.parse(data['body'])[i].randomKey == param['*'].split('/')[0]) {
-            k = i;
-
-          }
+        var k=0;
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].randomKey==param['*'].split('/')[0]){     // 이제 제목이 아닌 randomKey로 해당 모임 정보를 가져옵니다!
+            k=i;
+            
         }
-
-        setDeparture(JSON.parse(data['body'])[k].departure);
-        setArrival(JSON.parse(data['body'])[k].arrival);
-        setRemainingTime(JSON.parse(data['body'])[k].remainingTime);
-        setRecruitment(JSON.parse(data['body'])[k].recruitment);
-        setTransport(JSON.parse(data['body'])[k].transport);
-        setTitle(JSON.parse(data['body'])[k].title);
-        setContent(JSON.parse(data['body'])[k].content);
-        setHostId(JSON.parse(data['body'])[k].id == 0? "user" : JSON.parse(data['body'])[k].id );
-        setRandomKey(JSON.parse(data['body'])[k].randomKey);
+        
+      }
+      // console.log("dd"+param['*'].split('/'));
+      setDeparture(data[k].departure);
+      setArrival(data[k].arrival);
+      setRemainingTime(data[k].remainingTime);
+      setRecruitment(data[k].recruitment);
+      setTransport(data[k].transport);
+      setTitle(data[k].title);
+      setContent(data[k].content);
+      setHostId(data[k].id == 0? "user" : data[k].id );
+      setRandomKey(data[k].randomKey);   // randomKey를 meetDetail에서도 받아와서 갖고 있습니다.
+      // setResultML(JSON.parse(data['body'])[k].ML_recognition); // ML_recognition 받아와서 resultML로 저장
+      console.log("this meet UUID = ",data[k].randomKey);
       });
   }, [])
 

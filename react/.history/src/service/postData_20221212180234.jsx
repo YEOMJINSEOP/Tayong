@@ -4,11 +4,12 @@ import axios from 'axios';
 
 const postData = (url, data) => { 
   axios
-  .post(url,data,{
+  .post(url,{
     headers: {
       'Access-Control-Allow-Origin' : '*',
       'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     }
+    ,data
   })
   .then(
     (res) => {

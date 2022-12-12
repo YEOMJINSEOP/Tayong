@@ -4,12 +4,14 @@ import logging
 import pymysql
 import dbinfo
 import json
-
+import time
 from flask_cors import CORS
 from flask_restx import Api
 from flask import Flask, flash, redirect, request, jsonify, url_for, render_template, session, make_response
 from db_connect import db
 from forms import RegisterForm
+app = Flask(__name__, static_url_path='')
+CORS(app)
 def lambda_handler(event, context):
 
     
@@ -51,9 +53,10 @@ def lambda_handler(event, context):
         cursor.close()
 def create_app(test_config=None):
     app = Flask(__name__)
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+    cors = CORS(app, resources={r"*": {"origins": "*"}}, supports_credentials=True)
     api = Api(app)
-		# Config 설정
+	# Config 설정
+    app.config['CORS_HEADERS'] = 'Content-Type'
     if test_config is None:
         app.config.from_object(config)
     else:
@@ -198,7 +201,6 @@ def db_meetdetail():
 
 
 
-app = Flask(__name__, static_url_path='')
 
 
 def handle_post():
@@ -234,7 +236,7 @@ def getparticipate(): #참여하기 버튼
             resp.headers["Access-Control-Allow-Origin"] = "*"
             return resp
         #params_str=params['arrival']
-
+        time.sleep(1)
         sql_sentence="insert into Meetparticipate2 values (\"{}\",\"{}\");".format(params['loginId'],params['randomKey'])
         # Pk를 Id에, 모임정보에 randomKey값을,
         cursor.execute(sql_sentence)
@@ -285,7 +287,7 @@ def exitparticipate():  #모임 나가기 버튼
     cursor=connection.cursor()
     cursor.execute("select nowId from loggedin")
     rows = cursor.fetchall() # 데이터를 DB로부터 가져온 후, Fetch 된 데이터를 사용
-
+    time.sleep(1)
     sql_sentence="delete from Meetparticipate2 where Id = \"{}\";".format(rows[0][0])     
     cursor.execute(sql_sentence)
     connection.commit( )
@@ -377,16 +379,25 @@ def login():
                 connection.commit()
                 resp = make_response("insert into loggedin values(\"{}\",\"{}\")".format(results[0]['email'],1))
                 resp.headers["Access-Control-Allow-Origin"] = "*"
+                resp.headers["Access-Control-Allow-Headers"] ="*"
+                resp.headers["Access-Control-Allow-Methods"] ="*"
+                resp.headers["Access-Control-Allow-Credentials"]=True
                 return resp
             else:
                 loginVal=0
                 resp = make_response("비번틀림")
                 resp.headers["Access-Control-Allow-Origin"] = "*"
+                resp.headers["Access-Control-Allow-Headers"] ="*"
+                resp.headers["Access-Control-Allow-Methods"] ="*"
+                resp.headers["Access-Control-Allow-Credentials"]=True
                 return resp
         else: #아이디가 없으면
             loginVal=0
             resp = make_response("아이디없음")
             resp.headers["Access-Control-Allow-Origin"] = "*"
+            resp.headers["Access-Control-Allow-Headers"] ="*"
+            resp.headers["Access-Control-Allow-Methods"] ="*"
+            resp.headers["Access-Control-Allow-Credentials"]=True
             return resp
         # cmd = "SELECT * FROM new_user WHERE \"email\" = \"{}\"".format(params['email'])
         # result=cursor.execute(cmd)
@@ -536,6 +547,7 @@ if __name__ == '__main__':
      app.debug = True
      app.jinja_env.auto_reload = True
      app.config['TEMPLATES_AUTO_RELOAD'] = True
+     CORS(app, resources={r"*": {"origins": "*"}}, supports_credentials=True)
      app.run(host='0.0.0.0', port=4000)
      create_app().run()
  else:

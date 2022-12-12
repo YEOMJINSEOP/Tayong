@@ -80,36 +80,31 @@ function Info(props) {
   }
 
 
+
   useEffect(() => {
     fetch('https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
+      //fetch('https://iszyx4amug.execute-api.ap-northeast-2.amazonaws.com/dev/getmeetdetail')
       .then(res => res.json())
       .then(data => {
-        console.log('🐸participate meet Data', data);
-        console.log('🐸participate meet Data', data[3]['randomKey']);
-        console.log('🦁param', param['*'].split('/')[0])
-        console.log(data[3]['randomKey'] == param['*'].split('/')[0]);
-        console.log("length", data.length);
-
-        let k = 0;
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]['randomKey'] == param['*'].split('/')[0]) {
+        var k = 0;
+        for (var i = 0; i < JSON.parse(data['body']).length; i++) {
+          if (JSON.parse(data['body'])[i].randomKey == param['*'].split('/')[0]) {
             k = i;
-            console.log('🐷🐷🐷🐷I found Right one!!');
+
           }
         }
 
-        setDeparture(data[k]['departure']);
-        setArrival(data[k]['arrival']);
-        setRemainingTime(data[k]['remainingTime']);
-        setRecruitment(data[k]['recruitment']);
-        setTransport(data[k]['transport']);
-        setTitle(data[k]['title']);
-        setContent(data[k]['content']);
-        setHostId(data[k]['id']);
-        setRandomKey(data[k]['randomKey']);
+        setDeparture(JSON.parse(data['body'])[k].departure);
+        setArrival(JSON.parse(data['body'])[k].arrival);
+        setRemainingTime(JSON.parse(data['body'])[k].remainingTime);
+        setRecruitment(JSON.parse(data['body'])[k].recruitment);
+        setTransport(JSON.parse(data['body'])[k].transport);
+        setTitle(JSON.parse(data['body'])[k].title);
+        setContent(JSON.parse(data['body'])[k].content);
+        setHostId(JSON.parse(data['body'])[k].id == 0? "user" : JSON.parse(data['body'])[k].id );
+        setRandomKey(JSON.parse(data['body'])[k].randomKey);
       });
   }, [])
-
 
   const selectImg = (transport) => {
     if (transport == '자가용') {

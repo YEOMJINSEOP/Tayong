@@ -25,8 +25,8 @@ function SendMessage({ scroll, meetUUID }) {
         <div>
             <form onSubmit={sendMessage}>
                 <div className="sendMsg">
-                    <input style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} placeholder='Message...' type="text" value={msg} onChange={e => setMsg(e.target.value)} />
-                    <button style={{ width: '18%', fontSize: '15px', fontWeight: '550',  maxWidth: '200px'}} type="submit">Send</button>
+                    <input placeholder='메시지를 입력해 주세요.' type="text" value={msg} onChange={e => setMsg(e.target.value)} />
+                    <button type="submit">전송</button>
                 </div>
             </form>
         </div>

@@ -37,8 +37,6 @@ export default function ParticipateComponent() {
                     {user ? <Chat meetUUID={meetUUID} /> : <SignIn />}
                 </div>
             </div>
-
-
         </div>
     );
 };

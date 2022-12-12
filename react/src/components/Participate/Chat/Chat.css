@@ -5,7 +5,7 @@
     /* border: 1px solid grey; */
     width: 100%;
     /* height: 550px; */
-    height: 100%;
+    height: 620px;
     display: flex;
     flex-direction: column;
     padding: 10px 0 0 0;
@@ -14,6 +14,7 @@
 
 
 }
+
 .container{
     width: 100%;
     height: 100%;
@@ -49,20 +50,21 @@
     flex-direction: row;
     padding: 5px 8px;
     margin: 20px;
-    border-radius: 3000px;
-    box-shadow: 0 0 10px rgb(164, 164, 164);
+    border-radius: 6px;
+    /* box-shadow: 0 0 10px rgb(164, 164, 164); */
     align-items: center;
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 300;
+    font-family: var(--font-famiy-pretendard-regular);
     font-size: 14px;
+  }
+
+  .msg p {
     color: #FFFFFF;
   }
   
   .sent {
     background-color: #FF9C55;
     color: white;
-    border-top-right-radius: 1000px;
+    /* border-top-right-radius: 1000px; */
     flex-direction: row-reverse;
     /* padding: 20px 20px 0 10px; */
     text-align: end;
@@ -74,17 +76,21 @@
   } */
   
   .received {
-    border: 1px solid lightgray;
-    background-color: #FAFAFA;
-    border-top-left-radius: 1000px;
+    /* border: 1px solid lightgray; */
+    background-color: #F4F4F4;
+    /* border-top-left-radius: 1000px; */
     /* padding: 20px 20px 0 10px; */
     float: left;
+  }
+
+  .received p {
     color: #000000;
   }
   
   .sendMsg {
     display: flex;
     width: 100%;
+    height: 59px;
     justify-content: space-between;
     align-items: center;
     /* bottom: 50px; */
@@ -93,13 +99,12 @@
     /* padding-bottom: 30px; */
     background-color: #fff;
     border-radius: 0 0 10px 10px;
+    margin-top: -59px;
   }
 
   .sendMsg input {
     width: 100%;
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 400;
+    font-family: var(--font-famiy-pretendard-regular);
     font-size: 16px;
     text-align: left;
   }
@@ -109,17 +114,15 @@
     height: 40px;
     background: #F4F4F4;
     border-radius: 9px;
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 400;
+    font-family: var(--font-famiy-pretendard-regular);
     font-size: 16px;
     color: #A5A5A5;
   }
-  
+
   .msgs {
     /* margin: 10px 0; */
     display: flex;
-    height: 90%;
+    height: 100%;
     flex-direction: column;
     overflow-y: scroll;
   }

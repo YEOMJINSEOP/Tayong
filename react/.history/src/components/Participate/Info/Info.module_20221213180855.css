@@ -146,11 +146,7 @@
     justify-content: space-between;
 }
 
-.title input {
-  width: 100%;
-}
-
-.content input{
+.info  input {
   width: 100%;
 }
 

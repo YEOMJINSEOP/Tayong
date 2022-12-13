@@ -13,11 +13,14 @@ import getData from '../../service/getData';
 export default function ParticipateComponent() {
 
     let param = useParams();
-    console.log('🐸🐸🐸🐸🐸', param);
-    console.log('🟠🟠🟠🟠', (param['*'].split('/'))[1]);
-    const meetUUID = (param['*'].split('/'))[1];
+    console.log(param);
+    console.log('🟠🟠🟠🟠', param['*']);
 
-    // const [uid, setUid] = useState("");
+    const [meetUUID, setMeetUUID] = '';
+    useEffect(() => {
+        setMeetUUID(param['*'][1]);
+    }, [])
+    const [uid, setUid] = useState("");
 
    
 

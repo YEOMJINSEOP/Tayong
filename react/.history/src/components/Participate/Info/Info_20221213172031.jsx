@@ -35,15 +35,17 @@ function Info(props) {
   let param = useParams();
 
   const onClickHandler = () => {
-    const loginId = param_userId;
+    const loginId = 
     const exitUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/exitparticipate";
     let exitData = {
       loginId: loginId
     }
     //postData(exitUrl, exitData);
     console.log("exitdData", exitData);
-    postData(exitUrl, exitData);
-    navigate(`/${param_userId}`);
+    getData(exitUrl).then((data) => {
+      console.log("모임나가기!",data);
+  });
+    navigate(-1);
   }
 
 

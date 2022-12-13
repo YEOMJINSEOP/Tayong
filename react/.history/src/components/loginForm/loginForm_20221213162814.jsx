@@ -39,7 +39,7 @@ function LoginForm(props) {
         if(data.data[0]['loginSuccess'] == 1){
           console.log('님 환영합니다');
           console.log(`💕💕💕`, email);
-          navigate(`/${email}`);
+          navigate(`/home/${email}`);
         }
         else{
           alert('이메일 또는 비밀번호를 확인해주세요');

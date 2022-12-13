@@ -15,8 +15,8 @@ export default function Member(props) {
     getData(url)
       .then(res => res['data'])
       .then(data => {
-        console.log('🍎🍎🍎🍎', data);
-        const newList = data.filter((data)=>data.randomKey === param['*'].split('/')[1]);
+        console.log(data);
+        const newList = data.filter((data)=>data.randomKey === param['*'].split('/')[0]);
         setUserList(newList);
                 //JSON.parse(data['body'])[i].Id 값이 참여자 데이터
 

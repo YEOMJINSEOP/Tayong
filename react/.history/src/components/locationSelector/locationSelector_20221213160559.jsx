@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './locationSelector.module.css';
 
 import { FaArrowRight } from 'react-icons/fa';
 
 import Departure from '../departure/departure';
 import Arrival from '../arrival/arrival';
-import { useNavigate, useParams } from 'react-router-dom';
-import getData from '../../service/getData';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function LocationSelector(props) {
-
-  let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/'))[0];
-  console.log(param_userId);
 
   const [loginId, setLoginId] = useState("로그인");
   useEffect(() => {
@@ -54,7 +48,7 @@ function LocationSelector(props) {
       alert('지정된 도착지로 설정하세요');
       return
     }
-    navigate(`/list/${param_userId}/${departure}/${arrival}`);
+    navigate(`/list/${departure}/${arrival}`);
   }
 
   return (

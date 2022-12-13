@@ -12,8 +12,8 @@ import getData from '../../service/getData';
 function MeetList(props) {
 
   let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/')[0]);
+  console.log(`🐥🥕`, (params['*'].split('/'))[2]);
+  let param_userId = (params['*'].split('/')[2]);
   console.log(param_userId);
 
   const navigate = useNavigate();

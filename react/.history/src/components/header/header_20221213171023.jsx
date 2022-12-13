@@ -23,21 +23,21 @@ function Header(props) {
   }, [])
 
   const showLoginId = () => {
-    if(loginId == '로그인'){
+    if(param_userId == undefined || param_userId == ''){
       return '로그인';
     }
     else{
-      return loginId;
+      return param_userId;
     }
   }
 
   const showLogOut = () => {
-    if(loginId == '로그인'){
-      return "";
-    }
-    else{
+    if(loginSucceed == 1||loginSucceed == '1'){
       console.log("❤️",loginSucceed)
       return "로그아웃"
+    }
+    else{
+      return "";
     }
   }
 
@@ -47,7 +47,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
+      setLoginSucceed(0);
       navigate('/');
   });
   }
@@ -58,7 +58,7 @@ function Header(props) {
     <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
-          navigate(`/${loginId}`)
+          navigate(`/`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>

@@ -27,7 +27,7 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
 
   const onClickHandler = (e) => {
     console.log('Meet Click 🥕');
-    navigate(`/detail/${param_userId}/${randomKey}`);
+    navigate(`/detail/${param_userId}${randomKey}`);
   }
 
   return (

@@ -47,7 +47,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
+      setLoginSucceed(0);
       navigate('/');
   });
   }
@@ -58,7 +58,7 @@ function Header(props) {
     <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
-          navigate(`/${loginId}`)
+          navigate(`/`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>

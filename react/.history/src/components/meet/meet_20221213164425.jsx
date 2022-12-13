@@ -12,7 +12,7 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
   const navigate = useNavigate();
 
   let params = useParams();
-  console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/'))[0]);
+  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
   let param_userId = (params['*'].split('/'))[0];
 
   console.log(param_userId);
@@ -27,7 +27,7 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
 
   const onClickHandler = (e) => {
     console.log('Meet Click 🥕');
-    navigate(`/detail/${param_userId}/${randomKey}`);
+    navigate(`/detail/${randomKey}`);
   }
 
   return (

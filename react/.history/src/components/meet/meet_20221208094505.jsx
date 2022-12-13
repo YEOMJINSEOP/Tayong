@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Detail from '../../pages/Detail';
 import styles from './meet.module.css';
 
@@ -10,12 +10,6 @@ const imgTaxi = 'https://img.freepik.com/free-photo/taxi-sign-roof-top-car_74190
 function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTime, transport}) {
 
   const navigate = useNavigate();
-
-  let params = useParams();
-  console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/'))[0];
-
-  console.log(param_userId);
 
   const selectImg = () => {
     if(transport == '자가용'){
@@ -27,7 +21,7 @@ function Meet({randomKey,id, title, departure, arrival, recruitment, remainingTi
 
   const onClickHandler = (e) => {
     console.log('Meet Click 🥕');
-    navigate(`/detail/${param_userId}/${randomKey}`);
+    navigate(`/detail/${randomKey}`);
   }
 
   return (

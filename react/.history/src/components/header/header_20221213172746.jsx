@@ -23,7 +23,7 @@ function Header(props) {
   }, [])
 
   const showLoginId = () => {
-    if(loginId == '로그인'){
+    if(loginSucceed == 0 || loginId == '로그인'){
       return '로그인';
     }
     else{
@@ -47,7 +47,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
+      setLoginSucceed(0);
       navigate('/');
   });
   }

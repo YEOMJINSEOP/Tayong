@@ -43,7 +43,7 @@ function Info(props) {
     //postData(exitUrl, exitData);
     console.log("exitdData", exitData);
     postData(exitUrl, exitData);
-    navigate(`/${param_userId}`);
+    navigate(-1);
   }
 
 

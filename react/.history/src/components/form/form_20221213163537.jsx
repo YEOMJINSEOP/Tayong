@@ -15,8 +15,8 @@ import getData from '../../service/getData';
 function Form(props) {
 
   let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/')[0]);
+  console.log(`🐥🥕`, (params['*'].split('/')));
+  let param_userId = (params['*'].split('/'));
   console.log(param_userId);
   
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ function Form(props) {
           postData(url, postdata);
         
         
-        navigate(`/${param_userId}`);
+        navigate('/');
       }
       else{
         alertML();

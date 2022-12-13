@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { FiCalendar} from 'react-icons/fi';
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import postData from '../../service/postData';
 import {v4 as uuidv4} from 'uuid';
 import Swal from 'sweetalert2';
@@ -15,8 +15,8 @@ import getData from '../../service/getData';
 function Form(props) {
 
   let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/')[0]);
+  console.log(`🐥🥕`, (params['*'].split('/')));
+  let param_userId = (params['*'].split('/'));
   console.log(param_userId);
   
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ function Form(props) {
           postData(url, postdata);
         
         
-        navigate(`/${param_userId}`);
+        navigate('/');
       }
       else{
         alertML();

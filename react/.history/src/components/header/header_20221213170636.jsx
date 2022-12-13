@@ -22,22 +22,35 @@ function Header(props) {
     setLoginId(param_userId);
   }, [])
 
+  useEffect(() => {
+    const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
+    getData(getUrl)
+      .then(data => {
+        console.log(data);
+        const isLoginSucceed = data.data[0]['loginSuccess'];
+        console.log(isLoginSucceed);
+        setLoginSucceed(isLoginSucceed);
+      })  
+  }, [])
+
+
+  
   const showLoginId = () => {
-    if(loginId == '로그인'){
-      return '로그인';
+    if(loginSucceed == 1||loginSucceed == '1'){
+      return loginId;
     }
     else{
-      return loginId;
+      return '로그인';
     }
   }
 
   const showLogOut = () => {
-    if(loginId == '로그인'){
-      return "";
-    }
-    else{
+    if(loginSucceed == 1||loginSucceed == '1'){
       console.log("❤️",loginSucceed)
       return "로그아웃"
+    }
+    else{
+      return "";
     }
   }
 
@@ -47,8 +60,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
-      navigate('/');
+      setLoginSucceed(0);
   });
   }
 
@@ -58,7 +70,7 @@ function Header(props) {
     <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
-          navigate(`/${loginId}`)
+          navigate(`/`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>

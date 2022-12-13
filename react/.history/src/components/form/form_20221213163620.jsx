@@ -89,7 +89,7 @@ function Form(props) {
           postData(url, postdata);
         
         
-        navigate(`/${param_userId}`);
+        navigate('/');
       }
       else{
         alertML();

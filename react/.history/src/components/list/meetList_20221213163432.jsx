@@ -12,8 +12,8 @@ import getData from '../../service/getData';
 function MeetList(props) {
 
   let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/')[0]);
+  console.log(`🐥🥕`, (params['*'].split('/'))[2]);
+  let param_userId = (params['*'].split('/'))[2];
   console.log(param_userId);
 
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ function MeetList(props) {
   const [meetList, setMeetList] = useState([]);
   let param = useParams();
   // console.log(param['*']);
-  const depLoc = param['*'].split('/')[1];
-  const arrLoc = param['*'].split('/')[2];
+  const depLoc = param['*'].split('/')[0];
+  const arrLoc = param['*'].split('/')[1]
   console.log(param['*'].split('/'));
 
   const meetUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting'

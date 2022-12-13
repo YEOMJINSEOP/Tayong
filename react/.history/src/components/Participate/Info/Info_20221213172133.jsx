@@ -42,8 +42,10 @@ function Info(props) {
     }
     //postData(exitUrl, exitData);
     console.log("exitdData", exitData);
-    postData(exitUrl, exitData);
-    navigate(`/${param_userId}`);
+    postData(exitUrl, exitData).then((data) => {
+      console.log("모임나가기!",data);
+  });
+    navigate(-1);
   }
 
 

@@ -12,9 +12,9 @@ import getData from '../../service/getData';
 
 function LocationSelector(props) {
 
-  let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/'))[0];
+  let param = useParams();
+  console.log(`🐥🥕`, (param['*'].split('/'))[1]);
+  let param_userId = (param['*'].split('/'))[1];
   console.log(param_userId);
 
   const [loginId, setLoginId] = useState("로그인");
@@ -54,7 +54,7 @@ function LocationSelector(props) {
       alert('지정된 도착지로 설정하세요');
       return
     }
-    navigate(`/list/${param_userId}/${departure}/${arrival}`);
+    navigate(`/list/${departure}/${arrival}/${param_userId}`);
   }
 
   return (

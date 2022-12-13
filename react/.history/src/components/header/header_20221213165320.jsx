@@ -1,43 +1,38 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './header.module.css';
 import getData from '../../service/getData';
 
 function Header(props) {
+
+  let params = useParams();
+  console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/'))[0]);
+  let param_userId = (params['*'].split('/'))[0];
+
+  console.log(param_userId);
+
   const navigate = useNavigate();
   const [loginId, setLoginId] = useState("로그인");
   const [loginSucceed, setLoginSucceed] = useState(0);
-
-  let params = useParams();
-
-  useEffect(() => {
-    console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/'))[0]);
-    let param_userId = (params['*'].split('/'))[0];
-    console.log(param_userId);
-    if(param_userId == undefined || param_userId == ''){
-      param_userId = "로그인";
-    }
-    setLoginId(param_userId);
-  }, [])
-
+  
   const showLoginId = () => {
-    if(loginId == '로그인'){
-      return '로그인';
+    if(loginSucceed == 1||loginSucceed == '1'){
+      return loginId;
     }
     else{
-      return loginId;
+      return '로그인';
     }
   }
 
   const showLogOut = () => {
-    if(loginId == '로그인'){
-      return "";
-    }
-    else{
+    if(loginSucceed == 1||loginSucceed == '1'){
       console.log("❤️",loginSucceed)
       return "로그아웃"
+    }
+    else{
+      return "";
     }
   }
 
@@ -47,8 +42,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
-      navigate('/');
+      setLoginSucceed(0);
   });
   }
 
@@ -58,7 +52,7 @@ function Header(props) {
     <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
-          navigate(`/${loginId}`)
+          navigate(`/`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>{showLoginId()}</button>

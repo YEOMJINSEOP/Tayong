@@ -12,8 +12,8 @@ import getData from '../../service/getData';
 function MeetList(props) {
 
   let params = useParams();
-  console.log(`🐥🥕`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/')[0]);
+  console.log(`🐥🥕`, (params['*'].split('/'))[2]);
+  let param_userId = (params['*'].split('/')[2]);
   console.log(param_userId);
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ function MeetList(props) {
         </div>    
       </div>
       <button className={styles.btn_create} onClick={(e) => {
-        navigate(`/create/${param_userId}`);
+        navigate(`/${param_userId}/create`);
       }}>모집하기</button>
       <ul className={styles.meetUl}>
         {meetList.map((item) => {

@@ -54,7 +54,7 @@ function LocationSelector(props) {
       alert('지정된 도착지로 설정하세요');
       return
     }
-    navigate(`/list/${param_userId}/${departure}/${arrival}`);
+    navigate(`/list/${departure}/${arrival}/${param_userId}`);
   }
 
   return (

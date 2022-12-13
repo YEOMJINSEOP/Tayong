@@ -15,8 +15,8 @@ export default function ParticipateComponent() {
     const [uid, setUid] = useState("");
     let param = useParams();
     console.log(param);
-    console.log(param['*'][0]);
-    const meetUUID = param['*'][0];
+    console.log(param['*']);
+    const meetUUID = param['*'];
     // setUid(meetUUID);
     // console.log("look at", uid);
 

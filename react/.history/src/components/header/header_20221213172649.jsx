@@ -47,7 +47,7 @@ function Header(props) {
     getData(logoutUrl)
     .then((data) => {
       console.log("🎉",data);
-      setLoginId('로그인');
+      setLoginSucceed(0);
       navigate('/');
   });
   }

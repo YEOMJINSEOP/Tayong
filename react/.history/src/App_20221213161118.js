@@ -11,7 +11,7 @@ import Participate from './pages/Participate';
 
 const router = createBrowserRouter([
   {
-    path: "/*",
+    path: "/home",
     element: <Home/>,
     errorElement: <p>Error Page🐶</p>
   },

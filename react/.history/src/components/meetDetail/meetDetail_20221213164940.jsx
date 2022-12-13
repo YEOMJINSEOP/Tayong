@@ -10,8 +10,8 @@ import postData from '../../service/postData';
 function MeetDetail(props) {
 
   let params = useParams();
-  console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/'))[0]);
-  let param_userId = (params['*'].split('/'))[0];
+  console.log(`🐥🥕🐽🐽🐽`, (params['*'].split('/')));
+  let param_userId = (params['*'].split('/'))[1];
 
   console.log(param_userId);
 
@@ -42,12 +42,21 @@ function MeetDetail(props) {
 
 
   //-----------------참여하기 버튼--------------------//
+  // 로그인 정보 받아오기
+  useEffect(() => {
+    
+    const getUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/loginValue';
+    getData(getUrl)
+      .then(data => {
+        const loginId = data.data[0]['loginId'];
+        setLoginId(loginId);
+      })  
+  }, [])
+
 
   // 참여하기 버튼 누르면 id와 meetId 전송하기
   const onJoinHandler = () => {
     // 참여하는 loginId를 participateUrl로 post합니다.
-
-    const loginId = param_userId;
     const joinUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/participate"
 
     // 로그인 되어있지 않으면 경고창을 띄웁니다.
@@ -63,7 +72,7 @@ function MeetDetail(props) {
       }
       console.log('joinData', joinData);
       postData(joinUrl, joinData);
-      navigate(`/participate/${param_userId}/${randomKey}`);
+      navigate(`/participate/${randomKey}/${param_userId}`);
     }
   }
 

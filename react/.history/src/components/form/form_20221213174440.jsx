@@ -24,13 +24,13 @@ function Form(props) {
   const [transport, setTransport] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  
+  const [nowId, setNowId] = useState("");
+
   let params = useParams();
   console.log(`🐥🥕`, (params['*'].split('/'))[0]);
   let param_userId = (params['*'].split('/')[0]);
   console.log(param_userId);
-  const nowId = param_userId;
-
+  setNowId(param_userId);
 
   
     

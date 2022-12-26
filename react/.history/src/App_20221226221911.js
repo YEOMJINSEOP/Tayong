@@ -6,10 +6,12 @@ import Detail from './pages/Detail';
 import Create from './pages/Create';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Participate from './pages/Participate';
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/*",
     element: <Home/>,
     errorElement: <p>Error Page🐶</p>
   },

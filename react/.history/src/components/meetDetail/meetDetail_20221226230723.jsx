@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
+import { FiCalendar} from 'react-icons/fi';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import getData from '../../service/getData';
 import postData from '../../service/postData';
 
 function MeetDetail(props) {
-  const params = useParams();
+
+  let params = useParams();
+  let param_userId = (params['*'].split('/'))[0];
+
+  console.log(param_userId);
+
+
   const navigate = useNavigate();
+
+
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [remainingTime, setRemainingTime] = useState("");
@@ -17,7 +28,8 @@ function MeetDetail(props) {
   const [content, setContent] = useState("");
   const [randomKey, setRandomKey] = useState("");
   const[loginId, setLoginId] = useState("로그인");
-   
+  const[resultML, setResultML] = useState(0);
+  
   const selectImg = (transport) => {
     const imgTransport = 'https://img.freepik.com/free-photo/man-driving-car-from-rear-view_1359-494.jpg?w=1800&t=st=1667398765~exp=1667399365~hmac=8304fbbb3ab8792ecbc4535a7e8d5241ae499a2c44d4922f5de295d8b8df3d8f';
     const imgTaxi = 'https://img.freepik.com/free-photo/taxi-sign-roof-top-car_74190-1728.jpg?w=1800&t=st=1667398413~exp=1667399013~hmac=efcccc4afa78711c2ff1407418bf496be6c0ddf73fe37c1c3ecf06f936d5bc24'; 
@@ -29,6 +41,7 @@ function MeetDetail(props) {
   }
 
   const onJoinHandler = () => {
+    const loginId = param_userId;
     const joinUrl = "https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/participate"
     if(loginId == '로그인'){
       alert('참여하려면 로그인이 필요합니다');
@@ -39,7 +52,7 @@ function MeetDetail(props) {
         randomKey: randomKey 
       }
       postData(joinUrl, joinData);
-      navigate(`/participate/${randomKey}`);
+      navigate(`/participate/${param_userId}/${randomKey}`);
     }
   }
 
@@ -54,6 +67,7 @@ function MeetDetail(props) {
         if(data[i].randomKey== meetRandomKey){     
             meetSelected = i;
         }
+        
       }
       const infoMeetSelected = data[meetSelected];
       setDeparture(infoMeetSelected.departure);
@@ -85,6 +99,7 @@ function MeetDetail(props) {
           <div className={styles.user}>
             <div className={styles.userInfo}>
               <div className={styles.userInfoInfo}>모집자</div>
+              {/* <div className={styles.userAvatar}></div> */}
               <p>{hostId}</p>
             </div>
           </div>
@@ -107,7 +122,10 @@ function MeetDetail(props) {
         </div>
 
         <div className={styles.btns}>
-          <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
+          {/* <button className={styles.btn_chat}><a href="http://tayongchat.s3-website.ap-northeast-2.amazonaws.com/">채팅하기</a></button> */}
+          <button className={styles.btn_backToList} onClick={() => {
+            navigate(-1);
+          }}>목록으로</button>
           <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
         </div>
     </div>

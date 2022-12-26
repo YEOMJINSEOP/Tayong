@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styles from './signUpForm.module.css';
+import axios from 'axios';
 import postData from '../../service/postData';
 import { useNavigate } from 'react-router-dom';
+import getData from '../../service/getData';
 function SignUpForm(props) { 
   const navigate = useNavigate();
 

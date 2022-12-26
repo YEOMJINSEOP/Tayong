@@ -45,6 +45,7 @@ function Form(props) {
       title: title,
       content: content,
       randomKey: randomKey,
+      nowId: nowId
     }
     
     console.log(postdata);

@@ -5,7 +5,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 import Departure from '../departure/departure';
 import Arrival from '../arrival/arrival';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import getData from '../../service/getData';
 
 
@@ -22,6 +22,7 @@ function LocationSelector(props) {
         const isLoginSucceed = data.data[0]['loginSuccess'];
         const loginId = data.data[0]['loginId'];
         console.log(isLoginSucceed);
+        //console.log(JSON.parse(data['nowId']))
         setLoginId(loginId);
       })  
   }, []);

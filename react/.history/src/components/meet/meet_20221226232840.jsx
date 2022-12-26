@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
+import Detail from '../../pages/Detail';
 import styles from './meet.module.css';
 
 const imgTransport = 'https://img.freepik.com/free-photo/man-driving-car-from-rear-view_1359-494.jpg?w=1800&t=st=1667398765~exp=1667399365~hmac=8304fbbb3ab8792ecbc4535a7e8d5241ae499a2c44d4922f5de295d8b8df3d8f';

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './header.module.css';
+import getData from '../../service/getData';
 
 function Header(props) {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ function Header(props) {
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>로그인</button>
-          <button className={styles.btn} onClick={()=>{navigate('/signup')}}>회원가입</button>
+          <button className={styles.btn} onClick={()=>{navigate('/form')}}>회원가입</button>
         </div>  
       </nav>
     </>

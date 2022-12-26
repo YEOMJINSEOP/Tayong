@@ -1,7 +1,9 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './header.module.css';
+import getData from '../../service/getData';
 
 function Header(props) {
   const navigate = useNavigate();

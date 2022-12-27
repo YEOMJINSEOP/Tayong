@@ -5,7 +5,7 @@ import styles from './header.module.css';
 
 function Header(props) {
   const navigate = useNavigate();
-  const [isLogined, setIsLogined] = useState(false);
+  const [isLogined, setIsLogined] = useState(true);
 
   const loginHandler = () => {
     return !isLogined ? '로그인' : '로그아웃';

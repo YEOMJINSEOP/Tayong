@@ -5,24 +5,17 @@ import styles from './header.module.css';
 
 function Header(props) {
   const navigate = useNavigate();
-  const [isLogined, setIsLogined] = useState(false);
-
-  const loginHandler = () => {
-    return !isLogined ? '로그인' : '로그아웃';
-  }
-
-  const joinHandler = () => {
-    return !isLogined ? '회원가입' : null
-  }
+  const [loginId, setLoginId] = useState("");
+  
   return (
     <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
-          navigate(`/`)
+          navigate(`/${loginId}`)
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
-          <button className={styles.loginBtn}>{loginHandler()}</button>
-          <button className={styles.btn}>{joinHandler()}</button>
+          <button className={styles.loginBtn} onClick={() => {navigate('/login')}}>로그인</button>
+          <button className={styles.btn} onClick={()=>{navigate('/signup')}}>회원가입</button>
         </div>  
       </nav>
     </>

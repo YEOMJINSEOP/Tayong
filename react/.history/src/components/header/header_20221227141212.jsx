@@ -22,7 +22,7 @@ function Header(props) {
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn}>{loginHandler()}</button>
-          <button className={styles.btn}>{joinHandler()}</button>
+          <button className={styles.btn}>회원가입</button>
         </div>  
       </nav>
     </>

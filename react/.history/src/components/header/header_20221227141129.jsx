@@ -11,9 +11,6 @@ function Header(props) {
     return !isLogined ? '로그인' : '로그아웃';
   }
 
-  const joinHandler = () => {
-    return !isLogined ? '회원가입' : null
-  }
   return (
     <>
       <nav className={styles.navbar}>
@@ -22,7 +19,7 @@ function Header(props) {
         }} >Tayong</p>
         <div className={styles.navbarBtn}>
           <button className={styles.loginBtn}>{loginHandler()}</button>
-          <button className={styles.btn}>{joinHandler()}</button>
+          <button className={styles.btn}>회원가입</button>
         </div>  
       </nav>
     </>

@@ -65,7 +65,7 @@ function Arrival({onSet}) {
                 id='arrival'
                 name='arrival'
                 value = {inputStr}
-                // onKeyDown = {(e) => onKeyPressHandler(e)}
+                onKeyDown = {(e) => onKeyPressHandler(e)}
                 onChange = {(e) => setInputStr(e.target.value)}
             />
             <FaSearch className={styles.searchIcon}/>

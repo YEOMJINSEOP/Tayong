@@ -28,28 +28,34 @@ function Arrival({onSet}) {
   //   searchRef.current.focus();
   // }
 
-  // const [searchIndex, setSearchIndex] = useState(0);
-  // const onKeyPressHandler = (e) => {
-  //   if(e.code === 'ArrowDown'){
-  //     let listCount = searchRef.current.childElementCount;
-  //     if(searchIndex < listCount){
-  //       searchRef?.current?.childNodes[searchIndex]?.focus(); 
-  //       setSearchIndex(searchIndex+1);
-  //     }
-  //     else{
-  //       searchRef?.current?.childNodes[0]?.focus(); 
-  //       setSearchIndex(0)
-  //     }};
-  //     return;
-  // }
-    
+  const [searchIndex, setSearchIndex] = useState(0);
+
+  const listFocusHandler = () => {
+    let listCount = searchRef.current.childElementCount;
+    let listRelated = searchRef?.current?.childNodes;
+      if(searchIndex < listCount){
+        listRelated[searchIndex]?.focus(); 
+        setSearchIndex(searchIndex+1);
+      }
+      else{
+        listRelated[0]?.focus(); 
+        setSearchIndex(0)
+        }
+      };
+  }
+  
+  const onKeyPressHandler = (e) => {
+    if(e.code === 'ArrowDown'){
+      listFocusHandler()
+    }
+
 
   let relateLoc = location.filter((loc) => {
     if(inputStr && loc.name.includes(inputStr)){return loc}
     })
     .map(
       (loc) => {
-        return <li key={loc.id} onClick={autoComplete}  tabIndex="0">{loc.name}</li>
+        return <li key={loc.id} onClick={autoComplete} onKeyDown={onKeyPressHandler} tabIndex="0">{loc.name}</li>
       }
   )
 
@@ -65,7 +71,7 @@ function Arrival({onSet}) {
                 id='arrival'
                 name='arrival'
                 value = {inputStr}
-                // onKeyDown = {(e) => onKeyPressHandler(e)}
+                onKeyDown = {(e) => onKeyPressHandler(e)}
                 onChange = {(e) => setInputStr(e.target.value)}
             />
             <FaSearch className={styles.searchIcon}/>

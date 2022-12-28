@@ -20,6 +20,15 @@ function Arrival({onSet}) {
     onSet(e.target.innerText);
   }
 
+  let relateLoc = location.filter((loc) => {
+    if(inputStr && loc.name.includes(inputStr)){return loc}
+    })
+    .map(
+      (loc) => {
+        return <li key={loc.id} onClick={autoComplete} tabIndex="0">{loc.name}</li>
+      }
+  )
+
   const searchRef = useRef();
   // const focusRelateLoc = () => {
   //   let listCount = searchRef.current.childElementCount;
@@ -28,32 +37,15 @@ function Arrival({onSet}) {
   //   searchRef.current.focus();
   // }
 
-  // const [searchIndex, setSearchIndex] = useState(0);
-  // const onKeyPressHandler = (e) => {
-  //   if(e.code === 'ArrowDown'){
-  //     let listCount = searchRef.current.childElementCount;
-  //     if(searchIndex < listCount){
-  //       searchRef?.current?.childNodes[searchIndex]?.focus(); 
-  //       setSearchIndex(searchIndex+1);
-  //     }
-  //     else{
-  //       searchRef?.current?.childNodes[0]?.focus(); 
-  //       setSearchIndex(0)
-  //     }};
-  //     return;
-  // }
-    
-
-  let relateLoc = location.filter((loc) => {
-    if(inputStr && loc.name.includes(inputStr)){return loc}
-    })
-    .map(
-      (loc) => {
-        return <li key={loc.id} onClick={autoComplete}  tabIndex="0">{loc.name}</li>
-      }
-  )
-
-
+  const onKeyPressHandler = (e) => {
+    let searchIndex = 0;
+    if(e.code === 'ArrowDown'){
+      let listCount = searchRef.current.childElementCount;
+      console.log(listCount);
+      // let focusedIndex = searchIndex < listCount ? searchIndex++ : 0
+      // searchRef.current.childNodes[focusedIndex].focus();
+    }
+  }
 
 
   return (
@@ -65,7 +57,7 @@ function Arrival({onSet}) {
                 id='arrival'
                 name='arrival'
                 value = {inputStr}
-                // onKeyDown = {(e) => onKeyPressHandler(e)}
+                onKeyDown = {(e) => onKeyPressHandler(e)}
                 onChange = {(e) => setInputStr(e.target.value)}
             />
             <FaSearch className={styles.searchIcon}/>

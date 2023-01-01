@@ -21,28 +21,27 @@ function Arrival({onSet}) {
   }
 
   const searchRef = useRef();
-  
-  // const focusRelateLoc = () => {
-  //   let listCount = searchRef.current.childElementCount;
-  //   console.log(searchRef);
-  //   console.log(searchRef.current.childNodes[0].focus());
-  //   searchRef.current.focus();
-  // }
+  const focusRelateLoc = () => {
+    let listCount = searchRef.current.childElementCount;
+    console.log(searchRef);
+    console.log(searchRef.current.childNodes[0].focus());
+    searchRef.current.focus();
+  }
 
-  // const [searchIndex, setSearchIndex] = useState(0);
-  // const onKeyPressHandler = (e) => {
-  //   if(e.code === 'ArrowDown'){
-  //     let listCount = searchRef.current.childElementCount;
-  //     if(searchIndex < listCount){
-  //       searchRef?.current?.childNodes[searchIndex]?.focus(); 
-  //       setSearchIndex(searchIndex+1);
-  //     }
-  //     else{
-  //       searchRef?.current?.childNodes[0]?.focus(); 
-  //       setSearchIndex(0)
-  //     }};
-  //     return;
-  // }
+  const [searchIndex, setSearchIndex] = useState(0);
+  const onKeyPressHandler = (e) => {
+    if(e.code === 'ArrowDown'){
+      let listCount = searchRef.current.childElementCount;
+      if(searchIndex < listCount){
+        searchRef?.current?.childNodes[searchIndex]?.focus(); 
+        setSearchIndex(searchIndex+1);
+      }
+      else{
+        searchRef?.current?.childNodes[0]?.focus(); 
+        setSearchIndex(0)
+      }};
+      return;
+  }
     
 
   let relateLoc = location.filter((loc) => {

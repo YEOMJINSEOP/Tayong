@@ -72,7 +72,7 @@ function MeetDetail(props) {
             </div>
           </div>
         </div>
-        <div className={styles.title}>{title}</div>
+        <input className={styles.title} type="text" id='title' name='title' value={title} readOnly/>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>

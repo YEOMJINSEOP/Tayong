@@ -33,7 +33,7 @@ function LocationSearchBox({onSet, isMain}) {
 
   return (
     <div className={styles.container}>     
-    <div className={isMain ? styles.inputBox : styles.locInfoBox}>
+    <div className={isMain ? styles.inputBox : styles.infoBox}>
       <input
           className={styles.input}
           type="text"
@@ -41,7 +41,7 @@ function LocationSearchBox({onSet, isMain}) {
           // onKeyDown = {(e) => onKeyPressHandler(e)}
           onChange = {(e) => setInputStr(e.target.value)}
       />
-      <FaSearch className={isMain ? styles.inputSearchIcon: styles.infoSearchIcon}/>
+      <FaSearch className={isMain ? styles.searchIcon : styles.none}/>
     </div>
     <div className={styles.searchDropDown}>
         <ul ref={searchRef}>

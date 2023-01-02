@@ -8,7 +8,6 @@ import getData from '../../service/getData';
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
-
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [remainingTime, setRemainingTime] = useState("");
@@ -17,7 +16,8 @@ function MeetDetail(props) {
   const [hostId, setHostId] = useState("user");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [meetId, setMeetId] = useState("");
+  const [randomKey, setRandomKey] = useState("");
+  const[loginId, setLoginId] = useState("로그인");
    
   const selectImg = (transport) => {
     const imgTransport = 'https://img.freepik.com/free-photo/man-driving-car-from-rear-view_1359-494.jpg?w=1800&t=st=1667398765~exp=1667399365~hmac=8304fbbb3ab8792ecbc4535a7e8d5241ae499a2c44d4922f5de295d8b8df3d8f';
@@ -30,25 +30,29 @@ function MeetDetail(props) {
   }
 
   useEffect(() => {
-    const paramMeetId = params['*'];
-    console.log(paramMeetId);
-    const meetURL = '/data/meet.json';
-    getData(meetURL)
-    .then(res => {
-      const meetData = res['data'];
-      const meetSelected = meetData.filter(meet => {
-      if(meet['id'].toString() === paramMeetId){return meet}
-      })[0];
-      console.log(meetSelected);
-      setDeparture(meetSelected.departure);
-      setArrival(meetSelected.arrival);
-      setRemainingTime(meetSelected.remainingTime);
-      setRecruitment(meetSelected.recruitment);
-      setTransport(meetSelected.transport);
-      setTitle(meetSelected.title);
-      setContent(meetSelected.content);
-      setMeetId(meetSelected.id); 
-    })
+    meetUrl = '/data/meet.json';
+    getData()
+    fetch(fetchURL)
+    .then(res => res.json())
+    .then(data => {
+      let meetSelected;
+      const meetRandomKey = params['*'].split('/')[1];
+      for (let i = 0; i < data.length; i++) {
+        if(data[i].randomKey== meetRandomKey){     
+            meetSelected = i;
+        }
+      }
+      const infoMeetSelected = data[meetSelected];
+      setDeparture(infoMeetSelected.departure);
+      setArrival(infoMeetSelected.arrival);
+      setRemainingTime(infoMeetSelected.remainingTime);
+      setRecruitment(infoMeetSelected.recruitment);
+      setTransport(infoMeetSelected.transport);
+      setTitle(infoMeetSelected.title);
+      setContent(infoMeetSelected.content);
+      setHostId(infoMeetSelected.id == 0? "user" : infoMeetSelected.id );
+      setRandomKey(infoMeetSelected.randomKey); 
+    });
   }, [])
 
   return (
@@ -58,11 +62,11 @@ function MeetDetail(props) {
           <div className={styles.location}>
             <div className={styles.departure}>
               <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
-              {departure}
+              <input type="text" id='departure' name='departure' value={departure} readOnly/>
             </div>
             <div className={styles.arrival}>
               <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
-              {arrival}
+              <input type="text" id='arrival' name='arrival' value={arrival} readOnly/>
             </div>
           </div>
           <div className={styles.user}>
@@ -72,26 +76,26 @@ function MeetDetail(props) {
             </div>
           </div>
         </div>
-        <div className={styles.title}>{title}</div>
+        <input className={styles.title} type="text" id='title' name='title' value={title} readOnly/>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
-            {recruitment}
+            <input type="text" id='recruitment' name='recruitment' value={recruitment} readOnly/>
             <p>명</p>
           </div>
           <div className={styles.remainingTime}>
             <label className={styles.meetDetailLable} htmlFor='remainingTime'>출발일</label>
-            {remainingTime}
+            <input  type="text" id='remainingTime' name='remainingTime' value={remainingTime} readOnly/>
           </div>
         </div>
 
         <div className={styles.content}>
-            {content}
+            <textarea cols="88" rows="6" maxLength="300" name='content' value={content} readOnly></textarea>
         </div>
 
         <div className={styles.btns}>
           <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-          <button className={styles.btn_join}>참여하기</button>
+          <button className={styles.btn_join} onClick={onJoinHandler}>참여하기</button>
         </div>
     </div>
   );

@@ -4,7 +4,7 @@ import getData from '../../service/getData';
 import { FaSearch } from 'react-icons/fa';
 
 
-function LocationSearchBox({onSet, isMain}) {
+function LocationSearchBox({onSet}) {
 
   const [location, setLocation] = useState([]);
   useEffect(() => {
@@ -33,7 +33,7 @@ function LocationSearchBox({onSet, isMain}) {
 
   return (
     <div className={styles.container}>     
-    <div className={isMain ? styles.inputBox : styles.locInfoBox}>
+    <div className={main ? styles.inputBox : styles.sideBox}>
       <input
           className={styles.input}
           type="text"
@@ -41,7 +41,7 @@ function LocationSearchBox({onSet, isMain}) {
           // onKeyDown = {(e) => onKeyPressHandler(e)}
           onChange = {(e) => setInputStr(e.target.value)}
       />
-      <FaSearch className={isMain ? styles.inputSearchIcon: styles.infoSearchIcon}/>
+      <FaSearch className={styles.searchIcon}/>
     </div>
     <div className={styles.searchDropDown}>
         <ul ref={searchRef}>

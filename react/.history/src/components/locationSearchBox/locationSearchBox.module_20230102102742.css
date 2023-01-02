@@ -35,10 +35,6 @@
   color: var(--color-orange);
 }
 
-.infoSearchIcon{
-  display:none;
-}
-
 .ocos{
   font-family: var(--font-family-leferibase-bold);
 }

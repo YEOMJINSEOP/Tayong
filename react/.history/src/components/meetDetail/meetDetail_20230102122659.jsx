@@ -38,8 +38,10 @@ function MeetDetail(props) {
       const meetData = res['data'];
       const meetSelected = meetData.filter(meet => {
       if(meet['id'].toString() === paramMeetId){return meet}
-      })[0];
-      console.log(meetSelected);
+    })
+    return meetSelected;
+  })
+    .then(meetSelected => {
       setDeparture(meetSelected.departure);
       setArrival(meetSelected.arrival);
       setRemainingTime(meetSelected.remainingTime);
@@ -48,7 +50,7 @@ function MeetDetail(props) {
       setTitle(meetSelected.title);
       setContent(meetSelected.content);
       setMeetId(meetSelected.id); 
-    })
+    });
   }, [])
 
   return (
@@ -58,11 +60,11 @@ function MeetDetail(props) {
           <div className={styles.location}>
             <div className={styles.departure}>
               <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
-              {departure}
+              <input type="text" id='departure' name='departure' value={departure} readOnly/>
             </div>
             <div className={styles.arrival}>
               <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
-              {arrival}
+              <input type="text" id='arrival' name='arrival' value={arrival} readOnly/>
             </div>
           </div>
           <div className={styles.user}>
@@ -72,21 +74,21 @@ function MeetDetail(props) {
             </div>
           </div>
         </div>
-        <div className={styles.title}>{title}</div>
+        <input className={styles.title} type="text" id='title' name='title' value={title} readOnly/>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
-            {recruitment}
+            <input type="text" id='recruitment' name='recruitment' value={recruitment} readOnly/>
             <p>명</p>
           </div>
           <div className={styles.remainingTime}>
             <label className={styles.meetDetailLable} htmlFor='remainingTime'>출발일</label>
-            {remainingTime}
+            <input  type="text" id='remainingTime' name='remainingTime' value={remainingTime} readOnly/>
           </div>
         </div>
 
         <div className={styles.content}>
-            {content}
+            <textarea cols="88" rows="6" maxLength="300" name='content' value={content} readOnly></textarea>
         </div>
 
         <div className={styles.btns}>

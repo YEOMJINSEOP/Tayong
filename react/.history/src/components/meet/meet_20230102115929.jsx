@@ -20,7 +20,7 @@ function Meet({id, title, departure, arrival, recruitment, remainingTime, transp
 
   const onClickHandler = (e) => {
     console.log('Meet Click 🥕');
-    navigate(`/detail/${id}`);
+    navigate(`/detail/${key}`);
   }
 
   return (

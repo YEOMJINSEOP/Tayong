@@ -33,7 +33,7 @@ function LocationSearchBox({onSet, isMain}) {
 
   return (
     <div className={styles.container}>     
-    <div className={isMain ? styles.inputBox : styles.locInfoBox}>
+    <div className={isMain ? styles.inputBox : styles.infoBox}>
       <input
           className={styles.input}
           type="text"

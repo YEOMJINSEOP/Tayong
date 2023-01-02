@@ -22,7 +22,7 @@ function MeetList(props) {
   useEffect(() => {
       getData(meetUrl)
       .then(data => {
-      setMeetList(data['data']);
+        setMeetList(data['data']);
   })
   }, []);
 
@@ -49,8 +49,9 @@ function MeetList(props) {
           if(item.departure === depLoc && item.arrival === arrLoc){
             
             return (
-              <Meet            
-                key={item.id}
+              <Meet
+                // randomKey = {item.randomKey} // key 값을 randomKey로 설정
+                key={item.randomKey}
                 id={item.id}
                 title={item.title}
                 departure={item.departure}

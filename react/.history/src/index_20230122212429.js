@@ -6,9 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import List from './pages/List';
-import Create from './pages/Create';
-import Detail from './pages/Detail';
+import List from '../src/pages/List';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -18,9 +16,7 @@ const router = createBrowserRouter([
         errorElement: <NotFound />,
         children: [
             {index: true, element: <Home/> },
-            {path: 'list/:departure/:arrival', element: <List/>},
-            {path: 'create/*', element: <Create/>},
-            {path: 'detail/*', element: <Detail/>}
+            {path: 'list', element: <List/>}
         ]
     }
 ])

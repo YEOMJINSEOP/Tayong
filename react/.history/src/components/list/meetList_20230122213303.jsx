@@ -16,7 +16,7 @@ function MeetList(props) {
   const [meetList, setMeetList] = useState([]);
   let params = useParams();
   const depLoc = params.departure;
-  const arrLoc = params.arrival;
+  const arrLoc = param.arrival;
 
   const meetUrl = 'https://yw1nspc2nl.execute-api.ap-northeast-2.amazonaws.com/dev/getmeeting'
   useEffect(() => {

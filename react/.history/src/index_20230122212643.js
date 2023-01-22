@@ -18,9 +18,9 @@ const router = createBrowserRouter([
         errorElement: <NotFound />,
         children: [
             {index: true, element: <Home/> },
-            {path: 'list/:departure/:arrival', element: <List/>},
-            {path: 'create/*', element: <Create/>},
-            {path: 'detail/*', element: <Detail/>}
+            {path: 'list', element: <List/>},
+            {path: 'create', element: <Create/>},
+            {path: 'detail', element: <Detail/>}
         ]
     }
 ])

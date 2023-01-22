@@ -60,7 +60,7 @@
   border: 1px solid lightgrey;
   text-align: center;
 
-  z-index: auto;
+  z-index: 99;
 }
 
 .searchDropDown li:hover{

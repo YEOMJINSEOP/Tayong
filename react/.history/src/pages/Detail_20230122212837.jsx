@@ -5,7 +5,10 @@ import MeetDetail from '../components/meetDetail/meetDetail'
 
 function Detail(props) {
   return (
+    <>
+      <Header/>
       <MeetDetail/>
+    </>
   );
 }
 

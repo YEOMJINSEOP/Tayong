@@ -1,12 +1,15 @@
 import React from 'react';
 import Footer from '../components/footer/footer';
+import Form from '../components/form/form';
 import Header from '../components/header/header';
-import MeetDetail from '../components/meetDetail/meetDetail'
 
-function Detail(props) {
+function Create(props) {
   return (
-      <MeetDetail/>
+    <>
+      <Header/>
+      <Form/>
+    </>
   );
 }
 
-export default Detail;
+export default Create;

@@ -15,6 +15,7 @@ function MeetList(props) {
 
   const [meetList, setMeetList] = useState([]);
   let params = useParams();
+
   const depLoc = params.departure;
   const arrLoc = params.arrival;
 

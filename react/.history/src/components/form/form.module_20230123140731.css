@@ -32,7 +32,8 @@
   color: var(--color-orange);
 
   width: 100%;
-  padding-left: 2px;
+  margin-left: 15px;
+
   text-align: left;
 }
 
@@ -124,7 +125,8 @@ p{
 
 .recruitment input{
   width: 100%;
-  text-align: center;
+  background-color: yellow;
+  margin-left: 0px;
   padding-left: 0;
   padding-right: 0;
   margin-right: 0;

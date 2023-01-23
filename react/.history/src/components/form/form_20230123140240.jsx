@@ -11,7 +11,7 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({departure, arrival, remainingTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({departure, arrival, remainingTime: '', recruitment: '', transport: '', title: '', content: ''})
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ function Form(props) {
           
           <div className={styles.recruitment}>
             <label className={styles.formLabelRC} htmlFor='recruitment'>모집인원</label>
-            <input type="number" id='recruitment' name='recruitment' maxLength='1' onChange={handleChange}/>
+            <input type="text" id='recruitment' name='recruitment' maxLength='1' onChange={handleChange}/>
             <p>명</p>
           </div>
 
@@ -69,12 +69,12 @@ function Form(props) {
 
         <div className={styles.title}>
           <label className={styles.formLabel} htmlFor='title'>제목</label>
-          <input type="text" id='title' name='title' onBlur={handleChange}/>
+          <input type="text" id='title' name='title' onChange={handleChange}/>
         </div>
         
         <div className={styles.content}>
           <label className={styles.formLabel} htmlFor='content'>내용</label>
-          <textarea cols="88" rows="6" maxLength="300" name='content' onBlur={handleChange}></textarea>
+          <textarea cols="88" rows="6" maxLength="300" name='content' onChange={handleChange}></textarea>
         </div>
       </form>
 

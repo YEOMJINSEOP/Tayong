@@ -10,6 +10,7 @@ import LocationSearchBox from '../locationSearchBox/locationSearchBox';
 
 function MeetList(props) {
 
+
   const navigate = useNavigate();
 
   const [meetList, setMeetList] = useState([]);
@@ -41,7 +42,7 @@ function MeetList(props) {
       </div>
 
       <button className={styles.btn_create} onClick={(e) => {
-        navigate(`/create/${depLoc}/${arrLoc}`);
+        navigate(`/create`);
       }}>모집하기</button>
       <ul className={styles.meetUl}>
         {meetList.map((item) => {

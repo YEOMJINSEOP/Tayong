@@ -27,7 +27,7 @@
 .formLabelRC{
   font-family: var(--font-family-pretendard-regular);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 17px;
   color: var(--color-orange);
 
@@ -123,9 +123,7 @@ p{
 }
 
 .recruitment input{
-  width: 100%;
-  text-align: center;
-  padding-left: 0;
+  width: 12px;
   padding-right: 0;
   margin-right: 0;
 }

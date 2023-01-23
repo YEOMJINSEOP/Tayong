@@ -38,7 +38,7 @@ function LocationSearchBox({onSet, isMain, locParam}) {
       <input
           className={styles.input}
           type="text"
-          value = {locParam ? locParam : inputStr}
+          value = {location ? location : inputStr}
           // onKeyDown = {(e) => onKeyPressHandler(e)}
           onChange = {(e) => setInputStr(e.target.value)}
       />

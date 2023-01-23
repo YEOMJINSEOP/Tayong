@@ -4,7 +4,7 @@ import getData from '../../service/getData';
 import { FaSearch } from 'react-icons/fa';
 
 
-function LocationSearchBox({onSet, isMain, locParam}) {
+function LocationSearchBox({onSet, isMain, getParams}) {
 
   const [location, setLocation] = useState([]);
 
@@ -38,7 +38,7 @@ function LocationSearchBox({onSet, isMain, locParam}) {
       <input
           className={styles.input}
           type="text"
-          value = {locParam ? locParam : inputStr}
+          value = {inputStr}
           // onKeyDown = {(e) => onKeyPressHandler(e)}
           onChange = {(e) => setInputStr(e.target.value)}
       />

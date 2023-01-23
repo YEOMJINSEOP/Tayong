@@ -42,7 +42,14 @@
   color: var(--color-orange);
 }
 
-.image{
+.imgTransport{
+  width: 596px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.imgTaxi{
   width: 596px;
   height: 100px;
   border-radius: 10px;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import postData from '../../service/postData';
 import getData from '../../service/getData';
 
 function MeetDetail(props) {
@@ -10,8 +11,9 @@ function MeetDetail(props) {
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', remainingTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
   const selectImg = (transport) => {
+    console.log('transport: ', transport);
     const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpeg'; 
+    const imgTaxi = 'image/taxi.jepg'; 
     if(transport == '자가용'){
       return imgSelfDriving;
     } else{
@@ -34,7 +36,7 @@ function MeetDetail(props) {
 
   return (
     <div className={styles.container}>
-        <img className={styles.image} src= {selectImg(meet.transport)} alt="transport image" />
+        <img className={styles.imgSelfDriving} src= {selectImg(meet.transport)} alt="transport image" />
         <div className={styles.locAndUserContainer}>
           <div className={styles.location}>
             <div className={styles.departure}>

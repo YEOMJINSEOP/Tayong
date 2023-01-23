@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import postData from '../../service/postData';
 import getData from '../../service/getData';
 
 function MeetDetail(props) {
@@ -11,7 +12,7 @@ function MeetDetail(props) {
 
   const selectImg = (transport) => {
     const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpeg'; 
+    const imgTaxi = 'image/taxi.jepg'; 
     if(transport == '자가용'){
       return imgSelfDriving;
     } else{
@@ -21,20 +22,22 @@ function MeetDetail(props) {
 
   useEffect(() => {
     const meetId = params.meetId;
+    console.log(meetId);
     const meetURL = '/data/meet.json';
     getData(meetURL)
     .then(res => {
-      const meetData = res.data;
-      const meetSelected = meetData.filter(meet => 
-        meet.meetId.toString() === meetId
-      );
-      setMeet(meetSelected[0]);
+      console.log(res);
+      // const meetData = res['data'];
+      // const meetSelected = meetData.filter(meet => {
+      // if(meet['id'].toString() === paramMeetId){return meet}
+      // })[0];
+        
     })
   }, [])
 
   return (
     <div className={styles.container}>
-        <img className={styles.image} src= {selectImg(meet.transport)} alt="transport image" />
+        <img className={styles.imgSelfDriving} src= {selectImg(meet.transport)} alt="transport image" />
         <div className={styles.locAndUserContainer}>
           <div className={styles.location}>
             <div className={styles.departure}>
@@ -53,7 +56,7 @@ function MeetDetail(props) {
             </div>
           </div>
         </div>
-        <div className={styles.title}>{meet.title}</div>
+        <div className={styles.title}>{title}</div>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>

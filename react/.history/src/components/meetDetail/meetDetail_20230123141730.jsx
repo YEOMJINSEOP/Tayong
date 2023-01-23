@@ -2,72 +2,91 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import postData from '../../service/postData';
 import getData from '../../service/getData';
 
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', remainingTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
+  const [departure, setDeparture] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [remainingTime, setRemainingTime] = useState("");
+  const [recruitment, setRecruitment] = useState("");
+  const [transport, setTransport] = useState("");
+  const [hostId, setHostId] = useState("user");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [meetId, setMeetId] = useState("");
+   
   const selectImg = (transport) => {
-    const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpeg'; 
+    const imgTransport = 'image/self-driving.jpeg';
+    const imgTaxi = 'https://img.freepik.com/free-photo/taxi-sign-roof-top-car_74190-1728.jpg?w=1800&t=st=1667398413~exp=1667399013~hmac=efcccc4afa78711c2ff1407418bf496be6c0ddf73fe37c1c3ecf06f936d5bc24'; 
     if(transport == '자가용'){
-      return imgSelfDriving;
+      return imgTransport;
     } else{
       return imgTaxi;
     }
   }
 
   useEffect(() => {
-    const meetId = params.meetId;
+    const paramMeetId = params['*'];
+    console.log(paramMeetId);
     const meetURL = '/data/meet.json';
     getData(meetURL)
     .then(res => {
-      const meetData = res.data;
-      const meetSelected = meetData.filter(meet => 
-        meet.meetId.toString() === meetId
-      );
-      setMeet(meetSelected[0]);
+      const meetData = res['data'];
+      const meetSelected = meetData.filter(meet => {
+      if(meet['id'].toString() === paramMeetId){return meet}
+      })[0];
+      console.log(meetSelected);
+      setDeparture(meetSelected.departure);
+      setArrival(meetSelected.arrival);
+      setRemainingTime(meetSelected.remainingTime);
+      setRecruitment(meetSelected.recruitment);
+      setTransport(meetSelected.transport);
+      setTitle(meetSelected.title);
+      setContent(meetSelected.content);
+      setMeetId(meetSelected.id); 
     })
   }, [])
 
   return (
     <div className={styles.container}>
-        <img className={styles.image} src= {selectImg(meet.transport)} alt="transport image" />
+        <img className={styles.imgTransport} src= {selectImg(`${transport}`)} alt="transport image" />
         <div className={styles.locAndUserContainer}>
           <div className={styles.location}>
             <div className={styles.departure}>
               <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
-              {meet.departure}
+              {departure}
             </div>
             <div className={styles.arrival}>
               <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
-              {meet.arrival}
+              {arrival}
             </div>
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
               <div className={styles.userInfoInfo}>모집자</div>
-              <p>{meet.hostId}</p>
+              <p>{hostId}</p>
             </div>
           </div>
         </div>
-        <div className={styles.title}>{meet.title}</div>
+        <div className={styles.title}>{title}</div>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
-            {meet.recruitment}
+            {recruitment}
             <p>명</p>
           </div>
           <div className={styles.remainingTime}>
             <label className={styles.meetDetailLable} htmlFor='remainingTime'>출발일</label>
-            {meet.remainingTime}
+            {remainingTime}
           </div>
         </div>
 
         <div className={styles.content}>
-            {meet.content}
+            {content}
         </div>
 
         <div className={styles.btns}>

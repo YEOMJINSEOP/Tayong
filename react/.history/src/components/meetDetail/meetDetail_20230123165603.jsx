@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import postData from '../../service/postData';
 import getData from '../../service/getData';
 
 function MeetDetail(props) {
@@ -34,7 +35,7 @@ function MeetDetail(props) {
 
   return (
     <div className={styles.container}>
-        <img className={styles.image} src= {selectImg(meet.transport)} alt="transport image" />
+        <img className={styles.imgSelfDriving} src= {selectImg(meet.transport)} alt="transport image" />
         <div className={styles.locAndUserContainer}>
           <div className={styles.location}>
             <div className={styles.departure}>

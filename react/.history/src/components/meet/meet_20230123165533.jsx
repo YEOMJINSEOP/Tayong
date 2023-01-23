@@ -9,7 +9,7 @@ function Meet({meetId, hostId, title, departure, arrival, recruitment, remaining
 
   const selectImg = () => {
     const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpeg'; 
+    const imgTaxi = 'image/taxi.jepg'; 
     if(transport == '자가용'){
       return imgSelfDriving;
     } else{

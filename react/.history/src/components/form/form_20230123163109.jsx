@@ -11,11 +11,10 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: '', host: '', departure, arrival, remainingTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: '', departure, arrival, remainingTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setMeet({...meet, meetId: uuidv4()})
     console.log(meet);
   }
 

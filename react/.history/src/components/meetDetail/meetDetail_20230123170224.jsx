@@ -53,7 +53,7 @@ function MeetDetail(props) {
             </div>
           </div>
         </div>
-        <div className={styles.title}>{meet.title}</div>
+        <div className={styles.title}>제목 {meet.title}</div>
         <div className={styles.info}>
           <div className={styles.recruitment}>
             <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>

@@ -32,10 +32,10 @@
 
 .location{
   position: absolute;
-  top: 12%;
+  top: 10%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
 }
@@ -47,6 +47,7 @@
   font-size: var(--font-semi-small);
   color: var(--color-orange);
   font-weight: var(--weight-bold);
+  margin: 1rem;
   border: none;
 
 }
@@ -74,21 +75,25 @@
 }
 
 .locationArrow{
+  /* position: absolute; */
   font-size: var(--font-semi-small);
   color: var(--color-orange);
+  /* top: 55px; */
 }
 
 .btn_create{
+  /* position: absolute; */
 
   width: 134px;
   height: 40px;
   border-radius: 8px;
   background-color: var(--color-orange);
+
   font-family: var(--font-family-pretendard-regular);
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  margin-top: 10px;
+  
   color: var(--color-white);
 }
 
@@ -118,10 +123,6 @@
 
 
 @media screen and (max-width: 1860px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
 
   .meetUl{
     display: grid;
@@ -130,11 +131,6 @@
     column-gap: 20px;
     row-gap:  20px;
     padding-bottom: 10px;
-  }
-
-  .location {
-    display: flex;
-    flex-direction: column;
   }
 /* 
   .meet{
@@ -146,10 +142,7 @@
 
 
 @media screen and (max-width: 1520px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
+  
   .meetUl{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -170,22 +163,10 @@
 
 @media screen and (max-width: 1024px){
 
-  .meetList{
-    display: flex;
-    flex-direction: column;
+  .location{
+    position: fixed;
+    top: 100px;
   }
-
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .locationDeparture .locationArrival .locationArro .locInfoBox {
-    display: none;
-  }
-
-
-
   
   .meetUl{
     display: grid;
@@ -195,26 +176,30 @@
     padding: 0;
   }
 
+  .btn_create{
+    position: fixed;
+    top: 200px;
+    right: 41.9%;
+  }
 
 }
 
 @media screen and (max-width: 768px){
 
-  .meetList{
-    display: flex;
-    flex-direction: column;
+  .location{
+    position: fixed;
+    top: 100px;
   }
-
-  .location .locationDeparture, .locationArrow, .locationArrival {
-    display: none;
-
-  }
-
 
   .meetListLabel{
     padding: 0;
   }
 
+  .btn_create{
+    position: fixed;
+    top: 200px;
+    right: 35%;
+  }
 
   
   .meetUl{

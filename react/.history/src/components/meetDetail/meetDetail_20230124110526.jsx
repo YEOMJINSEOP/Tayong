@@ -12,7 +12,7 @@ function MeetDetail(props) {
   const selectImg = (transport) => {
     const imgSelfDriving = 'image/self-driving.jpeg';
     const imgTaxi = 'image/taxi.jpeg'; 
-    if(transport === '자가용'){
+    if(transport == '자가용'){
       return imgSelfDriving;
     } else{
       return imgTaxi;

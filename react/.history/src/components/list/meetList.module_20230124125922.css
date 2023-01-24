@@ -205,11 +205,15 @@
     flex-direction: column;
   }
 
-  .location .locationDeparture, .locationArrow, .locationArrival {
+  .location {
     display: none;
-
   }
 
+  .btn_create {
+    display: block;
+    position: fixed;
+    top: 1px;
+  }
 
   .meetListLabel{
     padding: 0;

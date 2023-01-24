@@ -207,7 +207,7 @@
 
   .location .locationDeparture, .locationArrow, .locationArrival {
     display: none;
-
+    margin: 0;
   }
 
 

@@ -118,10 +118,6 @@
 
 
 @media screen and (max-width: 1860px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
 
   .meetUl{
     display: grid;
@@ -146,10 +142,7 @@
 
 
 @media screen and (max-width: 1520px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
+  
   .meetUl{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -175,17 +168,6 @@
     flex-direction: column;
   }
 
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .locationDeparture .locationArrival .locationArro .locInfoBox {
-    display: none;
-  }
-
-
-
   
   .meetUl{
     display: grid;
@@ -204,13 +186,7 @@
     display: flex;
     flex-direction: column;
   }
-
-  .location .locationDeparture, .locationArrow, .locationArrival {
-    display: none;
-
-  }
-
-
+  
   .meetListLabel{
     padding: 0;
   }

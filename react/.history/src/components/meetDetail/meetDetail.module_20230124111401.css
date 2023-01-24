@@ -158,7 +158,6 @@ button {
   border-radius: 10px;
 }
 
-
 .btn_join, .btn_chat{
   background-color: var(--color-orange);
   color: var(--color-white);

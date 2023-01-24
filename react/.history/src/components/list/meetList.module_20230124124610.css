@@ -118,10 +118,6 @@
 
 
 @media screen and (max-width: 1860px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
 
   .meetUl{
     display: grid;
@@ -146,10 +142,7 @@
 
 
 @media screen and (max-width: 1520px){
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
+  
   .meetUl{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -175,17 +168,10 @@
     flex-direction: column;
   }
 
-  .location {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .locationDeparture .locationArrival .locationArro .locInfoBox {
-    display: none;
-  }
-
-
-
+  /* .location{
+    position: fixed;
+    top: 100px;
+  } */
   
   .meetUl{
     display: grid;
@@ -195,6 +181,11 @@
     padding: 0;
   }
 
+  /* .btn_create{
+    position: fixed;
+    top: 200px;
+    right: 41.9%;
+  } */
 
 }
 
@@ -205,16 +196,16 @@
     flex-direction: column;
   }
 
-  .location .locationDeparture, .locationArrow, .locationArrival {
-    display: none;
-
-  }
-
 
   .meetListLabel{
     padding: 0;
   }
 
+  /* .btn_create{
+    position: fixed;
+    top: 200px;
+    right: 35%;
+  } */
 
   
   .meetUl{

@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
 
+  /* background-color: lightblue; */
 }
 
 .departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content, .user{
@@ -35,7 +36,7 @@
 
   font-family: var(--font-family-pretendard-regular);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 17px;
 
   color: var(--color-orange);
@@ -80,10 +81,6 @@
   height: 126px;
 }
 
-.hostId{
-  font-size: 15px;
-}
-
 .title{
   width: 596px;
   height: 49px;
@@ -118,7 +115,7 @@
 
 .recruitment p {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .remainingTime {
@@ -131,9 +128,15 @@
 }
 
 
-.userInfoInfo{
+.userInfo{
   margin-left: 20px;
-  font-size: 15px;
+}
+.userAvatar{
+  background-color: lightblue;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  font-size: 40px;
 }
 
 .content{
@@ -157,7 +160,6 @@ button {
   height: 34px;
   border-radius: 10px;
 }
-
 
 .btn_join, .btn_chat{
   background-color: var(--color-orange);
@@ -183,15 +185,15 @@ button {
 
 .userInfoInfo {
   width: 50px;
-  font-size: 15px;
+  font-size: 12px;
   color: var(--color-orange);
   text-align: center;
-  /* padding-top: 15px; */
-  /* margin-right: 10px; */
+  padding-top: 15px;
+  margin-right: 10px;
 }
 
-.hostId{
-  padding-left: 10px;
+.userInfo p {
+  padding-top: 13px;
 }
 
 

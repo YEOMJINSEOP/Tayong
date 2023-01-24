@@ -158,7 +158,6 @@ button {
   border-radius: 10px;
 }
 
-
 .btn_join, .btn_chat{
   background-color: var(--color-orange);
   color: var(--color-white);
@@ -187,12 +186,9 @@ button {
   color: var(--color-orange);
   text-align: center;
   /* padding-top: 15px; */
-  /* margin-right: 10px; */
+  margin-right: 10px;
 }
 
-.hostId{
-  padding-left: 10px;
-}
 
 
 @media screen and (max-width: 768px){

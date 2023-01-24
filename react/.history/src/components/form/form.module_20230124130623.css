@@ -250,6 +250,10 @@ textarea{
     width: 80%;
   }
 
+  .formLabel{
+
+  }
+
   .locationContainer, .infoContainer{
     display: flex;
     flex-direction: column;
@@ -264,7 +268,6 @@ textarea{
 
   .content{
     height: 100px;
-    overflow: auto;
   }
 
   .btns{

@@ -48,7 +48,8 @@ function MeetDetail(props) {
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
-              <div className={styles.userInfoInfo}>모집자</div>              
+              <div className={styles.userInfoInfo}>모집자</div>
+              
             </div>
           </div>
         </div>
@@ -59,9 +60,8 @@ function MeetDetail(props) {
             <span>{meet.recruitment} 명</span>
           </div>
           <div className={styles.meetTime}>
-            <label className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</label>
-            <span className={styles.time}>{meet.meetTime[1]}</span>
-            <span className={styles.date}>{meet.meetTime[0]}</span>
+            <label className={styles.meetDetailLable} htmlFor='meetTime'>출발일</label>
+            {meet.meetTime}
           </div>
         </div>
 

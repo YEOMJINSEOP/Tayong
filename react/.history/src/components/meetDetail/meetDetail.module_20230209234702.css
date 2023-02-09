@@ -70,7 +70,7 @@
   margin-top: 20px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -125,18 +125,8 @@
   height: 53px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-}
-
-.time {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 400;
 }
 
 

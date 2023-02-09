@@ -28,6 +28,7 @@ function Form(props) {
   }
 
   const handleMeetTime = (e) => {
+    console.log(e.target.id);
     if(e.target.id === 'time'){
       setMeetTime((prev) => ({...prev, time: e.target.value}))
     }

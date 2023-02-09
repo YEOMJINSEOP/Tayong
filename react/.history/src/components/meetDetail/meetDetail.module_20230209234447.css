@@ -13,7 +13,7 @@
 
 }
 
-.departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .user{
+.departure, .arrival, .remainingTime, .recruitment, .transport, .title, .content, .user{
   border: none;
   outline: none;
   background: var(--color-white);
@@ -59,8 +59,9 @@
   width: 288px;
   height: 53px;
 
+
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -70,7 +71,7 @@
   margin-top: 20px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -104,7 +105,7 @@
   height: 53px;
   margin-left: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -125,18 +126,8 @@
   height: 53px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-}
-
-.time {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 400;
 }
 
 
@@ -235,7 +226,7 @@ button {
   }
 
 
-  .meetTime{
+  .remainingTime{
     width: 300px;
   }
 

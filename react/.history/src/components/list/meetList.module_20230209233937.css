@@ -94,8 +94,10 @@
 
 
 .meetUl{
-  /* background-color: green; */
+  background-color: green;
   position :absolute;
+  display: flex;
+  align-items: flex-start;
   width: 80vw;
   top: 180px;
   height: 70%;

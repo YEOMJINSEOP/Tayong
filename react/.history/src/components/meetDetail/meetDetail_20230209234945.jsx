@@ -60,8 +60,8 @@ function MeetDetail(props) {
           </div>
           <div className={styles.meetTime}>
             <label className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</label>
-            <span className={styles.time}>{meet.meetTime[1]}</span>
-            <span className={styles.date}>{meet.meetTime[0]}</span>
+            <span>{meet.meetTime[1]}</span>
+            <span>{meet.meetTime[0]}</span>
           </div>
         </div>
 

@@ -45,12 +45,11 @@ function Meet({meetId, hostId, title, departure, arrival, recruitment, meetTime,
     <div className={styles.infoSet}>
       <div className={styles.infoRecruitment}>
         <p>모집인원</p>
-        <span className={styles.recruitment}>{recruitment}</span>
+      {recruitment}
       </div>
       <div className={styles.infoTime}>
         <p>출발시간</p>
-        <span className={styles.time}>{meetTime[1]}</span>
-        <span className={styles.date}>{meetTime[0]} </span>
+        {meetTime[0]}
       </div>
     </div>
   </li>

@@ -129,6 +129,7 @@
 .recruitment{
   font-size: 13px;
   font-weight: bold;
+  color: var(--color-orange);
 }
 
 .infoTime{
@@ -141,15 +142,12 @@
 
 .time{
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
   padding-right: 4px;
 }
 
 .date {
   padding-left: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-orange);
 }
 
 

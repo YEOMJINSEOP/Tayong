@@ -127,7 +127,7 @@
 }
 
 .recruitment{
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -141,15 +141,12 @@
 
 .time{
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
   padding-right: 4px;
 }
 
 .date {
   padding-left: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-orange);
 }
 
 

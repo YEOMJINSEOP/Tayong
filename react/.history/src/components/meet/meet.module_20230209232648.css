@@ -126,11 +126,6 @@
   font-family: var(--font-famiy-pretendard-regular);
 }
 
-.recruitment{
-  font-size: 13px;
-  font-weight: bold;
-}
-
 .infoTime{
   display: flex;
   justify-content: space-around;
@@ -141,15 +136,8 @@
 
 .time{
   font-weight: bold;
-  font-size: 13px;
+  font-size: 20px;
   padding-right: 4px;
-}
-
-.date {
-  padding-left: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-orange);
 }
 
 

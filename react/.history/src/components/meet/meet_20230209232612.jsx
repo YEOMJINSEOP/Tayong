@@ -45,7 +45,7 @@ function Meet({meetId, hostId, title, departure, arrival, recruitment, meetTime,
     <div className={styles.infoSet}>
       <div className={styles.infoRecruitment}>
         <p>모집인원</p>
-        <span className={styles.recruitment}>{recruitment}</span>
+      {recruitment}
       </div>
       <div className={styles.infoTime}>
         <p>출발시간</p>

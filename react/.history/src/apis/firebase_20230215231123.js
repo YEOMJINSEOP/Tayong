@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -87,6 +87,8 @@ export async function getUserImageUrl(userId){
 
 export function createMeetData(meet){
   const {meetId, host, departure, arrival, meetTime, recruitment, transport, title, content } = meet;
+  console.log('🐥', meet);
+  console.log('✅', meetId);
   set(ref(db, 'meets/' + meetId), {
     meetId,
     host,
@@ -103,15 +105,8 @@ export function createMeetData(meet){
 
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
-  return get(meetRef)
-    .then((snapshot) => {
-    if(snapshot.exists()){
-      const result = Object.values(snapshot.val());
-      console.log(result);
-      return Promise.resolve(result);
-    } else{
-      console.log('no data available');
-    }
+  onValue(meetRef, (snapshot) => {
+    console.log('🔥',snapshot.val());
+    return snapshot.val()
   })
-    .catch(console.error)
 }

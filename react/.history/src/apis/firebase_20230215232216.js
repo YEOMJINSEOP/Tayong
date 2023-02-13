@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -101,17 +101,11 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
-export async function getAllMeetData(){
+export function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
-  return get(meetRef)
-    .then((snapshot) => {
-    if(snapshot.exists()){
-      const result = Object.values(snapshot.val());
-      console.log(result);
-      return Promise.resolve(result);
-    } else{
-      console.log('no data available');
-    }
+  onValue(meetRef, async (snapshot) => {
+    console.log('🔥',snapshot.val());
+    const meets = await snapshot.val();
+    return meets
   })
-    .catch(console.error)
 }

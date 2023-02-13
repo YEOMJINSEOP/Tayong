@@ -68,8 +68,7 @@ function MeetList(props) {
                 departure={departure}
                 arrival={arrival}
                 recruitment={recruitment}
-                meetDate={meetTime.date}
-                meetTime={meetTime.time}
+                meetTime={meetTime.date}
                 transport={transport}
                />
             ) 

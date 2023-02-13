@@ -101,17 +101,23 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
-export async function getAllMeetData(){
+export function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
-  return get(meetRef)
-    .then((snapshot) => {
-    if(snapshot.exists()){
-      const result = Object.values(snapshot.val());
-      console.log(result);
-      return Promise.resolve(result);
-    } else{
-      console.log('no data available');
-    }
-  })
-    .catch(console.error)
+  let result;
+  onValue(meetRef,  (snapshot) => {
+    result = snapshot.val();
+    return Promise.resolve(result);
+  });
+}
+
+export function test(){
+    const meetRef = ref(db, 'meets/');
+    get(meetRef).then((snapshot) => {
+      if(snapshot.exists()){
+       return Promise.resolve(snapshot.val()); 
+      } else{
+        console.log('no data available');
+      }
+    }).catch(console.error)
+
 }

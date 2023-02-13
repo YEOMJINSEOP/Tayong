@@ -106,8 +106,9 @@ export async function getAllMeetData(){
   return get(meetRef)
     .then((snapshot) => {
     if(snapshot.exists()){
-      const result = Object.values(snapshot.val());
-      console.log(result);
+      const result = snapshot.val();
+      console.log(typeof result);
+      console.log(Object.values(result));
       return Promise.resolve(result);
     } else{
       console.log('no data available');

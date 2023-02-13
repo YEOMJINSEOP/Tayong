@@ -17,25 +17,17 @@ function MeetList(props) {
   const depLoc = params.departure;
   const arrLoc = params.arrival;
 
-  async function makeMeets(){
-    let meets;
-    try{
-      meets = await getAllMeetData();
-    } catch{
-      meets = [];
+  async function getMeets(){
+    const meets = await getAllMeetData();
+    while(meets != undefined){
+      getMeets();
     }
-    return meets
+    console.log('try');
+    return meets;
   }
 
   useEffect(() => {
-    makeMeets()
-      .then((data) => {
-        setMeetList(data);
-        return data;
-      })
-      .catch(
-        console.error
-      )
+    getMeets().then(console.log);
   }, []);
 
   
@@ -58,19 +50,17 @@ function MeetList(props) {
       <ul className={styles.meetUl}>
         {meetList.map((meet) => {
           if(meet.departure === depLoc && meet.arrival === arrLoc){
-            const {arrival, content, departure, host, meetId, meetTime, recruitment, title, transport} = meet;
             return (
               <Meet
-                key={meetId}            
-                meetId={meetId}
-                host={host}
-                title={title}
-                departure={departure}
-                arrival={arrival}
-                recruitment={recruitment}
-                meetDate={meetTime.date}
-                meetTime={meetTime.time}
-                transport={transport}
+                key={meet.meetId}            
+                meetId={meet.meetId}
+                host={meet.host}
+                title={meet.title}
+                departure={meet.departure}
+                arrival={meet.arrival}
+                recruitment={meet.recruitment}
+                meetTime={meet.meetTime}
+                transport={meet.transport}
                />
             ) 
           }

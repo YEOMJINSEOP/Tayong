@@ -17,11 +17,14 @@ function Form(props) {
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
 
-  const meetFulfiler = async () => {
+  const meetFulfiler = async() => {
       const userId = getCurrentUser().displayName;
-      const meetId = uuidv4();
-      setMeet({...meet, meetId, host: userId});
-      return meet;
+      console.log(userId);
+      return new Promise((resolve) => 
+      {
+        setMeet({...meet, meetId: uuidv4(), host: userId});
+        resolve(meet);
+    })
   }
 
 
@@ -29,6 +32,7 @@ function Form(props) {
     e.preventDefault();
     meetFulfiler()
     .then((meet) => createMeetData(meet))
+    .then(console.log)
     .catch(console.error);
   }
 

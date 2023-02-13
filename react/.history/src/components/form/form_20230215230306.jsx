@@ -29,6 +29,7 @@ function Form(props) {
     e.preventDefault();
     meetFulfiler()
     .then((meet) => createMeetData(meet))
+    .then(console.log)
     .catch(console.error);
   }
 

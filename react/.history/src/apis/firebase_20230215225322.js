@@ -90,15 +90,7 @@ export function createMeetData(meet){
   console.log('🐥', meet);
   console.log('✅', meetId);
   set(ref(db, 'meets/' + meetId), {
-    meetId,
-    host,
-    departure,
-    arrival,
-    meetTime,
-    recruitment, 
-    transport,
-    title,
-    content
+    meet
   })
   console.log('meetData Saved!');
 }

@@ -60,7 +60,7 @@ export function onUserStateChange(callback){
   });
 }
 
-export function getCurrentUser(){
+export async function getCurrentUser(){
   return auth.currentUser;
 }
 

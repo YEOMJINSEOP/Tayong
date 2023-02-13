@@ -60,10 +60,6 @@ export function onUserStateChange(callback){
   });
 }
 
-export function getCurrentUser(){
-  return auth.currentUser;
-}
-
 export async function createUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,

@@ -6,7 +6,7 @@ import {useNavigate, useParams } from 'react-router-dom';
 import Meet from '../meet/meet';
 import getData from '../../service/getData';
 import LocationSearchBox from '../locationSearchBox/locationSearchBox';
-import { getAllMeetData } from '../../apis/firebase';
+import { getMeetData } from '../../apis/firebase';
 
 
 function MeetList(props) {
@@ -20,7 +20,7 @@ function MeetList(props) {
 
   const meetUrl = 'data/meet.json';
   useEffect(() => {
-      getAllMeetData();
+      getMeetData();
       getData(meetUrl)
       .then(data => {
       setMeetList(data['data']);

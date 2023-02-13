@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {getCurrentUser, createMeetData} from '../../apis/firebase';
+import {getCurrentUser} from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -18,19 +18,19 @@ function Form(props) {
 
 
   const meetFulfiler = async() => {
-      const userId = getCurrentUser().displayName;
+      const userId = await getCurrentUser().displayName;
       console.log(userId);
-      setMeet({...meet, meetId: uuidv4(), host: userId});
-      return meet
+      return setMeet({...meet, meetId: uuidv4(), host: userId})
   }
 
 
   const submitHandler = async (e) => {
     e.preventDefault();
     meetFulfiler()
-    .then((meet) => createMeetData(meet))
-    .then(console.log)
-    .catch(console.error);
+    .then(console.log(meet));
+    // .then(createMeetData(meet))
+    // .then(console.log('⭐',meet))
+    // .catch(console.error);
   }
 
   const handleChange = (e) => {

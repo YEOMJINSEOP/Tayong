@@ -60,10 +60,6 @@ export function onUserStateChange(callback){
   });
 }
 
-export function getCurrentUser(){
-  return auth.currentUser;
-}
-
 export async function createUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,
@@ -87,8 +83,6 @@ export async function getUserImageUrl(userId){
 
 export async function createMeetData(meet){
   const {meetId, host, departure, arrival, meetTime, recruitment, transport, title, content } = meet;
-  console.log('🐥', meet);
-  console.log('✅', meetId);
   set(ref(db, 'meets/' + meetId), {
     meetId,
     host,

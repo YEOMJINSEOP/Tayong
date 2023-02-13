@@ -54,14 +54,10 @@ export async function logout(){
   });
 }
 
-export function onUserStateChange(callback){
+export async function onUserStateChange(callback){
   onAuthStateChanged(auth, (user) => {
     callback(user);
   });
-}
-
-export function getCurrentUser(){
-  return auth.currentUser;
 }
 
 export async function createUserData(userId, name, imageUrl){
@@ -87,8 +83,6 @@ export async function getUserImageUrl(userId){
 
 export async function createMeetData(meet){
   const {meetId, host, departure, arrival, meetTime, recruitment, transport, title, content } = meet;
-  console.log('🐥', meet);
-  console.log('✅', meetId);
   set(ref(db, 'meets/' + meetId), {
     meetId,
     host,

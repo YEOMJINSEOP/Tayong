@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {getCurrentUser, createMeetData} from '../../apis/firebase';
+import {getCurrentUser} from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -16,21 +16,29 @@ function Form(props) {
   const [meet, setMeet]= useState({meetId: '', host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
+  const setUserId = () => {
+    setMeet({...meet, host: getCurrentUser().displayName});
+  }
+  
+  const setMeetId = () => {
+    setMeet({...meet, meetId: uuidv4()})
+  }
 
-  const meetFulfiler = async() => {
-      const userId = getCurrentUser().displayName;
-      console.log(userId);
-      setMeet({...meet, meetId: uuidv4(), host: userId});
-      return meet
+  const meetFulfiler = () => {
+    return new Promise((resolve, reject) => {
+      setUserId();
+      setMeetId();
+    })
   }
 
 
   const submitHandler = async (e) => {
     e.preventDefault();
     meetFulfiler()
-    .then((meet) => createMeetData(meet))
-    .then(console.log)
-    .catch(console.error);
+    .then(console.log(meet));
+    // .then(createMeetData(meet))
+    // .then(console.log('⭐',meet))
+    // .catch(console.error);
   }
 
   const handleChange = (e) => {

@@ -54,14 +54,10 @@ export async function logout(){
   });
 }
 
-export function onUserStateChange(callback){
+export async function onUserStateChange(callback){
   onAuthStateChanged(auth, (user) => {
     callback(user);
   });
-}
-
-export function getCurrentUser(){
-  return auth.currentUser;
 }
 
 export async function createUserData(userId, name, imageUrl){

@@ -13,7 +13,6 @@ function Header(props) {
       console.log(user);
       setUser(user)
     }) 
-
   }, [user])
   const handleLogin = () => {
     login().then(setUser);
@@ -29,10 +28,7 @@ function Header(props) {
           navigate(`/`)
         }} >Tayong</p>
         {!user && <button className={styles.loginBtn} onClick={handleLogin}>로그인</button>}
-        {user && <div className={styles.userInfo}>
-          <span className={styles.userName}>{user.displayName}</span>
-          <button className={styles.logoutBtn} onClick={handleLogout}>로그아웃</button>
-        </div>}        
+        {user && <button className={styles.logoutBtn} onClick={handleLogout}>로그아웃</button>}
       </nav>
     </>
   );

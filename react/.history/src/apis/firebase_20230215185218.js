@@ -32,7 +32,9 @@ export async function login(){
     return user
   })
   .then((user) => {
+    console.log(user);
     writeUserData(user.uid, user.displayName, user.photoURL);
+    console.log('write data');
     return user
   })
   .catch((error) => {
@@ -48,6 +50,7 @@ export async function login(){
 
 export async function logout(){
   signOut(auth).then((result) => {
+    console.log(result);
     return null
   }).catch((error) => {
     // An error happened.
@@ -63,20 +66,14 @@ export function onUserStateChange(callback){
 export async function writeUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,
-    profile_image: imageUrl
+    profile_picture: imageUrl
   });
 }
 
-export async function getUserName(userId){
+export async function getUserData(userId){
   const userRef = ref(db, 'users/' + userId);
   onValue(userRef, (snapshot) => {
-    return snapshot.val().username;
-  })
-}
-
-export async function getUserImageUrl(userId){
-  const userRef = ref(db, 'users/' + userId);
-  onValue(userRef, (snapshot) => {
-    return snapshot.val().profile_image;
+    console.log(snapshot.val());
+    // return snapshot.val();
   })
 }

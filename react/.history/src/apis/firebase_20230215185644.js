@@ -35,6 +35,10 @@ export async function login(){
     writeUserData(user.uid, user.displayName, user.photoURL);
     return user
   })
+  .then((user) => {
+    getUserName(user.uid);
+    return user
+  })
   .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -70,6 +74,7 @@ export async function writeUserData(userId, name, imageUrl){
 export async function getUserName(userId){
   const userRef = ref(db, 'users/' + userId);
   onValue(userRef, (snapshot) => {
+    console.log(snapshot.val());
     return snapshot.val().username;
   })
 }
@@ -77,6 +82,7 @@ export async function getUserName(userId){
 export async function getUserImageUrl(userId){
   const userRef = ref(db, 'users/' + userId);
   onValue(userRef, (snapshot) => {
+    console.log(snapshot.val().username);
     return snapshot.val().profile_image;
   })
 }

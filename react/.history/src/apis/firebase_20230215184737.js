@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -32,7 +32,9 @@ export async function login(){
     return user
   })
   .then((user) => {
-    writeUserData(user.uid, user.displayName, user.photoURL);
+    console.log(user);
+    writeUserData(user.email, user.displayName, user.photoURL);
+    console.log('write data');
     return user
   })
   .catch((error) => {
@@ -47,7 +49,8 @@ export async function login(){
 }
 
 export async function logout(){
-  signOut(auth).then((result) => {
+  signOut(auth).then(() => {
+    // Sign-out successful.
     return null
   }).catch((error) => {
     // An error happened.
@@ -63,20 +66,6 @@ export function onUserStateChange(callback){
 export async function writeUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,
-    profile_image: imageUrl
+    profile_picture: imageUrl
   });
-}
-
-export async function getUserName(userId){
-  const userRef = ref(db, 'users/' + userId);
-  onValue(userRef, (snapshot) => {
-    return snapshot.val().username;
-  })
-}
-
-export async function getUserImageUrl(userId){
-  const userRef = ref(db, 'users/' + userId);
-  onValue(userRef, (snapshot) => {
-    return snapshot.val().profile_image;
-  })
 }

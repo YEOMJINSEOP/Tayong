@@ -10,6 +10,7 @@ function Header(props) {
   const navigate = useNavigate();
   useEffect(() => {
     onUserStateChange((user) => {
+      console.log(user);
       setUser(user)
     }) 
 

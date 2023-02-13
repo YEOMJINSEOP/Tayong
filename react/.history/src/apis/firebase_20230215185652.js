@@ -35,6 +35,10 @@ export async function login(){
     writeUserData(user.uid, user.displayName, user.photoURL);
     return user
   })
+  .then((user) => {
+    getUserName(user.uid);
+    return user
+  })
   .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;

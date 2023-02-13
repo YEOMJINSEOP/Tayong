@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {createMeetData, onUserStateChange } from '../../apis/firebase';
+import {onUserStateChange } from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -16,17 +16,11 @@ function Form(props) {
   const [meet, setMeet]= useState({meetId: '', host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
-  const setHostAndMeetId = async () => {
-    const meetFulfiled = new Promise((resolve) => {
-      onUserStateChange((user) => 
-        setMeet({...meet, meetId: uuidv4(), host: user.displayName})
-      )
-      resolve(meet);
-    });
-  }
   const submitHandler = async (e) => {
     e.preventDefault();
-    setHostAndMeetId().then(createMeetData(meet));
+    const host = onUserStateChange((user) => {return user.displayNam});
+    setMeet({...meet, meetId: uuidv4(), host})
+    console.log(meet);
   }
 
   const handleChange = (e) => {

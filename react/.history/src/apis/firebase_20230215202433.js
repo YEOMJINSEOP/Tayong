@@ -94,5 +94,4 @@ export async function createMeetData(meet){
     title,
     content
   })
-  console.log('meetData Saved!');
 }

@@ -26,7 +26,7 @@ function Form(props) {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
-    setHostAndMeetId().then(createMeetData(meet));
+    setHostAndMeetId.then(createMeetData(meet));
   }
 
   const handleChange = (e) => {

@@ -81,18 +81,4 @@ export async function getUserImageUrl(userId){
   })
 }
 
-export async function createMeetData(meet){
-  const {meetId, host, departure, arrival, meetTime, recruitment, transport, title, content } = meet;
-  set(ref(db, 'meets/' + meetId), {
-    meetId,
-    host,
-    departure,
-    arrival,
-    meetTime,
-    recruitment, 
-    transport,
-    title,
-    content
-  })
-  console.log('meetData Saved!');
-}
+export async function create

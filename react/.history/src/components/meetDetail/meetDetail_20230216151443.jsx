@@ -22,7 +22,8 @@ function MeetDetail(props) {
   }
 
   const navigateToParticipate = () => {
-    navigate(`/participate/${meet.meetId}`)
+    console.log('clicked');
+    navigate(`/participate/${meet.meetId}`);
   }
 
   useEffect(() => {
@@ -72,8 +73,8 @@ function MeetDetail(props) {
         </div>
 
         <div className={styles.btns}>
-          <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-          <button className={styles.btn_join} onClick={navigateToParticipate}>참여하기</button>
+          <button className={styles.btn_backToList} onClick={navigateToParticipate}>목록으로</button>
+          <button className={styles.btn_join}>참여하기</button>
         </div>
     </div>
   );

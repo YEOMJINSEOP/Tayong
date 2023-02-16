@@ -1,11 +1,11 @@
 import React from 'react';
 
-function NotFound(props) {
+function Participate(props) {
   return (
     <div>
-      NotFound
+      
     </div>
   );
 }
 
-export default NotFound;
+export default Participate;

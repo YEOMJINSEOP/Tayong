@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import List from './pages/List';
 import Create from './pages/Create';
 import Detail from './pages/Detail';
-import Join from './pages/Join';
+import Participate from './pages/Participate';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             {path: 'list/:departure/:arrival', element: <List/>},
             {path: 'create/:departure/:arrival', element: <Create/>},
             {path: 'detail/:meetId', element: <Detail/>},
-            {path: 'participate/:meetId', element:<Join/>}
+            {path: 'participate/:meetId', element:<Participate/>}
         ]
     }
 ])

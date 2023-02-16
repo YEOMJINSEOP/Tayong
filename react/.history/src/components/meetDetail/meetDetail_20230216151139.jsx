@@ -8,7 +8,7 @@ import { getMeetDataById } from '../../apis/firebase';
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({});
 
   const selectImg = (transport) => {
     const imgSelfDriving = 'image/self-driving.jpeg';
@@ -19,10 +19,6 @@ function MeetDetail(props) {
     else if(transport === '택시'){
       return imgTaxi;
     }
-  }
-
-  const navigateToParticipate = () => {
-    navigate(`/participate/${meet.meetId}`)
   }
 
   useEffect(() => {
@@ -73,7 +69,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-          <button className={styles.btn_join} onClick={navigateToParticipate}>참여하기</button>
+          <button className={styles.btn_join}>참여하기</button>
         </div>
     </div>
   );

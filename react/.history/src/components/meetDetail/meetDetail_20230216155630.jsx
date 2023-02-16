@@ -22,7 +22,7 @@ function MeetDetail(props) {
   }
 
   const participateHandler = () => {
-    console.warn('참여 버튼 처리가 필요합니다.');
+    console.log('참여 버튼 처리가 필요합니다.');
   }
 
   useEffect(() => {

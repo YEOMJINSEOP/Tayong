@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import List from './pages/List';
 import Create from './pages/Create';
 import Detail from './pages/Detail';
+import Join from './pages/Join';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([

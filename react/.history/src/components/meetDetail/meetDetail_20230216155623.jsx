@@ -22,7 +22,7 @@ function MeetDetail(props) {
   }
 
   const participateHandler = () => {
-    console.warn('참여 버튼 처리가 필요합니다.');
+    console.log('참여 버튼 처리가 필요합니다.');
   }
 
   useEffect(() => {
@@ -73,7 +73,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-          <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>
+          <button className={styles.btn_join} onClick={navigateToParticipate}>참여하기</button>
         </div>
     </div>
   );

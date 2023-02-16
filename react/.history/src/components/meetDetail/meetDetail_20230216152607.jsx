@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import getData from '../../service/getData';
 import { getMeetDataById } from '../../apis/firebase';
 
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''});
 
   const selectImg = (transport) => {
     const imgSelfDriving = 'image/self-driving.jpeg';
@@ -21,8 +20,8 @@ function MeetDetail(props) {
     }
   }
 
-  const participateHandler = () => {
-    console.warn('참여 버튼 처리가 필요합니다.');
+  const navigateToParticipate = () => {
+    navigate(`/participate/${meet.meetId}`)
   }
 
   useEffect(() => {
@@ -73,7 +72,7 @@ function MeetDetail(props) {
 
         <div className={styles.btns}>
           <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-          <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>
+          <button className={styles.btn_join} onClick={navigateToParticipate}>참여하기</button>
         </div>
     </div>
   );

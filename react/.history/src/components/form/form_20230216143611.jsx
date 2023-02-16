@@ -13,7 +13,7 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: '', host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
   async function getUserName(){
@@ -28,20 +28,16 @@ function Form(props) {
   }
 
   useEffect(() => {
-
+    const meetId = uuidv4();
+    setMeet({...meet, meetId});
   }, []);
 
   useEffect(() => {
-    if(!meet.host){
-      return  
-    }
-    createMeetData(meet);
+    createMeetData(userName);
   }, [meet.host])
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const meetId = uuidv4();
-    // setMeet({...meet, meetId});
     getUserName()
       .then((userName) => {
         setMeet({...meet, host: userName });

@@ -15,8 +15,7 @@ function MeetDetail(props) {
     const imgTaxi = 'image/taxi.jpeg'; 
     if(transport === '자가용'){
       return imgSelfDriving;
-    } 
-    else if(transport === '택시'){
+    } else{
       return imgTaxi;
     }
   }

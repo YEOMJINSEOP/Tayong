@@ -102,7 +102,7 @@ export function createMeetData(meet){
 }
 
 export async function getCurrentUser(){
-  return Promise.resolve(auth.currentUser.displayName);
+  return Promise.resolve(auth.currentUser);
 }
 
 

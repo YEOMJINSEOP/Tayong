@@ -32,9 +32,6 @@ function Form(props) {
   }, []);
 
   useEffect(() => {
-    if(!meet.host){
-      return  
-    }
     createMeetData(meet);
   }, [meet.host])
 

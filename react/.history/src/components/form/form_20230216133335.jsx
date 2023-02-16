@@ -13,43 +13,22 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: '', host: '', departure, arrival, meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
-  async function getUserName(){
-    let userName;
-    try{
-      userName = await getCurrentUser();
-    } 
-    catch{
-        userName = '알 수 없는 사용자⚠️';
-    }
-    return userName;
-  }
-
   useEffect(() => {
-
-  }, []);
-
-  useEffect(() => {
-    if(!meet.host){
-      return  
-    }
+    console.log(meet);
     createMeetData(meet);
-  }, [meet.host])
+  }, [meet.meetId])
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const meetId = uuidv4();
-    // setMeet({...meet, meetId});
-    getUserName()
-      .then((userName) => {
-        setMeet({...meet, host: userName });
-        return userName
-      })
-      .catch(
-        console.error
-      )
+    const userId = getCurrentUser();
+    console.log(userId);
+    setMeet({...meet, host: userId});
+    const meetId = uuidv4();
+    setMeet({...meet, meetId});
   }
 
   const handleChange = (e) => {

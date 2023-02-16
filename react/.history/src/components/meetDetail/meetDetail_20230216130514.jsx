@@ -11,12 +11,11 @@ function MeetDetail(props) {
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
   const selectImg = (transport) => {
-    const imgSelfDriving = 'image/self-driving.jpeg';
+    const imgSelfDriving = 'meetmage/self-driving.jpeg';
     const imgTaxi = 'image/taxi.jpeg'; 
     if(transport === '자가용'){
       return imgSelfDriving;
-    } 
-    else if(transport === '택시'){
+    } else{
       return imgTaxi;
     }
   }

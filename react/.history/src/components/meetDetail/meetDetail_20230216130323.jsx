@@ -11,12 +11,11 @@ function MeetDetail(props) {
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
   const selectImg = (transport) => {
-    const imgSelfDriving = 'image/self-driving.jpeg';
+    const imgSelfDriving = 'meetmage/self-driving.jpeg';
     const imgTaxi = 'image/taxi.jpeg'; 
     if(transport === '자가용'){
       return imgSelfDriving;
-    } 
-    else if(transport === '택시'){
+    } else{
       return imgTaxi;
     }
   }
@@ -24,8 +23,8 @@ function MeetDetail(props) {
   useEffect(() => {
     const meetId = params.meetId;
     getMeetDataById(meetId)
-    .then(meet => {
-      setMeet(meet);
+    .then(res => {
+      console.log('🔥',res);
     })
   }, [])
 
@@ -45,8 +44,7 @@ function MeetDetail(props) {
           </div>
           <div className={styles.user}>
             <div className={styles.userInfo}>
-              <div className={styles.userInfoInfo}>모집자</div>
-              <span>{meet.host}</span>              
+              <div className={styles.userInfoInfo}>모집자</div>              
             </div>
           </div>
         </div>
@@ -58,8 +56,8 @@ function MeetDetail(props) {
           </div>
           <div className={styles.meetTime}>
             <label className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</label>
-            <span className={styles.time}>{meet.meetTime.time}</span>
-            <span className={styles.date}>{meet.meetTime.date}</span>
+            <span className={styles.time}>{meet.meetTime[1]}</span>
+            <span className={styles.date}>{meet.meetTime[0]}</span>
           </div>
         </div>
 

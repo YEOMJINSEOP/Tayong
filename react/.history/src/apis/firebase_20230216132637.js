@@ -60,6 +60,10 @@ export function onUserStateChange(callback){
   });
 }
 
+export function getCurrentUser(){
+  return auth.currentUser;
+}
+
 export async function createUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,
@@ -83,8 +87,7 @@ export async function getUserImageUrl(userId){
 
 export function createMeetData(meet){
   const {meetId, host, departure, arrival, meetTime, recruitment, transport, title, content } = meet;
-  if(!meetId){
-    console.error('meetId is null');
+  if(meetId.length() === 0 | host.length() === 0){
     return;
   }
   set(ref(db, 'meets/' + meetId), {
@@ -101,11 +104,6 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
-export async function getCurrentUser(){
-  return Promise.resolve(auth.currentUser.displayName);
-}
-
-
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
   return get(meetRef)
@@ -115,8 +113,7 @@ export async function getAllMeetData(){
       console.log(result);
       return Promise.resolve(result);
     } else{
-      console.warn('No AllMeetData Available');
-      return Promise.resolve([]);
+      console.log('no data available');
     }
   })
     .catch(console.error)

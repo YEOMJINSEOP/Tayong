@@ -60,6 +60,10 @@ export function onUserStateChange(callback){
   });
 }
 
+export function getCurrentUserName(){
+  return auth.currentUser.displayName;
+}
+
 export async function createUserData(userId, name, imageUrl){
   set(ref(db, 'users/' + userId), {
     username: name,
@@ -101,11 +105,6 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
-export async function getCurrentUser(){
-  return Promise.resolve(auth.currentUser.displayName);
-}
-
-
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
   return get(meetRef)
@@ -115,8 +114,7 @@ export async function getAllMeetData(){
       console.log(result);
       return Promise.resolve(result);
     } else{
-      console.warn('No AllMeetData Available');
-      return Promise.resolve([]);
+      console.log('no data available');
     }
   })
     .catch(console.error)

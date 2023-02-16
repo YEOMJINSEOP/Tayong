@@ -102,7 +102,7 @@ export function createMeetData(meet){
 }
 
 export async function getCurrentUser(){
-  return Promise.resolve(auth.currentUser.displayName);
+  return Promise.resolve(auth.currentUser);
 }
 
 
@@ -115,8 +115,8 @@ export async function getAllMeetData(){
       console.log(result);
       return Promise.resolve(result);
     } else{
-      console.warn('No AllMeetData Available');
       return Promise.resolve([]);
+      console.log('no data available');
     }
   })
     .catch(console.error)

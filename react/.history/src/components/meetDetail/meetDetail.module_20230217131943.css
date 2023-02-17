@@ -1,18 +1,16 @@
 @import '../../App.module.css';
 
 .container {
-  margin-top: 2%;
-  width: 100%;
-  height: 100%;
+  padding-top: 20px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
 }
 .meetContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .user{

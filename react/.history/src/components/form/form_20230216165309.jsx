@@ -13,7 +13,7 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 0, participant: '', transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 0, participant: {}, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
   async function getUserName(){

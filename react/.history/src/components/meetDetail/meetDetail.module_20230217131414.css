@@ -1,18 +1,16 @@
 @import '../../App.module.css';
 
-.container {
-  margin-top: 2%;
+
+.container{
+  position: absolute;
+  top: 12%;
+  left: 20%;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.meetContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .user{
@@ -241,7 +239,7 @@ button {
     width: 300px;
   }
 
-  .meetContainer{
+  .container{
     padding-top: 30px;
     padding-left: 10px;
     padding-right: 10px;

@@ -78,7 +78,7 @@ function MeetDetail(props) {
             <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>
           </div>
       </div>
-      <Chat/>
+      <Chat meetId={params.meetId}/>
     </div>
   );
 }

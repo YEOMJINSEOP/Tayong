@@ -2,31 +2,33 @@ import React, { useEffect, useState } from 'react';
 import styles from './chat.module.css';
 import {io} from 'socket.io-client';
 
-const socket = io('http://localhost:8081', {
-  query: {id: '123'}
-});
+function Chat({meetId}) {
 
-function Chat() {
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
+  const [socket, setSocket] = useState(null);
+  
+  useEffect(() => {
+    console.log(meetId);
+    setSocket(io('http://localhost:8081', {
+      query: { id: meetId}
+    }));
+  }, [meetId]);
+
 
   const sendMessageHandler = () => {
-    socket.emit("123", message);
-    console.log('message: ',message);
+    socket.emit('message', message);
+    console.log('message',message);
     setMessage("");
   }
 
   useEffect(() => {
-    socket.on("123", (msg) => {
-      console.log(msg);
-    })
-  }, [])
-
-  useEffect(() => {
-    socket.on('123', (msg) => {
-      setChat([...chat, msg]);
-    });
-  }, [chat]);
+    if(socket){
+      socket.on('message', (msg) => {
+        setChat([...chat, msg]);
+      });
+    }
+  }, [socket, chat]);
 
   return (
     <div className={styles.chat_container}>

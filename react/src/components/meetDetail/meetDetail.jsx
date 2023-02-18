@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from './meetDetail.module.css'
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import getData from '../../service/getData';
 import { getMeetDataById } from '../../apis/firebase';
 import Chat from '../chat/chat';
 
@@ -11,15 +10,8 @@ function MeetDetail(props) {
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
-  const selectImg = (transport) => {
-    const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpg'; 
-    if(transport === '자가용'){
-      return imgSelfDriving;
-    } 
-    else if(transport === '택시'){
-      return imgTaxi;
-    }
+  const selectImg = () => {
+    return `image/${meet.transport}.jpeg`
   }
 
   const participateHandler = () => {
@@ -37,7 +29,7 @@ function MeetDetail(props) {
   return (
     <div className={styles.container}>
       <div className={styles.meetContainer}>
-          <img className={styles.image} src= {selectImg(meet.transport)} alt="transport image" />
+          <img className={styles.image} src= {`image/${meet.transport}.jpeg`} alt="transport image" />
           <div className={styles.locAndUserContainer}>
             <div className={styles.location}>
               <div className={styles.departure}>

@@ -6,17 +6,6 @@ import styles from './meet.module.css';
 function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, meetTime, transport}) {
 
   const navigate = useNavigate();
-
-  const selectImg = () => {
-    const imgSelfDriving = 'image/self-driving.jpeg';
-    const imgTaxi = 'image/taxi.jpeg'; 
-    if(transport == '자가용'){
-      return imgSelfDriving;
-    } else{
-      return imgTaxi;
-    }
-  }
-
   const onClickHandler = (e) => {
     console.log('Meet Click 🥕');
     navigate(`/detail/${meetId}`);
@@ -26,7 +15,7 @@ function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, m
   <li className={styles.meet} onClick={onClickHandler}>
     <div className={styles.infoImage}>
       <img 
-      src= {selectImg()}
+      src= {`image/${transport}.jpeg`}
       alt="transport img" 
       className={styles.transportImg}
       />

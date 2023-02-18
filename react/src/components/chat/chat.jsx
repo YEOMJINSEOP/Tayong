@@ -10,20 +10,20 @@ function Chat({meetId}) {
   
   useEffect(() => {
     console.log(meetId);
-    setSocket(io('http://localhost:8081', {
-      query: { id: meetId}
+    setSocket(io('http://localhost:8082', {
+      query: { id: meetId }
     }));
   }, [meetId]);
 
 
   const sendMessageHandler = () => {
     socket.emit('message', message);
-    console.log('message',message);
     setMessage("");
   }
 
   useEffect(() => {
     if(socket){
+      console.log('socket in client connected');
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
       });

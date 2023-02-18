@@ -18,6 +18,7 @@ function MeetDetail(props) {
     const meetId = params.meetId;
     getMeetDataById(meetId)
     .then(meet => {
+      console.log(meet);
       setMeet(meet);
     })
   }, [])

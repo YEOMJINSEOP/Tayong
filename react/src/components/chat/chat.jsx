@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import styles from './chat.module.css';
 import {io} from 'socket.io-client';
+import { onUserStateChange } from '../../apis/firebase';
 
 function Chat({meetId}) {
 
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    onUserStateChange(
+      (user) => {
+        console.log(user.displayName);
+        setUserName(user.displayName);
+      } 
+    );
+  }, [])
   
   useEffect(() => {
-    console.log(meetId);
     setSocket(io('http://localhost:8082', {
       query: { id: meetId }
     }));
   }, [meetId]);
 
 
-  const sendMessageHandler = () => {
-    socket.emit('message', message);
-    setMessage("");
+  const sendMessageHandler = (e) => {
+    if(e.code === 'Enter' || e.type === 'click'){
+      socket.emit('message', {
+        userName: userName,
+        message: message
+      });
+      setMessage("");
+    }
   }
 
   useEffect(() => {
     if(socket){
-      console.log('socket in client connected');
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
       });
@@ -34,12 +48,21 @@ function Chat({meetId}) {
     <div className={styles.chat_container}>
       <ul className={styles.chat_box}>
         {chat.map((data, idx) => {
-          return <li key={idx} className={styles.chat}>{data}</li>
+          return <li key={idx} className={styles.chat}>
+                    <p>{data.userName}</p>
+                    <div>{data.message}</div>
+                  </li>
         })}
       </ul>
       <div className={styles.input_container}>
-        <input className={styles.chat_input} type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-        <button className={styles.send_btn}onClick={sendMessageHandler}>Send</button>
+        <input 
+          className={styles.chat_input} 
+          type="text" 
+          value={message} 
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={sendMessageHandler}
+           />
+        <button className={styles.send_btn} onClick={sendMessageHandler}>Send</button>
       </div>
     </div>
   );

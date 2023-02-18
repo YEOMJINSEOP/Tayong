@@ -56,7 +56,11 @@ export async function logout(){
 
 export function onUserStateChange(callback){
   onAuthStateChanged(auth, (user) => {
-    callback(user);
+    if (user) {
+      callback(user);
+    } else {
+      console.log('no user logged in');
+    }
   });
 }
 
@@ -83,10 +87,7 @@ export async function getUserImageUrl(userId){
 
 export function createMeetData(meet){
   const {meetId, host, departure, arrival, meetTime, recruitment, participant, transport, title, content } = meet;
-  if(!meetId){
-    console.error('meetId is null');
-    return;
-  }
+  console.log(meetId, host, departure, arrival, meetTime, recruitment, participant, transport, title. content);
   set(ref(db, 'meets/' + meetId), {
     meetId,
     host,
@@ -100,10 +101,6 @@ export function createMeetData(meet){
     content
   })
   console.log('meetData Saved!');
-}
-
-export async function getCurrentUser(){
-  return Promise.resolve(auth.currentUser.displayName);
 }
 
 

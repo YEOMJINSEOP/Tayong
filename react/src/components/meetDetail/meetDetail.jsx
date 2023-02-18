@@ -10,10 +10,6 @@ function MeetDetail(props) {
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
 
-  const selectImg = () => {
-    return `image/${meet.transport}.jpeg`
-  }
-
   const participateHandler = () => {
     console.warn('참여 버튼 처리가 필요합니다.');
   }

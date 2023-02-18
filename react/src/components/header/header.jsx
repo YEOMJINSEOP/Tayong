@@ -12,7 +12,6 @@ function Header(props) {
     onUserStateChange((user) => {
       setUser(user)
     }) 
-
   }, [user])
   const handleLogin = () => {
     login().then(setUser);

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {getCurrentUser, createMeetData} from '../../apis/firebase';
+import {getCurrentUser, createMeetData, onUserStateChange} from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -16,44 +16,49 @@ function Form(props) {
   const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 2, participant: '', transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
-  async function getUserName(){
-    let userName;
-    try{
-      userName = await getCurrentUser();
-    } 
-    catch{
-        userName = '알 수 없는 사용자⚠️';
+  useEffect(() => {
+    setMeet((meet) => ({...meet, meetTime: meetTime }));
+  }, [meetTime])
+
+
+  const validateMeet = () => {
+    if(!meet.host){
+      console.warn('host가 설정되지 않았습니다.');
+      return new Error('host가 설정되지 않았습니다.') 
     }
-    return userName;
+    if(!meet.meetId){
+      console.error('meetId is null');
+      return;
+    }
+    if(meet.meetTime.date == 0 || meet.meetTime.time == 0){
+      console.error('meetTime undefined');
+      return;
+    }
+    if(!meet.transport){
+      console.error('transport undefined');
+      return;
+    }
   }
 
   useEffect(() => {
-
-  }, []);
+    // createMeetData(meet);
+  }, [meet.host])
 
   useEffect(() => {
-    if(!meet.host){
-      console.warn('host가 설정되지 않았습니다.');
-      return  
-    }
-    console.log(meet);
-    createMeetData(meet);
-  }, [meet.host])
+    onUserStateChange(
+      (user) => {
+        console.log(user.displayName);
+        setMeet((meet) => ({...meet, host:user.displayName}));
+      } 
+    );
+  }, [])
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    getUserName()
-      .then((userName) => {
-        setMeet({...meet, host: userName });
-        return userName
-      })
-      .catch(
-        console.error
-      )
+    console.log(meet);
   }
 
   const handleChange = (e) => {
-    // console.log('🐢',e.target);
     const {name, value} = e.target;
     setMeet({...meet, [name]: value});
   }
@@ -66,10 +71,6 @@ function Form(props) {
       setMeetTime((prev) => ({...prev, date: e.target.value}))
     }
   }
-
-  useEffect(() => {
-    setMeet({...meet, meetTime: meetTime });
-  }, [meetTime])
 
   const backToListHandler = (e) => {
     navigate(-1);

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {getCurrentUser, createMeetData, onUserStateChange} from '../../apis/firebase';
+import {createMeetData, onUserStateChange} from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -13,7 +13,7 @@ function Form(props) {
   const arrival = params.arrival;
 
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 2, participant: '', transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 2, participant: {}, transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
 
   useEffect(() => {
@@ -22,32 +22,33 @@ function Form(props) {
 
 
   const validateMeet = () => {
-    if(!meet.host){
-      console.warn('host가 설정되지 않았습니다.');
-      return new Error('host가 설정되지 않았습니다.') 
-    }
     if(!meet.meetId){
-      console.error('meetId is null');
-      return;
+      alert('meetId is null');
+      return false
     }
-    if(meet.meetTime.date == 0 || meet.meetTime.time == 0){
-      console.error('meetTime undefined');
-      return;
+    if(meet.meetTime.date === 0 || meet.meetTime.time === 0){
+      alert('출발 시각을 설정하세요.');
+      return false
     }
     if(!meet.transport){
-      console.error('transport undefined');
-      return;
+      alert('이동 수단을 설정하세요.');
+      return false
     }
+    if(meet.title.trim().length === 0){
+      alert('제목을 설정하세요.');
+      return false
+    }
+    if(meet.content.trim().length === 0){
+      alert('내용을 입력하세요.');
+      return false
+    }
+    return true;
   }
 
-  useEffect(() => {
-    // createMeetData(meet);
-  }, [meet.host])
-
+ 
   useEffect(() => {
     onUserStateChange(
       (user) => {
-        console.log(user.displayName);
         setMeet((meet) => ({...meet, host:user.displayName}));
       } 
     );
@@ -55,7 +56,10 @@ function Form(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(meet);
+    if(validateMeet()){
+      createMeetData(meet);
+      navigate(-1);
+    };
   }
 
   const handleChange = (e) => {

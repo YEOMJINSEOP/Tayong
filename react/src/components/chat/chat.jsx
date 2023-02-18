@@ -13,7 +13,6 @@ function Chat({meetId}) {
   useEffect(() => {
     onUserStateChange(
       (user) => {
-        console.log(user.displayName);
         setUserName(user.displayName);
       } 
     );
@@ -27,6 +26,9 @@ function Chat({meetId}) {
 
 
   const sendMessageHandler = (e) => {
+    if(message.trim().length === 0){
+      return;
+    }
     if(e.code === 'Enter' || e.type === 'click'){
       socket.emit('message', {
         userName: userName,
@@ -45,15 +47,17 @@ function Chat({meetId}) {
   }, [socket, chat]);
 
   return (
-    <div className={styles.chat_container}>
-      <ul className={styles.chat_box}>
-        {chat.map((data, idx) => {
-          return <li key={idx} className={styles.chat}>
-                    <p>{data.userName}</p>
-                    <div>{data.message}</div>
-                  </li>
-        })}
-      </ul>
+    <div className={styles.container}>
+      <div className={styles.chat_container}>
+        <ul className={styles.chat_box}>
+          {chat.map((data, idx) => {
+            return <li key={idx} className={userName === data.userName ? styles.myChat : styles.chat}>
+                      <p>{data.userName}</p>
+                      <div>{data.message}</div>
+                    </li>
+          })}
+        </ul>
+      </div>
       <div className={styles.input_container}>
         <input 
           className={styles.chat_input} 

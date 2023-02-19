@@ -51,14 +51,12 @@ function MeetDetail(props) {
               </div>
             </div>
             <div className={styles.participantContainer}>
-              <div>
                 <div className={styles.participantLabel}>참여자</div>
                 <ul className={styles.participantList}>
                   {meet.participant.map((user, idx) => 
                       {return <li key={idx}>{user}</li>}
                   )}
                 </ul>
-              </div>
             </div>
           </div>
           <div className={styles.title}>{meet.title}</div>

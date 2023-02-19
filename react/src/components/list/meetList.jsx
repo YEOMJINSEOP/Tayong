@@ -7,9 +7,7 @@ import Meet from '../meet/meet';
 import LocationSearchBox from '../locationSearchBox/locationSearchBox';
 import { getAllMeetData } from '../../apis/firebase';
 
-
 function MeetList(props) {
-
   const navigate = useNavigate();
 
   const [meetList, setMeetList] = useState([]);
@@ -17,7 +15,7 @@ function MeetList(props) {
   const depLoc = params.departure;
   const arrLoc = params.arrival;
 
-  async function makeMeets(){
+  async function getMeets(){
     let meets;
     try{
       meets = await getAllMeetData();
@@ -28,7 +26,7 @@ function MeetList(props) {
   }
 
   useEffect(() => {
-    makeMeets()
+    getMeets()
       .then((data) => {
         setMeetList(data);
         return data;

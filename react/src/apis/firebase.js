@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get, update } from "firebase/database";
+import { getDatabase, ref, set, onValue, get, update, orderByChild, query, child } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -103,6 +103,20 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
+export async function getAllMeetsOrderedByMeetTime() {
+  const meetsRef = ref(db, 'meets');
+  const orderedMeetsRef = query(meetsRef, orderByChild('recruitment'));
+  return get(orderedMeetsRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const result = Object.values(snapshot.val());
+      console.log('✅',result);
+      return Promise.resolve(result);
+    } else {
+      console.warn('No meets available');
+      return Promise.resolve([]);
+    }
+  }).catch(console.error);
+}
 
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
@@ -140,3 +154,4 @@ export async function updateMeetParticipant(meetId, participant, newParticipant)
     participant: [...participant, newParticipant]
   })
 }
+

@@ -21,15 +21,9 @@ function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, m
       />
     </div>
     <div className={styles.infoLocation}>
-      <div className={styles.infoDeparture}>
-        <p>출발</p>
-      {departure}
+      <div className={styles.title}>
+      {title}
       </div> 
-      <FaArrowRight className={styles.arrow}/>
-      <div className={styles.infoArrival}>
-        <p>도착</p>
-        {arrival}
-      </div>
     </div>
     <div className={styles.infoSet}>
       <div className={styles.infoRecruitment}>

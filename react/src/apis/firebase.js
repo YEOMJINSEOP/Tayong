@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get } from "firebase/database";
+import { getDatabase, ref, set, onValue, get, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -132,4 +132,11 @@ export async function getMeetDataById(meetId){
       }
     })
     .catch(console.error);
+}
+
+export async function updateMeetParticipant(meetId, participant, newParticipant){
+  const meetRef = ref(db, 'meets/' + meetId);
+  update(meetRef, {
+    participant: [...participant, newParticipant]
+  })
 }

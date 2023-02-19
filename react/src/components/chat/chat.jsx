@@ -23,6 +23,14 @@ function Chat({meetId}) {
       query: { id: meetId }
     }));
   }, [meetId]);
+  
+  useEffect(() => {
+    if(socket){
+      socket.on('message', (msg) => {
+        setChat([...chat, msg]);
+      });
+    }
+  }, [socket, chat]);
 
 
   const sendMessageHandler = (e) => {
@@ -38,13 +46,7 @@ function Chat({meetId}) {
     }
   }
 
-  useEffect(() => {
-    if(socket){
-      socket.on('message', (msg) => {
-        setChat([...chat, msg]);
-      });
-    }
-  }, [socket, chat]);
+
 
   return (
     <div className={styles.container}>

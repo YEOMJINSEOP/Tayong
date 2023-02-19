@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import styles from './meetDetail.module.css'
-import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMeetDataById } from '../../apis/firebase';
+import { getMeetDataById, onUserStateChange, updateMeetParticipant } from '../../apis/firebase';
 import Chat from '../chat/chat';
 
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
-  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, transport: '', title: '', content: ''})
+  const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, participant: [], transport: '', title: '', content: ''});
+  const [userName, setUserName] = useState('');
+  
+  useEffect(() => {
+    onUserStateChange(
+      (user) => {
+        setUserName(user.displayName);
+      } 
+    );
+  }, []);
 
   const participateHandler = () => {
-    console.warn('참여 버튼 처리가 필요합니다.');
+    if(meet.participant.includes(userName)){
+      alert('이미 참여중인 모입입니다.');
+      return;
+    }
+    updateMeetParticipant(meet.meetId, meet.participant, userName);
   }
 
   useEffect(() => {
@@ -38,10 +50,14 @@ function MeetDetail(props) {
                 {meet.arrival}
               </div>
             </div>
-            <div className={styles.user}>
-              <div className={styles.userInfo}>
-                <div className={styles.userInfoInfo}>모집자</div>
-                <span>{meet.host}</span>              
+            <div className={styles.participantContainer}>
+              <div>
+                <div className={styles.participantLabel}>참여자</div>
+                <ul className={styles.participantList}>
+                  {meet.participant.map((user, idx) => 
+                      {return <li key={idx}>{user}</li>}
+                  )}
+                </ul>
               </div>
             </div>
           </div>

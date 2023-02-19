@@ -56,10 +56,11 @@
 }
 
 .chat_input{
-  width: 76%;
+  width: 80%;
   margin-left: 10px;
   text-align: start;
   border-radius: 10px;
+  padding-left: 12px;
 }
 
 .send_btn{

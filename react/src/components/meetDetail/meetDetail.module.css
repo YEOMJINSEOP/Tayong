@@ -1,7 +1,7 @@
 @import '../../App.module.css';
 
 .container {
-  margin-top: 2%;
+  margin-top: 4%;
   width: 100%;
   height: 100%;
   display: flex;
@@ -15,11 +15,11 @@
   justify-content: center;
 }
 
-.departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .user{
+.departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
   border: none;
   outline: none;
   background: var(--color-white);
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   text-align: center;
 
@@ -76,10 +76,6 @@
   align-items: center;
 }
 
-.user{
-  width: 288px;
-  height: 126px;
-}
 
 .hostId{
   font-size: 15px;
@@ -142,11 +138,6 @@
 }
 
 
-.userInfoInfo{
-  margin-left: 20px;
-  font-size: 15px;
-}
-
 .content{
   width: 596px;
   height: 114px;
@@ -186,23 +177,39 @@ button {
   color: var(--color-white);
 }
 
-.userInfo {
+
+.participantContainer{
+  width: 288px;
+  height: 126px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background: var(--color-white);
+  box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 }
 
-.userInfoInfo {
-  width: 50px;
+.participantLabel {
   font-size: 15px;
   color: var(--color-orange);
   text-align: center;
-  /* padding-top: 15px; */
-  /* margin-right: 10px; */
+  margin-top: 10px;
+  padding-top:4px;
+  padding-bottom: 4px;
 }
 
-.hostId{
-  padding-left: 10px;
+.participantList {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 0;
+  padding-bottom: 4px;
+}
+
+.participantList > li {
+  margin: 6px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 

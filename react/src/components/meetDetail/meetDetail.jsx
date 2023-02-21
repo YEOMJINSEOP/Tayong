@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import styles from './meetDetail.module.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMeetDataById, onUserStateChange, updateMeetParticipant } from '../../apis/firebase';
+import { getMeetDataById, onUserStateChange, addMeetParticipant, removeMeetParticipant } from '../../apis/firebase';
 import Chat from '../chat/chat';
 
 function MeetDetail(props) {
@@ -9,6 +9,7 @@ function MeetDetail(props) {
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, participant: [], transport: '', title: '', content: ''});
   const [userName, setUserName] = useState('');
+  const [isParticipate, setIsParticipate] = useState(false);
   
   useEffect(() => {
     onUserStateChange(
@@ -18,22 +19,37 @@ function MeetDetail(props) {
     );
   }, []);
 
-  const participateHandler = () => {
-    if(meet.participant.includes(userName)){
-      alert('이미 참여중인 모입입니다.');
-      return;
-    }
-    updateMeetParticipant(meet.meetId, meet.participant, userName);
-  }
-
   useEffect(() => {
     const meetId = params.meetId;
     getMeetDataById(meetId)
     .then(meet => {
       console.log(meet);
+      if(meet.participant == userName){
+        setIsParticipate(true);
+      }
       setMeet(meet);
     })
   }, [])
+
+  const participateHandler = () => {
+    if(isParticipate){
+      alert('이미 참여중인 모입입니다.');
+      return;
+    }
+    else{
+      setIsParticipate(true);
+      addMeetParticipant(meet.meetId, meet.participant, userName);
+    }
+  }
+
+  const quitHandler = () => {
+    if(meet.host == userName){
+      alert('호스트는 모임을 나갈 수 없습니다.');
+      return;
+    }
+    removeMeetParticipant(meet.meetId, meet.participant, userName);
+    setIsParticipate(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -78,7 +94,8 @@ function MeetDetail(props) {
 
           <div className={styles.btns}>
             <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-            <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>
+            {!isParticipate && <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>}          
+            {isParticipate && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
           </div>
       </div>
       <Chat meetId={params.meetId}/>

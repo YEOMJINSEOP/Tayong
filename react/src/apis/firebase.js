@@ -103,21 +103,6 @@ export function createMeetData(meet){
   console.log('meetData Saved!');
 }
 
-export async function getAllMeetsOrderedByMeetTime() {
-  const meetsRef = ref(db, 'meets');
-  const orderedMeetsRef = query(meetsRef, orderByChild('recruitment'));
-  return get(orderedMeetsRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const result = Object.values(snapshot.val());
-      console.log('✅',result);
-      return Promise.resolve(result);
-    } else {
-      console.warn('No meets available');
-      return Promise.resolve([]);
-    }
-  }).catch(console.error);
-}
-
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
   return get(meetRef)
@@ -148,10 +133,19 @@ export async function getMeetDataById(meetId){
     .catch(console.error);
 }
 
-export async function updateMeetParticipant(meetId, participant, newParticipant){
+export async function addMeetParticipant(meetId, participant, newParticipant){
   const meetRef = ref(db, 'meets/' + meetId);
   update(meetRef, {
     participant: [...participant, newParticipant]
-  })
+  });
+}
+
+export async function removeMeetParticipant(meetId, participant, targetParticipant){
+  const meetRef = ref(db, 'meets/' + meetId);
+  update(meetRef, {
+    participant: participant.filter((user) => 
+      user != targetParticipant
+    )
+  });
 }
 

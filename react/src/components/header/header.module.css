@@ -40,6 +40,22 @@
   margin-right: 80px;
 }
 
+.userInfo{
+  display: flex;
+  align-items: center;
+}
+
+.userPhoto {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin-right: 6px;
+}
+
+.userName {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px){
 
 }

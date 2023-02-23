@@ -31,10 +31,6 @@ function MeetDetail(props) {
   }, [userName, isParticipate]);
 
   const participateHandler = () => {
-    if(!userName){
-      alert('로그인이 필요합니다.');
-      return;
-    }
     if(isParticipate){
       alert('이미 참여중인 모입입니다.');
       return;
@@ -46,6 +42,9 @@ function MeetDetail(props) {
   }
 
   const quitHandler = () => {
+    if(!userName){
+      alert('로그인이 필요합니다.');
+    }
     if(meet.host == userName){
       alert('호스트는 모임을 나갈 수 없습니다.');
       return;
@@ -101,8 +100,7 @@ function MeetDetail(props) {
             {isParticipate && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
           </div>
       </div>
-      {isParticipate && <Chat meetId={params.meetId}/>}
-      {!isParticipate && <div className={styles.chat_blocker}>모임에 참여하면 채팅이 가능합니다.</div>}
+      <Chat meetId={params.meetId}/>
     </div>
   );
 }

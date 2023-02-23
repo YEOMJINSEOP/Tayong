@@ -220,14 +220,8 @@ button {
   width: 540px;
   height: 580px;
   background-color: orange;
-  box-shadow: -2px 2px 6px 6px rgba(194,186,186,0.3);
+  border: 3px solid lightgoldenrodyellow;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
 }
 
 

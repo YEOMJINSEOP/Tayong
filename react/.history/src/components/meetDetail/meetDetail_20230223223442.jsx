@@ -101,8 +101,7 @@ function MeetDetail(props) {
             {isParticipate && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
           </div>
       </div>
-      {isParticipate && <Chat meetId={params.meetId}/>}
-      {!isParticipate && <div className={styles.chat_blocker}>모임에 참여하면 채팅이 가능합니다.</div>}
+      <Chat meetId={params.meetId}/>
     </div>
   );
 }

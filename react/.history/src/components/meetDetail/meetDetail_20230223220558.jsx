@@ -21,14 +21,17 @@ function MeetDetail(props) {
 
   useEffect(() => {
     const meetId = params.meetId;
+    console.log('meet.participant: ', meet.participant);
+    console.log('userName: ', userName);
     getMeetDataById(meetId)
     .then(meet => {
       if(meet.participant.includes(userName)){
+        console.log('✅');
         setIsParticipate(true);
       }
       setMeet(meet);
     })
-  }, [userName, isParticipate]);
+  }, []);
 
   const participateHandler = () => {
     if(isParticipate){

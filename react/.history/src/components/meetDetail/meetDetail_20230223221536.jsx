@@ -28,7 +28,11 @@ function MeetDetail(props) {
       }
       setMeet(meet);
     })
-  }, [userName, isParticipate]);
+  }, [userName]);
+
+  useEffect(() => {
+    return;
+  }, [isParticipate])
 
   const participateHandler = () => {
     if(isParticipate){

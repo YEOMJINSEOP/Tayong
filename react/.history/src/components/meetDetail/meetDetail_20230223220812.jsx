@@ -23,12 +23,15 @@ function MeetDetail(props) {
     const meetId = params.meetId;
     getMeetDataById(meetId)
     .then(meet => {
+      console.log('meet.participant: ', meet.participant);
+      console.log('userName: ', userName);
       if(meet.participant.includes(userName)){
-        setIsParticipate(true);
+        console.log('✅');
+        setIsParticipate((prev) => !prev);
       }
       setMeet(meet);
     })
-  }, [userName, isParticipate]);
+  }, []);
 
   const participateHandler = () => {
     if(isParticipate){

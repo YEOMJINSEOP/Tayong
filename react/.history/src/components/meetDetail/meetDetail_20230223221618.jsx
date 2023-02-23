@@ -28,7 +28,7 @@ function MeetDetail(props) {
       }
       setMeet(meet);
     })
-  }, [userName, isParticipate]);
+  }, [userName]);
 
   const participateHandler = () => {
     if(isParticipate){

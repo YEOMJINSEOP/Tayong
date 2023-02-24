@@ -57,7 +57,7 @@ function MeetDetail(props) {
   return (
     <div className={styles.container}>
       <div className={styles.meetContainer}>
-          <img className={styles.image} src= {`image/${meet.transport}.jpeg`} alt="transport image" />
+          <img className={styles.image} src= {meet.transport ? `image/${meet.transport}.jpeg` : ''} alt="transport image" />
           <div className={styles.locAndUserContainer}>
             <div className={styles.location}>
               <div className={styles.departure}>

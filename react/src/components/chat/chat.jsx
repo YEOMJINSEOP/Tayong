@@ -24,7 +24,7 @@ function Chat({meetId}) {
   }, [])
   
   useEffect(() => {
-    setSocket(io('http://localhost:8082', {
+    setSocket(io('http://3.38.224.246:8080', {
       query: { id: meetId }
     }));
   }, [meetId]);

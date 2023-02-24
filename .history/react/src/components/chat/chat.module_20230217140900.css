@@ -1,0 +1,9 @@
+.chat_container {
+
+  width: 540px;
+  height: 580px;
+  background-color: lightskyblue;
+  border-radius: 10px;
+
+  display: block;
+}

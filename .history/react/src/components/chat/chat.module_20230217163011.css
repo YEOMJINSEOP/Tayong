@@ -1,0 +1,16 @@
+.chat_container {
+  position: static;
+  width: 540px;
+  height: 580px;
+  background-color: white;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
+
+  display: block;
+}
+
+.input_container{
+  background-color: orange;
+  position:relative;
+}
+

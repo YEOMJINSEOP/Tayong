@@ -1,0 +1,21 @@
+.chat_container {
+  width: 540px;
+  height: 580px;
+  background-color: white;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat {
+  padding: 10px;
+  list-style: none;
+}
+
+.input_container{
+  background-color: orange;
+}
+

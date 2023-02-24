@@ -1,0 +1,56 @@
+.chat_container {
+  width: 540px;
+  height: 580px;
+  background-color: white;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat_box {
+  padding: 20px;
+  list-style: none;
+}
+
+.myChat{
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  font-size: 16px;
+  background-color: white;
+  color: orange;
+  margin-bottom: 20px;
+}
+
+.chat{
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  font-size: 16px;
+  background-color: orange;
+  color: white;
+  margin-bottom: 20px;
+}
+
+
+.input_container{
+  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.chat_input{
+  width: 70%;
+  margin-left: 10px;
+  text-align: start;
+}
+
+.send_btn{
+  width: 80px;
+  height: 30px;
+  background-color: gainsboro;
+}
+

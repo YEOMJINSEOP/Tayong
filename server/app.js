@@ -1,5 +1,5 @@
 const express = require("express");
-const { createServer } = require("https");
+const { createServer } = require("http");
 const { Server } = require("socket.io");
 
 const app = express();
@@ -18,7 +18,5 @@ io.on('connection', (socket) => {
   })
 })
 
-io.listen(8080, () => {
-  console.log('Listening on port 8080');
-});
+io.listen(8080);
 

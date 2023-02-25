@@ -15,6 +15,7 @@ io.on('connection', (socket) => {
   const chatRoomId = socket.handshake.query.id;
   socket.join(chatRoomId);
   socket.on('message', (data) => {
+    console.log(data);
     io.to(chatRoomId).emit('message', data);
   })
 })

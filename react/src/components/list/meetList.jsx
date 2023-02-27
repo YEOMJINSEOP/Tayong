@@ -56,7 +56,7 @@ function MeetList(props) {
       <ul className={styles.meetUl}>
         {meetList.map((meet) => {
           if(meet.departure === depLoc && meet.arrival === arrLoc){
-            const {arrival, content, departure, host, meetId, meetTime, recruitment, title, transport} = meet;
+            const {arrival, departure, host, meetId, meetTime, recruitment, title, transport, participant} = meet;
             return (
               <Meet
                 key={meetId}            
@@ -69,8 +69,9 @@ function MeetList(props) {
                 meetDate={meetTime.date}
                 meetTime={meetTime.time}
                 transport={transport}
+                participant={participant}
                />
-            ) 
+            ); 
           }
         })}
       </ul>

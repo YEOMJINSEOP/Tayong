@@ -167,6 +167,12 @@ button {
   color: var(--color-white);
 }
 
+.btn_full{
+  background-color: gray;
+  color: var(--color-white);
+}
+
+
 .btn_quit {
   background-color: #ef4b3f;
   color: var(--color-white);

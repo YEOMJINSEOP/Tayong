@@ -10,6 +10,7 @@ function MeetDetail(props) {
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, participant: [], transport: '', title: '', content: ''});
   const [userName, setUserName] = useState('');
   const [isParticipate, setIsParticipate] = useState(false);
+  const [isFull, setIsFull] = useState(false);
   
   useEffect(() => {
     onUserStateChange(
@@ -27,6 +28,7 @@ function MeetDetail(props) {
         setIsParticipate(true);
       }
       setMeet(meet);
+      setIsFull(meet.participant.length >= meet.recruitment);
     })
   }, [userName, isParticipate]);
 
@@ -53,6 +55,7 @@ function MeetDetail(props) {
     removeMeetParticipant(meet.meetId, meet.participant, userName);
     setIsParticipate(false);
   }
+
 
   return (
     <div className={styles.container}>
@@ -97,7 +100,8 @@ function MeetDetail(props) {
 
           <div className={styles.btns}>
             <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
-            {!isParticipate && <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>}          
+            {!isParticipate && !isFull && <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>}          
+            {!isParticipate && isFull && <button className={styles.btn_full}>모집마감</button>}
             {isParticipate && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
           </div>
       </div>

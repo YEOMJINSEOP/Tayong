@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './chat.module.css';
 import {io} from 'socket.io-client';
 import { onUserStateChange } from '../../apis/firebase';
@@ -24,7 +24,7 @@ function Chat({meetId}) {
   }, [])
   
   useEffect(() => {
-    setSocket(io('http://ec2-3-38-224-246.ap-northeast-2.compute.amazonaws.com:8083', {
+    setSocket(io('http://localhost:8080', {
       query: { id: meetId }
     }));
   }, [meetId]);

@@ -24,7 +24,7 @@ function Chat({meetId}) {
   }, [])
   
   useEffect(() => {
-    setSocket(io('http://ec2-3-38-224-246.ap-northeast-2.compute.amazonaws.com:8083', {
+    setSocket(io('http://ec2-3-35-53-4.ap-northeast-2.compute.amazonaws.com:8081', {
       query: { id: meetId }
     }));
   }, [meetId]);

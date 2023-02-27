@@ -76,6 +76,20 @@ export async function addChat(meetId, userName, message){
   })
 }
 
+export async function getChat(meetId){
+  const chatRef = ref(db, `chats/${meetId}/`);
+  onValue(chatRef, (snapshot) => {
+   const chatList = snapshot.val();
+   console.log(Object.values(chatList));
+    // chatList.map((chatInfo) => {
+    //   return {
+    //     message: chatInfo.message,
+    //     userName: chatInfo.userName
+    //    }
+    // })
+  })
+}
+
 export async function getUserName(userId){
   const userRef = ref(db, 'users/' + userId);
   onValue(userRef, (snapshot) => {
@@ -104,21 +118,6 @@ export function createMeetData(meet){
     title,
     content
   });
-}
-
-export async function getChat(meetId){
-  const chatRef = ref(db, `chats/${meetId}/`);
-  return get(chatRef)
-    .then((snapshot) => {
-        if(snapshot.exists()){
-          const chatList = Object.values(snapshot.val());
-          //  console.log('✅',chatList);
-          return Promise.resolve(chatList);
-        } else{
-          return Promise.resolve([]);
-        }
-       })
-    .catch(console.error);
 }
 
 export async function getAllMeetData(){

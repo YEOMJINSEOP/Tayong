@@ -39,9 +39,7 @@ function Chat({meetId}) {
     return chatData;
   }
   useEffect(() => {
-    getChatDataFromDB(meetId).then((chatData) =>
-      setChat(chatData)
-    )
+    getChatDataFromDB(meetId).then(console.log);
   }, []);
   
   useEffect(() => {

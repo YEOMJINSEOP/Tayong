@@ -106,21 +106,6 @@ export function createMeetData(meet){
   });
 }
 
-export async function getChat(meetId){
-  const chatRef = ref(db, `chats/${meetId}/`);
-  return get(chatRef)
-    .then((snapshot) => {
-        if(snapshot.exists()){
-          const chatList = Object.values(snapshot.val());
-          //  console.log('✅',chatList);
-          return Promise.resolve(chatList);
-        } else{
-          return Promise.resolve([]);
-        }
-       })
-    .catch(console.error);
-}
-
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
   return get(meetRef)

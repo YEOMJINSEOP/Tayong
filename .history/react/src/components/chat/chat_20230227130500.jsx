@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './chat.module.css';
 import {io} from 'socket.io-client';
-import { addChat, getChat, onUserStateChange } from '../../apis/firebase';
+import { addChat, onUserStateChange } from '../../apis/firebase';
 
 function Chat({meetId}) {
   const chatRef = useRef(null);
@@ -28,21 +28,6 @@ function Chat({meetId}) {
       query: { id: meetId }
     }));
   }, [meetId]);
-
-  async function getChatDataFromDB(meetId){
-    let chatData;
-    try{
-      chatData = await getChat(meetId);
-    } catch{
-      chatData = [];
-    }
-    return chatData;
-  }
-  useEffect(() => {
-    getChatDataFromDB(meetId).then((chatData) =>
-      setChat(chatData)
-    )
-  }, []);
   
   useEffect(() => {
     if(socket){

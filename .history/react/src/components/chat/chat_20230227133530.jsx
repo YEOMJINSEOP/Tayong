@@ -33,15 +33,14 @@ function Chat({meetId}) {
     let chatData;
     try{
       chatData = await getChat(meetId);
+      console.log('try');
     } catch{
       chatData = [];
     }
     return chatData;
   }
   useEffect(() => {
-    getChatDataFromDB(meetId).then((chatData) =>
-      setChat(chatData)
-    )
+    getChatDataFromDB(meetId).then(console.log);
   }, []);
   
   useEffect(() => {

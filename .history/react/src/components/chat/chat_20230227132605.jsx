@@ -29,20 +29,9 @@ function Chat({meetId}) {
     }));
   }, [meetId]);
 
-  async function getChatDataFromDB(meetId){
-    let chatData;
-    try{
-      chatData = await getChat(meetId);
-    } catch{
-      chatData = [];
-    }
-    return chatData;
-  }
   useEffect(() => {
-    getChatDataFromDB(meetId).then((chatData) =>
-      setChat(chatData)
-    )
-  }, []);
+    const chatFromDB = getChat(meetId);
+  }, [meetId]);
   
   useEffect(() => {
     if(socket){
@@ -63,6 +52,7 @@ function Chat({meetId}) {
         message: message
       });
       addChat(meetId, userName, message);
+      console.log(getChat(meetId));
       setMessage("");
     }
   }

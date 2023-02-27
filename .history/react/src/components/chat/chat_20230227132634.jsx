@@ -29,24 +29,15 @@ function Chat({meetId}) {
     }));
   }, [meetId]);
 
-  async function getChatDataFromDB(meetId){
-    let chatData;
-    try{
-      chatData = await getChat(meetId);
-    } catch{
-      chatData = [];
-    }
-    return chatData;
-  }
+  let chatFromDB;
   useEffect(() => {
-    getChatDataFromDB(meetId).then((chatData) =>
-      setChat(chatData)
-    )
-  }, []);
+    chatFromDB = getChat(meetId);
+  }, [meetId]);
   
   useEffect(() => {
     if(socket){
       socket.on('message', (msg) => {
+        console.log(chatFromDB);
         setChat([...chat, msg]);
       });
     }
@@ -63,6 +54,7 @@ function Chat({meetId}) {
         message: message
       });
       addChat(meetId, userName, message);
+      console.log(getChat(meetId));
       setMessage("");
     }
   }

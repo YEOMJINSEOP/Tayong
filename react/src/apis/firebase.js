@@ -121,13 +121,33 @@ export async function getChat(meetId){
     .catch(console.error);
 }
 
+function filterMeetByDate(result){
+  const dateObject = new Date();
+  const currentYear = dateObject.getFullYear();
+  const currentMonth = dateObject.getMonth() + 1;
+  const currentDates = dateObject.getDate();
+  const currentDate = new Date(`${currentYear}-${currentMonth}-${currentDates}`);
+  const filteredResult = result.filter((meet) => {
+    const year = meet.meetTime.date.split('-')[0];
+    const month =meet.meetTime.date.split('-')[1];
+    const date =meet.meetTime.date.split('-')[2];
+    const meetDate = new Date(`${year}-${month}-${date}`);
+    if(meetDate >= currentDate){
+      return meet;
+    }
+  });
+  return filteredResult;
+}
+
 export async function getAllMeetData(){
   const meetRef = ref(db, 'meets/');
   return get(meetRef)
     .then((snapshot) => {
     if(snapshot.exists()){
       const result = Object.values(snapshot.val());
-      return Promise.resolve(result);
+      const dateObject = new Date();
+      const filteredResult = filterMeetByDate(result);
+      return Promise.resolve(filteredResult);
     } else{
       console.warn('No AllMeetData Available');
       return Promise.resolve([]);

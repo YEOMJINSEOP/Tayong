@@ -120,6 +120,17 @@ export async function getChat(meetId){
     .catch(console.error);
 }
 
+export async function getCurrentDateObject(){
+  const curDateObject = new Date();
+  const currentYear = curDateObject.getFullYear();
+  const currentMonth = curDateObject.getMonth() + 1;
+  const currentDates = curDateObject.getDate();
+  const currentDate = new Date(`${currentYear}-${currentMonth}-${currentDates}`);
+  console.log('curDateObject: ', curDateObject);
+  console.log('currentDate: ', currentDate);
+  return currentDate;
+}
+
 function getMeetDateObject(meet){
   const meetDateObject = meet.meetTime.date;
   const year = meetDateObject.split('-')[0];

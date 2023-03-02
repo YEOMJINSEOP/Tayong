@@ -55,7 +55,7 @@ function Form(props) {
   }, [])
 
   useEffect(() => {
-  }, []);
+  }, [])
   const submitHandler = async (e) => {
     e.preventDefault();
     if(validateMeet()){

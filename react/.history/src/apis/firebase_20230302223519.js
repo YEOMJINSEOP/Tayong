@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get, update, remove } from "firebase/database";
+import { getDatabase, ref, set, onValue, get, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -112,6 +112,7 @@ export async function getChat(meetId){
     .then((snapshot) => {
         if(snapshot.exists()){
           const chatList = Object.values(snapshot.val());
+          //  console.log('✅',chatList);
           return Promise.resolve(chatList);
         } else{
           return Promise.resolve([]);
@@ -120,30 +121,30 @@ export async function getChat(meetId){
     .catch(console.error);
 }
 
-function getMeetDateObject(meet){
-  const meetDateObject = meet.meetTime.date;
-  const year = meetDateObject.split('-')[0];
-  const month =meetDateObject.split('-')[1];
-  const date =meetDateObject.split('-')[2];
-  const meetDate = new Date(`${year}-${month}-${date}`);
-  return meetDate
-}
-
-function removeMeetbyId(meet){
-  remove(ref(db, 'meets/' + meet.meetId));
+function getCurrentDate(){
+  const curDateObject = new Date();
+  const currentYear = curDateObject.getFullYear();
+  const currentMonth = curDateObject.getMonth() + 1;
+  const currentDates = curDateObject.getDate();
+  const currentDate = new Date(`${currentYear}-${currentMonth}-${currentDates}`);
+  return currentDate;
 }
 
 function filterMeetByDate(meets){
-  const currentDate = new Date();
+  const currentDate = getCurrentDate();
   const filteredMeets = meets.filter((meet) => {
-    const meetDate = getMeetDateObject(meet);
+    const meetDateObject = meet.meetTime.date;
+    const year = meetDateObject.split('-')[0];
+    const month =meetDateObject.split('-')[1];
+    const date =meetDateObject.split('-')[2];
+    const meetDate = new Date(`${year}-${month}-${date}`);
     if(meetDate >= currentDate){
-        return meet;
+      return meet;
     }
     else{
-        removeMeetbyId(meet);
-    }
+      const meetRef = ref(db, 'meets/' + meet.meetId);
 
+    }
   });
   return filteredMeets;
 }

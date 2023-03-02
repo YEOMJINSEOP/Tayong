@@ -55,7 +55,9 @@ function Form(props) {
   }, [])
 
   useEffect(() => {
-  }, []);
+    getCurrentDateObject()
+      .then((curDate) => console.log(curDate));
+  })
   const submitHandler = async (e) => {
     e.preventDefault();
     if(validateMeet()){

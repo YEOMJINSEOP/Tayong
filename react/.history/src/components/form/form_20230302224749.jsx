@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { useEffect } from 'react';
-import {createMeetData, getCurrentDateObject, onUserStateChange} from '../../apis/firebase';
+import {createMeetData, onUserStateChange} from '../../apis/firebase';
 
 function Form(props) {
   const params = useParams();
@@ -54,8 +54,6 @@ function Form(props) {
     );
   }, [])
 
-  useEffect(() => {
-  }, []);
   const submitHandler = async (e) => {
     e.preventDefault();
     if(validateMeet()){
@@ -101,7 +99,7 @@ function Form(props) {
 
           <div className={styles.meetTime}>
             <label className={styles.formLabel} htmlFor='meetTime'>출발시각</label>
-            <input type="date" id='date' min='2023-03-01' name='date' onChange={handleMeetTime} />
+            <input type="date" id='date' min={'2022-03-01'} name='date' onChange={handleMeetTime} />
             <input type="time" id='time'onChange={handleMeetTime}/>
           </div>
           

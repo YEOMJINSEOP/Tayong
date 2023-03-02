@@ -120,7 +120,18 @@ export async function getChat(meetId){
     .catch(console.error);
 }
 
-function getMeetDateObject(meet){
+export async function getCurrentDateObject(){
+  const curDateObject = new Date();
+  const currentYear = curDateObject.getFullYear();
+  const currentMonth = curDateObject.getMonth() + 1;
+  const currentDates = curDateObject.getDate();
+  const currentDate = new Date(`${currentYear}-${currentMonth}-${currentDates}`);
+  console.log('curDateObject: ', curDateObject);
+  console.log('currentDate: ', currentDate);
+  return currentDate;
+}
+
+export async function getMeetDateObject(meet){
   const meetDateObject = meet.meetTime.date;
   const year = meetDateObject.split('-')[0];
   const month =meetDateObject.split('-')[1];
@@ -134,16 +145,16 @@ function removeMeetbyId(meet){
 }
 
 function filterMeetByDate(meets){
-  const currentDate = new Date();
+  const currentDate = getCurrentDateObject();
+  const currentDate2 = new Date();
   const filteredMeets = meets.filter((meet) => {
     const meetDate = getMeetDateObject(meet);
-    if(meetDate >= currentDate){
-        return meet;
+    if(meetDate >= currentDate2){
+      return meet;
     }
     else{
-        removeMeetbyId(meet);
+      // removeMeetbyId(meet);
     }
-
   });
   return filteredMeets;
 }

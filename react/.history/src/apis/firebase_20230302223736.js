@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get, update, remove } from "firebase/database";
+import { getDatabase, ref, set, onValue, get, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -112,12 +112,22 @@ export async function getChat(meetId){
     .then((snapshot) => {
         if(snapshot.exists()){
           const chatList = Object.values(snapshot.val());
+          //  console.log('✅',chatList);
           return Promise.resolve(chatList);
         } else{
           return Promise.resolve([]);
         }
        })
     .catch(console.error);
+}
+
+function getCurrentDateObject(){
+  const curDateObject = new Date();
+  const currentYear = curDateObject.getFullYear();
+  const currentMonth = curDateObject.getMonth() + 1;
+  const currentDates = curDateObject.getDate();
+  const currentDate = new Date(`${currentYear}-${currentMonth}-${currentDates}`);
+  return currentDate;
 }
 
 function getMeetDateObject(meet){
@@ -129,21 +139,17 @@ function getMeetDateObject(meet){
   return meetDate
 }
 
-function removeMeetbyId(meet){
-  remove(ref(db, 'meets/' + meet.meetId));
-}
-
 function filterMeetByDate(meets){
-  const currentDate = new Date();
+  const currentDate = getCurrentDateObject();
   const filteredMeets = meets.filter((meet) => {
     const meetDate = getMeetDateObject(meet);
     if(meetDate >= currentDate){
-        return meet;
+      return meet;
     }
     else{
-        removeMeetbyId(meet);
+      const meetRef = ref(db, 'meets/' + meet.meetId);
+      // meetRef.remove();
     }
-
   });
   return filteredMeets;
 }

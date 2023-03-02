@@ -54,14 +54,13 @@ function Form(props) {
     );
   }, [])
 
-  const [prevDate, setPrevDate] = useState('2022-03-01');
+  const [prevDate, setPrevDate] = useState('');
   useEffect(() => {
     const yesterday = new Date();
-    const year = yesterday.getFullYear();
-    const month = (yesterday.getMonth() + 1).toString().padStart(2, '0');
-    const date = yesterday.getDate().toString().padStart(2, '0');
-    setPrevDate(`${year}-${month}-${date}`);
-  }, [prevDate]);
+    yesterday.setDate(yesterday.getDate() - 1);
+    console.log(`${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`);
+    setPrevDate(`${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`);
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();

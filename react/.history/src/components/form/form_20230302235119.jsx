@@ -54,14 +54,11 @@ function Form(props) {
     );
   }, [])
 
-  const [prevDate, setPrevDate] = useState('2022-03-01');
   useEffect(() => {
     const yesterday = new Date();
-    const year = yesterday.getFullYear();
-    const month = (yesterday.getMonth() + 1).toString().padStart(2, '0');
-    const date = yesterday.getDate().toString().padStart(2, '0');
-    setPrevDate(`${year}-${month}-${date}`);
-  }, [prevDate]);
+    yesterday.setDate(yesterday.getDate() - 1);
+    console.log('🐝', yesterday);
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -108,7 +105,7 @@ function Form(props) {
 
           <div className={styles.meetTime}>
             <label className={styles.formLabel} htmlFor='meetTime'>출발시각</label>
-            <input type="date" id='date' min={prevDate} name='date' onChange={handleMeetTime} />
+            <input type="date" id='date' min={yesterday} name='date' onChange={handleMeetTime} />
             <input type="time" id='time'onChange={handleMeetTime}/>
           </div>
           

@@ -56,11 +56,11 @@ function Form(props) {
 
   const [prevDate, setPrevDate] = useState('2022-03-01');
   useEffect(() => {
-    const yesterday = new Date();
-    const year = yesterday.getFullYear();
-    const month = (yesterday.getMonth() + 1).toString().padStart(2, '0');
-    const date = yesterday.getDate().toString().padStart(2, '0');
-    setPrevDate(`${year}-${month}-${date}`);
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const date = today.getDate.toString().padStart(2, '0');
+    console.log(`${year}-${month}-${date}`);
   }, [prevDate]);
 
   const submitHandler = async (e) => {

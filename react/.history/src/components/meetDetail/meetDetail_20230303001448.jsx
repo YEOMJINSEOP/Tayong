@@ -58,7 +58,7 @@ function MeetDetail(props) {
     setIsParticipate(false);
   }
 
-  const deleteHandler = () => {
+  const deleteHandler = (meet) => {
     removeMeetbyId(meet);
     navigate(-1);
   }

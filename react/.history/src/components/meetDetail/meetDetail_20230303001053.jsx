@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import styles from './meetDetail.module.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMeetDataById, onUserStateChange, addMeetParticipant, removeMeetParticipant, removeMeetbyId } from '../../apis/firebase';
+import { getMeetDataById, onUserStateChange, addMeetParticipant, removeMeetParticipant } from '../../apis/firebase';
 import Chat from '../chat/chat';
 
 function MeetDetail(props) {
@@ -58,11 +58,6 @@ function MeetDetail(props) {
     setIsParticipate(false);
   }
 
-  const deleteHandler = () => {
-    removeMeetbyId(meet);
-    navigate(-1);
-  }
-
 
   return (
     <div className={styles.container}>
@@ -109,8 +104,7 @@ function MeetDetail(props) {
             <button className={styles.btn_backToList} onClick={() => {navigate(-1);}}>목록으로</button>
             {!isParticipate && !isFull && <button className={styles.btn_join} onClick={participateHandler}>참여하기</button>}          
             {!isParticipate && isFull && <button className={styles.btn_full}>모집마감</button>}
-            {isParticipate && !isHost && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
-            {isHost && <button className={styles.btn_delete} onClick={deleteHandler}>삭제하기</button>}
+            {isParticipate && <button className={styles.btn_quit} onClick={quitHandler}>나가기</button>}
           </div>
       </div>
       {isParticipate && <Chat meetId={params.meetId}/>}

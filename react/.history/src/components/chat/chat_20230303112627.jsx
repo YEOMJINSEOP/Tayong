@@ -74,7 +74,7 @@ function Chat({meetId}) {
       <div className={styles.chat_container} ref={chatRef}>
         <ul className={styles.chat_box}>
           {chat.map((data, idx) => {
-            return <li key={idx} className={userName === data.userName ? styles.chat_mine : styles.chat_other}>
+            return <li key={idx} className={userName === data.userName ? styles.myChat : styles.chat}>
                       <p className={styles.chat_username}>{data.userName}</p>
                       <div className={styles.chat_message}>{data.message}</div>
                     </li>

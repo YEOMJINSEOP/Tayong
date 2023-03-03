@@ -16,55 +16,37 @@
   width: 100%;
 }
 
-.chat_mine{
+.myChat{
   position: relative;
   width: 100%;
-  left: 77%;
+  left: 72%;
   border: 1px solid gainsboro;
   border-radius: 10px;
   font-size: 16px;
   background-color: orange;
-  color: black;
+  color: white;
   margin-top: 20px;
   width: fit-content;
   max-width: 300px;
-  padding: 8px;
+  padding: 4px;
   white-space: pre-wrap;
   word-break:break-all;
 }
 
-.chat_other{
+.chat{
   position: relative;
   width: 100%;
-  left: 3%;
+  left: 2%;
   border: 1px solid gainsboro;
   border-radius: 10px;
   font-size: 16px;
-  background-color: white;
-  color: black;
+  background-color: orange;
+  color: white;
   margin-bottom: 20px;
   width:fit-content;
-  padding: 8px;
+  padding: 4px;
   white-space: pre-wrap;
   word-break:break-all;
-}
-
-.chat_username {
-  font-size:12px;
-}
-
-.chat_mine > .chat_username{
-  color: white;
-  font-weight: 500;
-}
-
-.chat_other > .chat_username{
-  color: black;
-}
-
-.chat_message{
-  font-size: 14px;
-  font-weight: bold;
 }
 
 .chat_container{

@@ -28,7 +28,7 @@
   margin-top: 20px;
   width: fit-content;
   max-width: 300px;
-  padding: 8px;
+  padding: 4px;
   white-space: pre-wrap;
   word-break:break-all;
 }
@@ -44,7 +44,7 @@
   color: black;
   margin-bottom: 20px;
   width:fit-content;
-  padding: 8px;
+  padding: 4px;
   white-space: pre-wrap;
   word-break:break-all;
 }
@@ -55,11 +55,6 @@
 
 .chat_mine > .chat_username{
   color: white;
-  font-weight: 500;
-}
-
-.chat_other > .chat_username{
-  color: black;
 }
 
 .chat_message{

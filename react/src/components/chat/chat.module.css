@@ -109,10 +109,3 @@
   border-radius: 0;
   border-bottom-right-radius: 7px;
 }
-
-
-@media screen and (max-width: 768px){
-  .chat_mine {
-    left: 70%;
-  }
-}

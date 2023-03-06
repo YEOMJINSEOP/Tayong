@@ -24,11 +24,11 @@ function Header(props) {
   };
 
   return (
-    <>
       <nav className={styles.navbar}>
         <p className={styles.logo} onClick={() => {
           navigate(`/`)
-        }} >Tayong</p>
+        }} >Tayong
+        </p>
         {!user && <button className={styles.loginBtn} onClick={handleLogin}>로그인</button>}
         {user && <div className={styles.userInfo}>
           <img className={styles.userPhoto} src={user.photoURL}/>
@@ -36,7 +36,6 @@ function Header(props) {
           <button className={styles.logoutBtn} onClick={handleLogout}>로그아웃</button>
         </div>}        
       </nav>
-    </>
   );
 }
 

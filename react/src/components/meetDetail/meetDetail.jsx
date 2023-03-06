@@ -80,7 +80,7 @@ function MeetDetail(props) {
               </div>
             </div>
             <div className={styles.participantContainer}>
-                <div className={styles.participantLabel}>참여자</div>
+                <label className={styles.meetDetailLable}>참여자</label>
                 <ul className={styles.participantList}>
                   {meet.participant.map((user, idx) => 
                       {return <li key={idx}>{user}</li>}
@@ -88,7 +88,10 @@ function MeetDetail(props) {
                 </ul>
             </div>
           </div>
-          <div className={styles.title}>{meet.title}</div>
+          <div className={styles.title}>
+          <label className={styles.meetDetailLable} htmlFor='title'>제목</label>
+            <span>{meet.title}</span>
+          </div>
           <div className={styles.info}>
             <div className={styles.recruitment}>
               <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
@@ -113,8 +116,10 @@ function MeetDetail(props) {
             {isHost && <button className={styles.btn_delete} onClick={deleteHandler}>삭제하기</button>}
           </div>
       </div>
-      {isParticipate && <Chat meetId={params.meetId}/>}
-      {!isParticipate && <div className={styles.chat_blocker}>모임에 참여하면 채팅이 가능합니다.</div>}
+      <div className={styles.chatContainer}>
+        {isParticipate && <Chat meetId={params.meetId}/>}
+        {!isParticipate && <div className={styles.chat_blocker}>모임에 참여하면 채팅이 가능합니다.</div>}
+      </div>
     </div>
   );
 }

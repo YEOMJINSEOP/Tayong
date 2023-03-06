@@ -72,11 +72,11 @@ function MeetDetail(props) {
             <div className={styles.location}>
               <div className={styles.departure}>
                 <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
-                {meet.departure}
+                <span>{meet.departure}</span>
               </div>
               <div className={styles.arrival}>
                 <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
-                {meet.arrival}
+                <span>{meet.arrival}</span>
               </div>
             </div>
             <div className={styles.participantContainer}>

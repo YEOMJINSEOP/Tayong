@@ -180,7 +180,6 @@ button {
   color: var(--color-white);
 }
 
-
 .btn_quit, .btn_delete {
   background-color: #ef4b3f;
   color: var(--color-white);
@@ -219,8 +218,8 @@ button {
 }
 
 .participantList > li {
-  margin: 6px;
-  font-size: 14px;
+  font-size: var(--font-small);
+  text-align:start;
 }
 
 .chatContainer {
@@ -314,15 +313,34 @@ button {
     padding: 4%;
   }
 
-  .content > span{
-    transform: translateX(10%);
-    text-align: center;
-  }
 
   .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
     margin: 0;
     border-radius: 0%;
     border-bottom: 0.1px solid lightgray;
+    justify-content: flex-start;
+  }
+
+  .time{
+    padding: 0;
+  }
+
+  .participantList{
+    margin-left: 0;
+  }
+
+  .participantList > li {
+    position: relative;
+    left: 8%;
+  }
+
+  span {
+    position: relative;
+    left: 40%;
+  }
+
+  .btns{
+    margin-top: 10px;
   }
 
   .chatContainer{

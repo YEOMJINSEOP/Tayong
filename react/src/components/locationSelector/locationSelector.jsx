@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 import styles from './locationSelector.module.css';
-
-import { FaArrowRight } from 'react-icons/fa';
-
 import Departure from '../departure/departure';
 import Arrival from '../arrival/arrival';
-import { useNavigate} from 'react-router-dom';
-import getData from '../../service/getData';
+import { FaArrowRight } from 'react-icons/fa';
+
 
 function LocationSelector(props) {
 

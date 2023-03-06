@@ -1,9 +1,9 @@
 @import '../../App.module.css';
 
 .locationSelector{
-  position: fixed;
-
+  position: absolute;
   width: 100%;
+  height: 65%;
   margin: auto;
   top: 35%;
 
@@ -13,10 +13,11 @@
 }
 
 .location{
+  width: 100%;
+  /* background-color: red; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  justify-content:space-evenly;
 }
 
 .info{
@@ -26,22 +27,18 @@
   padding-bottom: 0.5rem;
 }
 
+.departure, .arrival{
+  width: 30%;
+}
 
-.info span{
+.info > span{
   font-size: 26px;
   font-weight: var(--weight-pretendard-medium);
   color: var(--color-orange);
 }
 
 
-
-.info{
-  margin-bottom: 1;
-}
-
-
 .arrow{
-
   margin-top: 80px;
   display: flex;
   align-items:center;
@@ -51,9 +48,8 @@
 
 
 .submitBtn{
-  
-  position: fixed;
-  top: 62%;
+  position: relative;
+  top: 10%;
   outline: none;
   width: 201px;
   height: 51px;
@@ -70,6 +66,11 @@
 
 @media screen and (max-width: 768px){
 
+.locationSelector{
+  top: 18%;
+  height: 82%;
+}
+
 .info{
     font-size: 16px;
     color: var(--color-black);
@@ -83,33 +84,22 @@
     font-weight: var(--weight-pretendard-medium);
     color: var(--color-orange);
 }
-  
-.ocos{
-    font-size: 22px;
-    font-family: var(--font-family-leferibase-bold);
+
+.departure, .arrival{
+  width: 70%;
 }
+  
 
 .arrow{
   transform: rotate(90deg);
 }
-
-.departure{
-  margin-bottom: 30px;
-}
-
-.arrival{
-  margin-top: 30px;
-}
   
 
 .location{
-  position: fixed;
-  top: 15%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
 }
 
 .arrow{
@@ -117,9 +107,5 @@
   padding: 0;
 }
 
-.submitBtn {
-  position: fixed;
-  top: 75%;
-}
 }
 

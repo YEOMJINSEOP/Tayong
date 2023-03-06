@@ -34,22 +34,22 @@ function LocationSearchBox({onSet, isMain, locParam}) {
 
   return (
     <div className={styles.container}>     
-    <div className={isMain ? styles.inputBox : styles.locInfoBox}>
-      <input
-          className={styles.input}
-          type="text"
-          value = {locParam ? locParam : inputStr}
-          // onKeyDown = {(e) => onKeyPressHandler(e)}
-          onChange = {(e) => setInputStr(e.target.value)}
-      />
-      <FaSearch className={isMain ? styles.inputSearchIcon: styles.infoSearchIcon}/>
+      <div className={isMain ? styles.inputBox : styles.locInfoBox}>
+        <input
+            className={styles.input}
+            type="text"
+            value = {locParam ? locParam : inputStr}
+            // onKeyDown = {(e) => onKeyPressHandler(e)}
+            onChange = {(e) => setInputStr(e.target.value)}
+        />
+        <FaSearch className={isMain ? styles.inputSearchIcon: styles.infoSearchIcon}/>
+      </div>
+      <div className={styles.searchDropDown}>
+          <ul ref={searchRef}>
+            {relateLoc}
+          </ul>
+      </div>
     </div>
-    <div className={styles.searchDropDown}>
-        <ul ref={searchRef}>
-          {relateLoc}
-        </ul>
-    </div>
-</div>
   );
 }
 

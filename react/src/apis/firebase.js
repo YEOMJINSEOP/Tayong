@@ -54,6 +54,8 @@ export async function logout(){
   });
 }
 
+/** User */
+
 export function onUserStateChange(callback){
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -69,13 +71,6 @@ export async function createUserData(userId, name, imageUrl){
   });
 }
 
-export async function addChat(meetId, userName, message){
-  set(ref(db, `chats/${meetId}/` + new Date()), {
-    userName,
-    message
-  })
-}
-
 export async function getUserName(userId){
   const userRef = ref(db, 'users/' + userId);
   onValue(userRef, (snapshot) => {
@@ -88,6 +83,56 @@ export async function getUserImageUrl(userId){
   onValue(userRef, (snapshot) => {
     return snapshot.val().profile_image;
   })
+}
+
+/** Chat */
+
+export async function addChat(meetId, userName, message){
+  set(ref(db, `chats/${meetId}/` + new Date()), {
+    userName,
+    message
+  })
+};
+
+export async function getChat(meetId){
+  const chatRef = ref(db, `chats/${meetId}/`);
+  return get(chatRef)
+    .then((snapshot) => {
+        if(snapshot.exists()){
+          const chatList = Object.values(snapshot.val());
+          return Promise.resolve(chatList);
+        } else{
+          return Promise.resolve([]);
+        }
+       })
+    .catch(console.error);
+};
+
+async function removeChatbyId(meet){
+  remove(ref(db, 'chats/' + meet.meetId));
+};
+
+/** Meet */
+
+function getMeetDateObject(meet){
+  const meetDateObject = meet.meetTime.date;
+  const year = meetDateObject.split('-')[0];
+  const month =meetDateObject.split('-')[1];
+  const date =meetDateObject.split('-')[2];
+  const meetDate = new Date(`${year}-${month}-${date}`);
+  return meetDate
+}
+
+function getMeetDateObjectWithTime(meet){
+  const meetDateObject = meet.meetTime.date;
+  const meetTimeObject = meet.meetTime.time;
+  const year = meetDateObject.split('-')[0];
+  const month =meetDateObject.split('-')[1];
+  const date =meetDateObject.split('-')[2];
+  const hour = meetTimeObject.split(':')[0];
+  const minute = meetTimeObject.split(':')[1];
+  const meetDate = new Date(`${year}-${month}-${date} ${hour}:${minute}:00`);
+  return meetDate
 }
 
 export function createMeetData(meet){
@@ -106,29 +151,6 @@ export function createMeetData(meet){
   });
 }
 
-export async function getChat(meetId){
-  const chatRef = ref(db, `chats/${meetId}/`);
-  return get(chatRef)
-    .then((snapshot) => {
-        if(snapshot.exists()){
-          const chatList = Object.values(snapshot.val());
-          return Promise.resolve(chatList);
-        } else{
-          return Promise.resolve([]);
-        }
-       })
-    .catch(console.error);
-}
-
-function getMeetDateObject(meet){
-  const meetDateObject = meet.meetTime.date;
-  const year = meetDateObject.split('-')[0];
-  const month =meetDateObject.split('-')[1];
-  const date =meetDateObject.split('-')[2];
-  const meetDate = new Date(`${year}-${month}-${date}`);
-  return meetDate
-}
-
 export async function removeMeetbyId(meet){
   remove(ref(db, 'meets/' + meet.meetId));
 }
@@ -142,7 +164,11 @@ function filterMeetByDate(meets){
     }
     else{
         removeMeetbyId(meet);
+        removeChatbyId(meet);
     }
+  });
+  filteredMeets.sort((a, b) => {
+    return getMeetDateObjectWithTime(a) - getMeetDateObjectWithTime(b);
   });
   return filteredMeets;
 }

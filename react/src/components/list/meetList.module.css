@@ -1,12 +1,10 @@
 @import '../../App.module.css';
 
 .meetList{
-  /* top: 3.4rem;
-  bottom: 3.7rem; */
-  background-color: yellow;
-  position: static;
-
+  position: absolute;
+  /* background-color: red; */
   width: 100%;
+  height: 100%;
   overflow-y: scroll;
 
   padding: 0;
@@ -18,27 +16,15 @@
   align-items: center;
 
 }
-
 .meetListLabel {
   font-family: var(--font-family-pretendard-regular);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-
+  font-weight: var(--weight-pretendard-bold);
+  font-size: var(--font-small);
+  margin-bottom: 4px;
   color: var(--color-orange);
-
+  line-height: 17px;
 }
 
-
-.location{
-  position: absolute;
-  top: 12%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-}
 
 .locationDeparture, .locationArrival{
   display: flex;
@@ -48,18 +34,13 @@
   color: var(--color-orange);
   font-weight: var(--weight-bold);
   border: none;
-
-}
-
-.arrivalBox {
-  border: none;
 }
 
 .location input{
   width: 152px;
   height: 40px;
-  margin: 0.5rem;
-  padding: 0 0.5rem;
+  /* margin: 0.5rem; */
+  /* padding: 0 0.5rem; */
 
   text-align: center;
   background-color: var(--color-white);
@@ -69,24 +50,51 @@
 
   font-family: var(--font-family-pretendard-regular);
   font-weight: var(--font-pretendard-light);
-  font-size: 14px;
+  font-size: var(--font-small);
 
 }
 
 .locationArrow{
-  font-size: var(--font-semi-small);
+  font-size: var(--font-small);
   color: var(--color-orange);
-  margin-top: 12px;
+  transform: translateY(50%);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.locInfo{
+  position: absolute;
+  top: 4%;
+  /* background-color: yellow; */
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.location{
+  /* background-color: navy; */
+  left: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .btn_create{
-  width: 134px;
+  position: absolute;
+  right: 0%;
+  background-color: #ef4b3f;
+  width: 16%;
   height: 40px;
   border-radius: 8px;
   background-color: var(--color-orange);
   font-family: var(--font-family-pretendard-regular);
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: var(--weight-pretendard-medium);
+  font-size: var(--font-small);
   line-height: 17px;
   margin-top: 16px;
   color: var(--color-white);
@@ -95,11 +103,10 @@
 
 .meetUl{
   /* background-color: green; */
-  position :absolute;
-  width: 80vw;
-  top: 180px;
-  height: 70%;
-  padding: 10px 0 0 0;
+  position:absolute;
+  top: 18%;
+  width: 80%;
+  /* height: 80%; */
   overflow-x: hidden;
   overflow-wrap:break-word;
   overflow-y:scroll;
@@ -217,9 +224,14 @@
 
   
   .meetUl{
+    top: 14%;
     display: flex;
     flex-direction: column;
     padding: 0;
+  }
+
+  .btn_create{
+    width: 100%;
   }
 
 }

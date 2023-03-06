@@ -39,19 +39,21 @@ function MeetList(props) {
   
   return (
     <div className={styles.meetList}>
-      <div className={styles.location}>
-        <div className={styles.locationDeparture}>
-          <label className={styles.meetListLabel} htmlFor='departure'>출발</label>
-          <LocationSearchBox className={styles.locInfoBox} locParam={depLoc}/>
+      <div className={styles.locInfo}>
+        <div className={styles.location}>
+          <div className={styles.locationDeparture}>
+            <label className={styles.meetListLabel} htmlFor='departure'>출발</label>
+            <LocationSearchBox className={styles.locInfoBox} locParam={depLoc}/>
+          </div>
+          <FaArrowRight className={styles.locationArrow}/>
+          <div className={styles.locationArrival}>
+            <label className={styles.meetListLabel} htmlFor='arrival'>도착</label>
+            <LocationSearchBox className={styles.locInfoBox} locParam={arrLoc}/>
+          </div>    
         </div>
-        <FaArrowRight className={styles.locationArrow}/>
-        <div className={styles.locationArrival}>
-          <label className={styles.meetListLabel} htmlFor='arrival'>도착</label>
-          <LocationSearchBox className={styles.locInfoBox} locParam={arrLoc}/>
-        </div>    
         <button className={styles.btn_create} onClick={(e) => {
-        navigate(`/create/${depLoc}/${arrLoc}`);
-      }}>모집하기</button>
+          navigate(`/create/${depLoc}/${arrLoc}`);
+        }}>모집하기</button>
       </div>
       <ul className={styles.meetUl}>
         {meetList.map((meet) => {

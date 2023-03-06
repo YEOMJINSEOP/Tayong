@@ -14,7 +14,7 @@
 
 .location{
   width: 100%;
-  /* background-color: red; */
+  background-color: red;
   display: flex;
   flex-direction: row;
   justify-content:space-evenly;

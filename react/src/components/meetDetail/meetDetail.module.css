@@ -334,7 +334,7 @@ button {
     left: 8%;
   }
 
-  .meetContainer > span {
+  .detailSpan, .time, .date {
     position: relative;
     left: 40%;
   }

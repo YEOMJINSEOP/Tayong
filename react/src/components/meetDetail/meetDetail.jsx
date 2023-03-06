@@ -72,11 +72,11 @@ function MeetDetail(props) {
             <div className={styles.location}>
               <div className={styles.departure}>
                 <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
-                <span>{meet.departure}</span>
+                <span className={styles.detailSpan}>{meet.departure}</span>
               </div>
               <div className={styles.arrival}>
                 <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
-                <span>{meet.arrival}</span>
+                <span className={styles.detailSpan}>{meet.arrival}</span>
               </div>
             </div>
             <div className={styles.participantContainer}>
@@ -90,12 +90,12 @@ function MeetDetail(props) {
           </div>
           <div className={styles.title}>
           <label className={styles.meetDetailLable} htmlFor='title'>제목</label>
-            <span>{meet.title}</span>
+            <span className={styles.detailSpan}>{meet.title}</span>
           </div>
           <div className={styles.info}>
             <div className={styles.recruitment}>
               <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
-              <span>{meet.recruitment} 명</span>
+              <span className={styles.detailSpan}>{meet.recruitment} 명</span>
             </div>
             <div className={styles.meetTime}>
               <label className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</label>
@@ -106,7 +106,7 @@ function MeetDetail(props) {
 
           <div className={styles.content}>
               <label className={styles.meetDetailLable} htmlFor='meetTime'>내용</label>
-              <span>{meet.content}</span>
+              <span className={styles.detailSpan}>{meet.content}</span>
           </div>
 
           <div className={styles.btns}>

@@ -334,7 +334,7 @@ button {
     left: 8%;
   }
 
-  span {
+  .meetContainer > span {
     position: relative;
     left: 40%;
   }

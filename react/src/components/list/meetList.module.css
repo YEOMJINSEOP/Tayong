@@ -2,7 +2,6 @@
 
 .meetList{
   position: absolute;
-  /* background-color: red; */
   width: 100%;
   height: 100%;
   overflow-y: scroll;
@@ -14,8 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
+
 .meetListLabel {
   font-family: var(--font-family-pretendard-regular);
   font-weight: var(--weight-pretendard-bold);
@@ -39,8 +38,6 @@
 .location input{
   width: 152px;
   height: 40px;
-  /* margin: 0.5rem; */
-  /* padding: 0 0.5rem; */
 
   text-align: center;
   background-color: var(--color-white);
@@ -66,7 +63,6 @@
 .locInfo{
   position: absolute;
   top: 4%;
-  /* background-color: yellow; */
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -75,7 +71,6 @@
 
 
 .location{
-  /* background-color: navy; */
   left: 0%;
   display: flex;
   flex-direction: row;
@@ -102,11 +97,9 @@
 
 
 .meetUl{
-  /* background-color: green; */
   position:absolute;
   top: 18%;
   width: 80%;
-  /* height: 80%; */
   overflow-x: hidden;
   overflow-wrap:break-word;
   overflow-y:scroll;
@@ -190,9 +183,6 @@
     display: none;
   }
 
-
-
-  
   .meetUl{
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -205,7 +195,10 @@
 }
 
 @media screen and (max-width: 768px){
-
+  .btn_create {
+    width: 100%;
+    margin-top: -20px;
+  }
   .meetList{
     display: flex;
     flex-direction: column;
@@ -216,22 +209,16 @@
 
   }
 
-
   .meetListLabel{
     padding: 0;
   }
-
-
   
   .meetUl{
-    top: 14%;
+    top: 8%;
+    height: 88%;
     display: flex;
     flex-direction: column;
     padding: 0;
-  }
-
-  .btn_create{
-    width: 100%;
   }
 
 }

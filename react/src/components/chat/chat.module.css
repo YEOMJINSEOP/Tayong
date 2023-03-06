@@ -1,5 +1,5 @@
 .container {
-  width: 540px;
+  width: 100%;
   height: 580px;
   background-color: white;
   border: 3px solid orange;
@@ -13,13 +13,14 @@
 .chat_box {
   padding: 0;
   list-style: none;
+  border: none;
   width: 100%;
 }
 
 .chat_mine{
   position: relative;
   width: 100%;
-  left: 77%;
+  left: 82%;
   border: 1px solid gainsboro;
   border-radius: 10px;
   font-size: 16px;
@@ -98,3 +99,9 @@
   border-bottom-right-radius: 7px;
 }
 
+
+@media screen and (max-width: 768px){
+  .chat_mine {
+    left: 70%;
+  }
+}

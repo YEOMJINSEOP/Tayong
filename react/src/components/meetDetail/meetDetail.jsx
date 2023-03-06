@@ -105,7 +105,8 @@ function MeetDetail(props) {
           </div>
 
           <div className={styles.content}>
-              {meet.content}
+              <label className={styles.meetDetailLable} htmlFor='meetTime'>내용</label>
+              <span>{meet.content}</span>
           </div>
 
           <div className={styles.btns}>

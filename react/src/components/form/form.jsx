@@ -15,7 +15,7 @@ function Form(props) {
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: uuidv4(), host: '', departure, arrival, meetTime: '', recruitment: 2, participant: [], transport: '', title: '', content: ''})
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
-
+  const [user, setUser] = useState();
   useEffect(() => {
     setMeet((meet) => ({...meet, meetTime: meetTime }));
   }, [meetTime])
@@ -45,11 +45,11 @@ function Form(props) {
     return true;
   }
 
- 
   useEffect(() => {
     onUserStateChange(
       (user) => {
         setMeet((meet) => ({...meet, host:user.displayName, participant: [user.displayName]}));
+        setUser(user);
       } 
     );
   }, [])
@@ -65,10 +65,16 @@ function Form(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if(validateMeet()){
-      createMeetData(meet);
-      navigate(-1);
-    };
+    if(!user){
+      alert('로그인이 필요합니다');
+      return;
+    }
+    else{
+      if(validateMeet()){
+        createMeetData(meet);
+        navigate(-1);
+      };
+    }
   }
 
   const handleChange = (e) => {

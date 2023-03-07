@@ -5,10 +5,17 @@ import { FaArrowRight } from 'react-icons/fa';
 import {useNavigate, useParams } from 'react-router-dom';
 import Meet from '../meet/meet';
 import LocationSearchBox from '../locationSearchBox/locationSearchBox';
-import { getAllMeetData } from '../../apis/firebase';
+import { getAllMeetData, onUserStateChange } from '../../apis/firebase';
 
 function MeetList(props) {
+  const [user, setUser] = useState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onUserStateChange((user) => {
+      setUser(user);
+    }) 
+  }, [user]);
 
   const [meetList, setMeetList] = useState([]);
   let params = useParams();
@@ -36,6 +43,15 @@ function MeetList(props) {
       )
   }, []);
 
+  const createBtnHandler = () => {
+    if(!user){
+      alert('로그인이 필요합니다.');
+      return;
+    }
+    else{
+      navigate(`/create/${depLoc}/${arrLoc}`);
+    }
+  }
   
   return (
     <div className={styles.meetList}>
@@ -51,9 +67,7 @@ function MeetList(props) {
             <LocationSearchBox className={styles.locInfoBox} locParam={arrLoc}/>
           </div>    
         </div>
-        <button className={styles.btn_create} onClick={(e) => {
-          navigate(`/create/${depLoc}/${arrLoc}`);
-        }}>모집하기</button>
+        <button className={styles.btn_create} onClick={createBtnHandler}>모집하기</button>
       </div>
       <ul className={styles.meetUl}>
         {meetList.map((meet) => {

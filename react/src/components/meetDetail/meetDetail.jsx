@@ -16,7 +16,6 @@ function MeetDetail(props) {
   useEffect(() => {
     onUserStateChange(
       (user) => {
-        console.log(user);
         setUserMail(user.email);
       } 
     );

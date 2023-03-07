@@ -87,9 +87,9 @@ export async function getUserImageUrl(userId){
 
 /** Chat */
 
-export async function addChat(meetId, userName, message){
+export async function addChat(meetId, userMail, message){
   set(ref(db, `chats/${meetId}/` + new Date()), {
-    userName,
+    userMail,
     message
   })
 };

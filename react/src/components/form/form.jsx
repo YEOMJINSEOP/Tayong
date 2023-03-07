@@ -48,7 +48,7 @@ function Form(props) {
   useEffect(() => {
     onUserStateChange(
       (user) => {
-        setMeet((meet) => ({...meet, host:user.displayName, participant: [user.displayName]}));
+        setMeet((meet) => ({...meet, host:user.email, participant: [user.email]}));
         setUser(user);
       } 
     );

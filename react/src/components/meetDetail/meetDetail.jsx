@@ -8,7 +8,7 @@ function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, participant: [], transport: '', title: '', content: ''});
-  const [userName, setUserName] = useState('');
+  const [userMail, setUserMail] = useState('');
   const [isParticipate, setIsParticipate] = useState(false);
   const [isFull, setIsFull] = useState(false);
   const [isHost, setIsHost] = useState(false);
@@ -16,7 +16,8 @@ function MeetDetail(props) {
   useEffect(() => {
     onUserStateChange(
       (user) => {
-        setUserName(user.displayName);
+        console.log(user);
+        setUserMail(user.email);
       } 
     );
   }, []);
@@ -25,17 +26,17 @@ function MeetDetail(props) {
     const meetId = params.meetId;
     getMeetDataById(meetId)
     .then(meet => {
-      if(meet.participant.includes(userName)){
+      if(meet.participant.includes(userMail)){
         setIsParticipate(true);
       }
       setMeet(meet);
-      setIsHost(meet.host === userName);
+      setIsHost(meet.host === userMail);
       setIsFull(meet.participant.length >= meet.recruitment);
     })
-  }, [userName, isParticipate]);
+  }, [userMail, isParticipate]);
 
   const participateHandler = () => {
-    if(!userName){
+    if(!userMail){
       alert('로그인이 필요합니다.');
       return;
     }
@@ -45,16 +46,16 @@ function MeetDetail(props) {
     }
     else{
       setIsParticipate(true);
-      addMeetParticipant(meet.meetId, meet.participant, userName);
+      addMeetParticipant(meet.meetId, meet.participant, userMail);
     }
   }
 
   const quitHandler = () => {
-    if(meet.host == userName){
+    if(meet.host == userMail){
       alert('호스트는 모임을 나갈 수 없습니다.');
       return;
     }
-    removeMeetParticipant(meet.meetId, meet.participant, userName);
+    removeMeetParticipant(meet.meetId, meet.participant, userMail);
     setIsParticipate(false);
   }
 

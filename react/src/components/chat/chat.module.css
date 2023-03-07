@@ -59,16 +59,16 @@
   word-break:break-all;
 }
 
-.chat_username {
+.chat_usermail {
   font-size:12px;
 }
 
-.chat_mine > .chat_username{
+.chat_mine > .chat_usermail{
   color: white;
   font-weight: 500;
 }
 
-.chat_other > .chat_username{
+.chat_other > .chat_usermail{
   color: black;
 }
 

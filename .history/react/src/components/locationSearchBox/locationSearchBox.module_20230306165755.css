@@ -1,0 +1,85 @@
+@import '../../App.module.css';
+
+
+.container{
+  width: 100%;
+}
+
+.inputBox{
+  width: 100pxs;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  padding-left: 3%;
+  padding-right: 3%;
+
+
+  background-color: var(--color-white);
+  border: 2px solid var(--color-orange);
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.locInfoBox input{
+  width: 100%;
+  font-size: 16px;
+}
+
+
+.input{
+  border: none;
+  outline: none;
+  font-weight: var(--weight-pretendard-light);
+  font-size: 18px;
+  text-align: center;
+}
+
+
+.inputSearchIcon{
+  width: 20px;
+  height: 20px;
+  color: var(--color-orange);
+}
+
+.infoSearchIcon{
+  display:none;
+}
+
+.ocos{
+  font-family: var(--font-family-leferibase-bold);
+}
+
+
+.searchDropDown ul{
+  list-style: none;
+  padding: 0;
+}
+
+.searchDropDown li{
+  width: 100%;
+  height: 32px;
+
+  padding-top: 3px;
+
+  font-family: var(--font-family-pretendard-regular);
+  font-size: 18px;
+
+  border: 1px solid lightgrey;
+  text-align: center;
+
+  z-index: auto;
+}
+
+.searchDropDown li:hover{
+  border-color: var(--color-orange);
+  background-color: #fcfcfc;
+}
+
+@media screen and (max-width: 768px){
+  .searchIcon{
+    width: 20px;
+    height: 20px;
+  }
+}

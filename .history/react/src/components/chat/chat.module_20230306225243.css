@@ -1,0 +1,108 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  background-color: white;
+  border: 3px solid orange;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat_box {
+  padding: 0;
+  list-style: none;
+  border: none;
+  width: 100%;
+}
+
+.chat_mine{
+  position: absolute;
+  width: 100%;
+  right: 2%;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: orange;
+  color: black;
+  margin-top: 20px;
+  width: fit-content;
+  max-width: 300px;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break:break-all;
+}
+
+.chat_other{
+  position: relative;
+  width: 100%;
+  left: 3%;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  margin-bottom: 20px;
+  width:fit-content;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break:break-all;
+}
+
+.chat_username {
+  font-size:12px;
+}
+
+.chat_mine > .chat_username{
+  color: white;
+  font-weight: 500;
+}
+
+.chat_other > .chat_username{
+  color: black;
+}
+
+.chat_message{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.chat_container{
+  overflow: scroll;
+}
+.input_container{
+  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  min-height: 40px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.chat_input{
+  width: 80%;
+  margin-left: 10px;
+  text-align: start;
+  border-radius: 10px;
+  padding-left: 12px;
+}
+
+.send_btn{
+  width: 80px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  border-bottom-right-radius: 7px;
+}
+
+
+@media screen and (max-width: 768px){
+  .chat_mine {
+    left: 70%;
+  }
+}

@@ -24,7 +24,7 @@ function Chat({meetId}) {
   }, [])
   
   useEffect(() => {
-    setSocket(io('http://ec2-3-38-224-246.ap-northeast-2.compute.amazonaws.com:8083', {
+    setSocket(io(process.env.REACT_APP_CHAT_SERVER_URL, {
       query: { id: meetId }
     }));
   }, [meetId]);
@@ -38,6 +38,7 @@ function Chat({meetId}) {
     }
     return chatData;
   }
+
   useEffect(() => {
     getChatDataFromDB(meetId).then((chatData) =>
       setChat(chatData)
@@ -66,8 +67,6 @@ function Chat({meetId}) {
       setMessage("");
     }
   }
-
-
 
   return (
     <div className={styles.container}>

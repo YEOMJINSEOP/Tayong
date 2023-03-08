@@ -6,12 +6,12 @@ import { FaSearch } from 'react-icons/fa';
 
 function LocationSearchBox({onSet, isMain, locParam}) {
 
-  const [location, setLocation] = useState([]);
+  const [locationList, setLocationList] = useState([]);
 
   useEffect(() => {
-    const urlLocation = 'data/location.json';
+    const urlLocation = process.env.REACT_APP_LOCATION;
     getData(urlLocation)
-    .then(res => setLocation(res['data']));
+    .then(res => setLocationList(res['data']));
   }, []);
 
   const [inputStr, setInputStr] = useState('');
@@ -23,8 +23,10 @@ function LocationSearchBox({onSet, isMain, locParam}) {
 
   const searchRef = useRef();
   
-  let relateLoc = location.filter((loc) => {
-    if(inputStr && loc.name.includes(inputStr)){return loc}
+  let relateLoc = locationList.filter((loc) => {
+    if(inputStr && loc.name.includes(inputStr)){
+        return loc
+    }
     })
     .map(
       (loc) => {

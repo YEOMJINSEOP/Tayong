@@ -218,7 +218,8 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
-  position: absolute;
+  background-color: #ef4b3f;
+  /* position: absolute; */
   left: 36%;
 }
 
@@ -316,7 +317,6 @@ button {
 
   .participantList{
     margin-left: 0;
-    position: static;
   }
 
   .participantList > li {

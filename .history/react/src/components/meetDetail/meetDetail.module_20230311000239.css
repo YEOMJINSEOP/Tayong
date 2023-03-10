@@ -29,8 +29,6 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
-  font-size: var(--font-small);
 }
 
 .meetDetailLable{
@@ -46,7 +44,6 @@
 
   color: var(--color-orange);
 }
-
 
 .title > .meetDetailLable, .content > .meetDetailLable {
   left: 5%;
@@ -218,10 +215,7 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
-  position: absolute;
-  left: 36%;
 }
-
 
 .participantList > li {
   font-size: var(--font-small);
@@ -249,7 +243,7 @@ button {
 }
 
 
-@media screen and (max-width: 764px){
+@media screen and (max-width: 768px){
 
   .container{
     margin-top: 0%;
@@ -305,18 +299,17 @@ button {
     width: 100%;
     height: fit-content;
     border-radius: 0%;
-    border-bottom: 0.1px groove var(--color-orange);
+    border-bottom: 0.1px groove lightgray;
     margin: 0;
   }
 
   .content{
     height: fit-content;
-    padding: 10px;
+    padding: 0;
   }
 
   .participantList{
     margin-left: 0;
-    position: static;
   }
 
   .participantList > li {
@@ -324,13 +317,19 @@ button {
     left: 8%;
   }
 
-  .detailSpan {
+  .detailSpan, .time, .date {
     position: relative;
     left: 10%;
     padding: 0;
     width:80%;
     font-size: var(--font-small);
     color: var(--color-black);
+  }
+  
+
+  .btns{
+    margin-top: 10px;
+    z-index: 1;
   }
 
   .chatContainer{
@@ -346,7 +345,8 @@ button {
 
   .title > .detailSpan, .content > .detailSpan {
     width: 82%;
-    text-align: center;    
+    left: 14%;
+    text-align: start;
   }
 
   .content > .detailSpan {
@@ -356,17 +356,16 @@ button {
   .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
     margin: 0;
     border-radius: 0%;
-    border-bottom: 0.1px groove var(--color-orange);
+    border-bottom: 0.1px groove lightgray;
 
     display: flex;
     flex-direction: column;
     align-items: stretch;
-
-    font-size: var(--font-semi-small);
   }
 
   .meetTime{
     width: 100%;
+    /* background-color: #ef4b3f; */
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -374,18 +373,12 @@ button {
 
   .time, .date{
     width: fit-content;
-    padding-right: 10px;
+    padding: 10px
   }
 
   .meetDetailLable, .detailSpan, .participantList, .time, .date {
     font-size: var(--font-semi-small);
   }
 
-  .btns{
-    width: 100%;
-    background-color: white;
-    margin-top: 10px;
-    z-index: 1;
-  }
 
 }

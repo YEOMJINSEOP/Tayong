@@ -47,7 +47,6 @@
   color: var(--color-orange);
 }
 
-
 .title > .meetDetailLable, .content > .meetDetailLable {
   left: 5%;
 }
@@ -218,10 +217,7 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
-  position: absolute;
-  left: 36%;
 }
-
 
 .participantList > li {
   font-size: var(--font-small);
@@ -249,7 +245,7 @@ button {
 }
 
 
-@media screen and (max-width: 764px){
+@media screen and (max-width: 1280px){
 
   .container{
     margin-top: 0%;
@@ -316,7 +312,6 @@ button {
 
   .participantList{
     margin-left: 0;
-    position: static;
   }
 
   .participantList > li {

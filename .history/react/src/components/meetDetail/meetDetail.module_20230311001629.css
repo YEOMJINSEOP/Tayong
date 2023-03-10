@@ -47,6 +47,9 @@
   color: var(--color-orange);
 }
 
+.detailSpan{
+  left: 10%;
+}
 
 .title > .meetDetailLable, .content > .meetDetailLable {
   left: 5%;
@@ -218,10 +221,7 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
-  position: absolute;
-  left: 36%;
 }
-
 
 .participantList > li {
   font-size: var(--font-small);
@@ -316,7 +316,6 @@ button {
 
   .participantList{
     margin-left: 0;
-    position: static;
   }
 
   .participantList > li {

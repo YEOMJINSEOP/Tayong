@@ -218,10 +218,10 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
+  background-color: #ef4b3f;
   position: absolute;
-  left: 36%;
+  left: 10%;
 }
-
 
 .participantList > li {
   font-size: var(--font-small);
@@ -316,7 +316,6 @@ button {
 
   .participantList{
     margin-left: 0;
-    position: static;
   }
 
   .participantList > li {

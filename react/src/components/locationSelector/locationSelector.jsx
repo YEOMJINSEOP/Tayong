@@ -8,6 +8,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 function LocationSelector(props) {
 
+  
   const [departure, setDeparture] = useState('');
   const [arrival, setArrival] = useState('');
 

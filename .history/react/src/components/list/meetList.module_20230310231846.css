@@ -100,6 +100,7 @@
   position:absolute;
   top: 18%;
   width: 80%;
+  height: 100%;
   overflow-x: hidden;
   overflow-wrap:break-word;
   overflow-y:scroll;
@@ -172,6 +173,7 @@
   .meetList{
     display: flex;
     flex-direction: column;
+    background-color: skyblue;
   }
 
   .location {
@@ -202,7 +204,7 @@
   .meetList{
     display: flex;
     flex-direction: column;
-    height: 88%;
+    height: 100%;
   }
 
   .location .locationDeparture, .locationArrow, .locationArrival {
@@ -216,6 +218,7 @@
   
   .meetUl{
     top: 8%;
+    height: 88%;
     display: flex;
     flex-direction: column;
     padding: 0;

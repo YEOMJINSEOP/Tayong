@@ -31,6 +31,7 @@
 }
 
 @media screen and (max-width: 768px){
+  /* .footer{display: none;} */
   .footer{
     position:fixed;
     bottom: 0;

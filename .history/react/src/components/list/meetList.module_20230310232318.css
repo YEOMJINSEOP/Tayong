@@ -172,6 +172,7 @@
   .meetList{
     display: flex;
     flex-direction: column;
+    background-color: skyblue;
   }
 
   .location {
@@ -216,7 +217,9 @@
   
   .meetUl{
     top: 8%;
+    background-color: lightgreen;
     display: flex;
+    overflow: scroll;
     flex-direction: column;
     padding: 0;
   }

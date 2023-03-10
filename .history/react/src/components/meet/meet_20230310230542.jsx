@@ -11,7 +11,7 @@ function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, m
   }
 
   const titleHandler = (title) => {
-    return title.length > 10 ? title.substring(0, 14) + " ..." : title.substring(0, 10);
+    return title.length > 10 ? title.subString(0, 10) + "..." : title.subString(0, 10);
   }
 
   return (

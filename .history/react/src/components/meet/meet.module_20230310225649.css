@@ -60,17 +60,16 @@
 .title{
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background-color: #ef4b3f;
   width: 100%;
   overflow: hidden;
-  
-  height: 15px;
+  height: 17px;
   overflow: hidden;
   font-family: var(--font-famiy-pretendard-regular);
   font-weight: 600;
   font-size: 15px;
-  line-height: 15px;
+  line-height: 17px;
 
   margin-top: 15px;
   padding: 0px;

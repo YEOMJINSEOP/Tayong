@@ -60,7 +60,7 @@
 .title{
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: center; */
   background-color: #ef4b3f;
   width: 100%;
   overflow: hidden;

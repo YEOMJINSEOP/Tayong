@@ -10,10 +10,6 @@ function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, m
       navigate(`/detail/${meetId}`);
   }
 
-  const titleHandler = (title) => {
-    return title.length > 10 ? title.substring(0, 14) + " ..." : title.substring(0, 10);
-  }
-
   return (
   <li className={isFull? styles.meet_full : styles.meet} onClick={onClickHandler}>
     <div className={styles.infoImage}>
@@ -25,7 +21,7 @@ function Meet({meetId, host, title, departure, arrival, recruitment, meetDate, m
     </div>
     <div className={styles.infoLocation}>
       <div className={styles.title}>
-      {titleHandler(title)}
+      {title.substring(0, 10)}
       </div> 
     </div>
     <div className={styles.infoSet}>

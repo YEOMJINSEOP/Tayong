@@ -142,7 +142,7 @@ function Form(props) {
 
         <div className={styles.title}>
           <label className={styles.formLabel} htmlFor='title'>제목</label>
-          <input type="text" id='title' maxLength="42" name='title' onBlur={handleChange}/>
+          <input type="text" id='title' maxLength="40" name='title' onBlur={handleChange}/>
         </div>
         
         <div className={styles.content}>

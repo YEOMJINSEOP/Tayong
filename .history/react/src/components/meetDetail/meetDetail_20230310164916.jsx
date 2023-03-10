@@ -71,16 +71,16 @@ function MeetDetail(props) {
           <div className={styles.locAndUserContainer}>
             <div className={styles.location}>
               <div className={styles.departure}>
-                <p className={styles.meetDetailLable} htmlFor='departure'>출발</p>
-                <div className={styles.detailSpan}>{meet.departure}</div>
+                <label className={styles.meetDetailLable} htmlFor='departure'>출발</label>
+                <span className={styles.detailSpan}>{meet.departure}</span>
               </div>
               <div className={styles.arrival}>
-                <p className={styles.meetDetailLable} htmlFor='arrival'>도착</p>
-                <div className={styles.detailSpan}>{meet.arrival}</div>
+                <label className={styles.meetDetailLable} htmlFor='arrival'>도착</label>
+                <span className={styles.detailSpan}>{meet.arrival}</span>
               </div>
             </div>
             <div className={styles.participantContainer}>
-                <p className={styles.meetDetailLable}>참여자</p>
+                <label className={styles.meetDetailLable}>참여자</label>
                 <ul className={styles.participantList}>
                   {meet.participant.map((user, idx) => 
                       {return <li key={idx}>{user}</li>}
@@ -89,24 +89,24 @@ function MeetDetail(props) {
             </div>
           </div>
           <div className={styles.title}>
-            <p className={styles.meetDetailLable} htmlFor='title'>제목</p>
+          <label className={styles.meetDetailLable} htmlFor='title'>제목</label>
             <span className={styles.detailSpan}>{meet.title}</span>
           </div>
           <div className={styles.info}>
             <div className={styles.recruitment}>
-              <p className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</p>
-              <div className={styles.detailSpan}>{meet.recruitment} 명</div>
+              <label className={styles.meetDetailLable} htmlFor='recruitment'>모집인원</label>
+              <span className={styles.detailSpan}>{meet.recruitment} 명</span>
             </div>
             <div className={styles.meetTime}>
-              <p className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</p>
-              <div className={styles.time}>{meet.meetTime.time}</div>
-              <div className={styles.date}>{meet.meetTime.date}</div>
+              <label className={styles.meetDetailLable} htmlFor='meetTime'>출발시간</label>
+              <span className={styles.time}>{meet.meetTime.time}</span>
+              <span className={styles.date}>{meet.meetTime.date}</span>
             </div>
           </div>
 
           <div className={styles.content}>
-              <p className={styles.meetDetailLable} htmlFor='meetTime'>내용</p>
-              <div className={styles.detailSpan}>{meet.content}</div>
+              <label className={styles.meetDetailLable} htmlFor='meetTime'>내용</label>
+              <span className={styles.detailSpan}>{meet.content}</span>
           </div>
 
           <div className={styles.btns}>

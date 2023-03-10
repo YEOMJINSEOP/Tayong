@@ -89,7 +89,7 @@ function MeetDetail(props) {
             </div>
           </div>
           <div className={styles.title}>
-            <p className={styles.meetDetailLable} htmlFor='title'>제목</p>
+          <p className={styles.meetDetailLable} htmlFor='title'>제목</p>
             <span className={styles.detailSpan}>{meet.title}</span>
           </div>
           <div className={styles.info}>

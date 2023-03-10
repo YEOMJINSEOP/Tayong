@@ -71,7 +71,7 @@ function MeetDetail(props) {
           <div className={styles.locAndUserContainer}>
             <div className={styles.location}>
               <div className={styles.departure}>
-                <p className={styles.meetDetailLable} htmlFor='departure'>출발</p>
+                <span className={styles.meetDetailLable} htmlFor='departure'>출발</span>
                 <div className={styles.detailSpan}>{meet.departure}</div>
               </div>
               <div className={styles.arrival}>

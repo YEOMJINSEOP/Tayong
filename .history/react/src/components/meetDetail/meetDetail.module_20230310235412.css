@@ -295,6 +295,10 @@ button {
     width: 100%;
   }
 
+  .meetTime{
+    width: 100%;
+  }
+
   .participantContainer{
     width: 100%;
     height: fit-content;
@@ -343,6 +347,7 @@ button {
   }
 
   .title > .detailSpan, .content > .detailSpan {
+    /* background-color: #ef4b3f; */
     width: 82%;
     left: 14%;
     text-align: start;
@@ -363,19 +368,12 @@ button {
   }
 
   .meetTime{
-    width: 100%;
-    /* background-color: #ef4b3f; */
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
 
-  .time, .date{
-    width: fit-content;
-    padding: 10px
-  }
-
-  .meetDetailLable, .detailSpan, .participantList, .time, .date {
+  .meetDetailLable, .detailSpan {
     font-size: var(--font-semi-small);
   }
 

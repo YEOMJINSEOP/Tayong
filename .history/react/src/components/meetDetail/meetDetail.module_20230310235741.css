@@ -364,15 +364,13 @@ button {
 
   .meetTime{
     width: 100%;
-    /* background-color: #ef4b3f; */
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    background-color: #ef4b3f;
+
   }
 
-  .time, .date{
+  .time{
     width: fit-content;
-    padding: 10px
+    background-color: beige;
   }
 
   .meetDetailLable, .detailSpan, .participantList, .time, .date {

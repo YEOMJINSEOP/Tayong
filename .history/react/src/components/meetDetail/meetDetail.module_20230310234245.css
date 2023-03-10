@@ -290,8 +290,11 @@ button {
     margin: 0;
   }
 
-
   .recruitment {
+    width: 100%;
+  }
+
+  .meetTime{
     width: 100%;
   }
 
@@ -299,12 +302,16 @@ button {
     width: 100%;
     height: fit-content;
     border-radius: 0%;
-    border-bottom: 0.1px groove lightgray;
+    border-bottom: 0.1px solid lightgray;
     margin: 0;
   }
 
   .content{
     height: fit-content;
+    padding: 0;
+  }
+
+  .time{
     padding: 0;
   }
 
@@ -320,10 +327,8 @@ button {
   .detailSpan, .time, .date {
     position: relative;
     left: 10%;
-    padding: 0;
+    opacity: 80%;
     width:80%;
-    font-size: var(--font-small);
-    color: var(--color-black);
   }
   
 
@@ -342,41 +347,14 @@ button {
     left: 1%;
   }
 
-  .title > .detailSpan, .content > .detailSpan {
-    width: 82%;
-    left: 14%;
-    text-align: start;
-  }
-
-  .content > .detailSpan {
-    font-size: var(--font-semi-small);
-  }
-
   .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
     margin: 0;
     border-radius: 0%;
-    border-bottom: 0.1px groove lightgray;
+    border-bottom: 0.1px solid lightgray;
 
     display: flex;
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .meetTime{
-    width: 100%;
-    /* background-color: #ef4b3f; */
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .time, .date{
-    width: fit-content;
-    padding: 10px
-  }
-
-  .meetDetailLable, .detailSpan, .participantList, .time, .date {
-    font-size: var(--font-semi-small);
   }
 
 

@@ -48,11 +48,7 @@ function Chat({meetId}) {
     if(socket){
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
-        console.log(msg.userMail);
-        console.log(userMail);
-        if(msg.userMail !== userMail){
-          new Notification(msg.message);
-        }
+        new Notification(msg);
       });
     }
   }, [socket, chat]);

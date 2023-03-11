@@ -130,6 +130,7 @@
   font-size: var(--font-regular);
   font-weight: bold;
   flex-wrap: wrap;
+  padding-left: 20%;
 }
 
 .date {
@@ -218,7 +219,7 @@ button {
   padding-left: 0;
   padding-bottom: 4px;
   position: absolute;
-  left: 32%;
+  left: 26%;
 }
 
 

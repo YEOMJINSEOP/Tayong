@@ -50,7 +50,7 @@ function Chat({meetId}) {
         setChat([...chat, msg]);
         console.log(msg.userMail);
         console.log(userMail);
-        if(msg.userMail !== userMail){
+        if(msg.userMail != userMail){
           new Notification(msg.message);
         }
       });

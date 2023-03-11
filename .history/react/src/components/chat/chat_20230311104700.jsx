@@ -48,11 +48,6 @@ function Chat({meetId}) {
     if(socket){
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
-        console.log(msg.userMail);
-        console.log(userMail);
-        if(msg.userMail !== userMail){
-          new Notification(msg.message);
-        }
       });
     }
   }, [socket, chat]);
@@ -68,6 +63,7 @@ function Chat({meetId}) {
         message: message
       });
       addChat(meetId, userMail, message);
+      new Notification(message);
       setMessage("");
     }
   }

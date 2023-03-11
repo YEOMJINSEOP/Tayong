@@ -130,6 +130,7 @@
   font-size: var(--font-regular);
   font-weight: bold;
   flex-wrap: wrap;
+  padding-left: 5%;
 }
 
 .date {

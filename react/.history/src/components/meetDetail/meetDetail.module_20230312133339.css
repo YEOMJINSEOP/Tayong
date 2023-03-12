@@ -159,6 +159,7 @@
 
 .btns{
   width: 100%;
+  background-color: #ef4b3f;
   height: 34px;
   margin-top: 20px;
   display: flex;
@@ -248,7 +249,7 @@ button {
 }
 
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 764px){
 
   .container{
     margin-top: 0%;

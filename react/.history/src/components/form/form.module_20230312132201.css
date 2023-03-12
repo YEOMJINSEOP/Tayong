@@ -268,13 +268,8 @@ textarea{
     margin-bottom: 12px;
   }
 
-  .formLabel{
-    width: fit-content;
-  }
-
   .title > input{
     margin: 0;
-    padding-left: 6px;
   }
 
   .content{
@@ -282,19 +277,7 @@ textarea{
     overflow: auto;
   }
 
-  .content > .formLabel{
-    padding-top:6px;
-  }
-
-  .content > textarea {
-    margin: 0;
-    width: 100%;
-  }
-
   .btns{
-    width: 100%;
-    padding-left: 2%;
-    padding-right: 2%;
-    justify-content: space-between;
+    justify-content: center;
   }
 }

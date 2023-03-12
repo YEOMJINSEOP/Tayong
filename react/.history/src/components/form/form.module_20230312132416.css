@@ -292,9 +292,6 @@ textarea{
   }
 
   .btns{
-    width: 100%;
-    padding-left: 2%;
-    padding-right: 2%;
-    justify-content: space-between;
+    justify-content: center;
   }
 }

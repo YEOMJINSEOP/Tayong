@@ -49,7 +49,7 @@ function Chat({meetId}) {
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
         if(msg.userMail !== userMail){
-          if (typeof Notification !== 'undefined') {
+          if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
             new Notification(msg.message);
           } else {
             // Handle the case where Notification API is not available

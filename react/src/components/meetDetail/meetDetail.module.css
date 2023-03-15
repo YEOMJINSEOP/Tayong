@@ -26,7 +26,10 @@
   border-radius: 8px;
   text-align: center;
 
+  padding-left: 20px;
+  padding-right: 10%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 
@@ -34,8 +37,6 @@
 }
 
 .meetDetailLable{
-  position: absolute;
-  left: 10%;
   height: 14px;
   margin: 0;
 
@@ -45,11 +46,6 @@
   line-height: 17px;
 
   color: var(--color-orange);
-}
-
-
-.title > .meetDetailLable, .content > .meetDetailLable {
-  left: 5%;
 }
 
 .image{
@@ -74,9 +70,6 @@
 .departure{
   width: 100%;
   height: 53px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .arrival{
@@ -85,7 +78,7 @@
   margin-top: 20px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -93,8 +86,19 @@
   width: 100%;
   height: 49px;
   margin-top: 20px;
+  padding-right: 20px;
+  justify-content: flex-start;
+}
 
-  justify-content: center;
+.title > .meetDetailLable {
+  position: relative;
+  top: 22%;
+}
+
+.title > .detailSpan{
+  position: relative;
+  bottom: 22%;
+  width: 100%;
 }
 
 .info{
@@ -108,9 +112,6 @@
   width: 50%;
   height: 53px;
   margin-left: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .meetTime {
@@ -120,7 +121,7 @@
   height: 53px;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   flex-wrap: wrap;
@@ -144,15 +145,16 @@
   width: 100%;
   height: 114px;
   margin-top: 20px;
-  padding-top: 2%;
-  padding-left: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
   overflow-y: scroll;
 }
 
 .content > span{
-  transform: translateY(-3%);
+  /* transform: translateY(-3%); */
   width: 94%;
   height: 90%;
 }
@@ -203,9 +205,11 @@ button {
   position: relative;
   width: 50%;
   margin-left: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 126px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: var(--color-white);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -217,8 +221,8 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
-  position: absolute;
-  left: 32%;
+  /* position: absolute;
+  left: 32%; */
 }
 
 
@@ -295,43 +299,6 @@ button {
     margin: 0;
   }
 
-
-  .recruitment {
-    width: 100%;
-  }
-
-  .participantContainer{
-    width: 100%;
-    height: fit-content;
-    border-radius: 0%;
-    border-bottom: 0.1px groove var(--color-orange);
-    margin: 0;
-  }
-
-  .content{
-    height: fit-content;
-    padding: 10px;
-  }
-
-  .participantList{
-    margin-left: 0;
-    position: static;
-  }
-
-  .participantList > li {
-    position: relative;
-    left: 8%;
-  }
-
-  .detailSpan {
-    position: relative;
-    left: 10%;
-    padding: 0;
-    width:80%;
-    font-size: var(--font-small);
-    color: var(--color-black);
-  }
-
   .chatContainer{
     min-width: fit-content;
     margin-top: 8px;
@@ -339,52 +306,71 @@ button {
     z-index: 1;
   }
 
-  .meetDetailLable, .title > .meetDetailLable, .content > .meetDetailLable{
-    left: 1%;
-  }
 
-  .title > .detailSpan, .content > .detailSpan {
-    width: 82%;
-    text-align: center;    
-  }
-
-  .content > .detailSpan {
-    font-size: var(--font-semi-small);
-  }
-
-  .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
-    margin: 0;
-    border-radius: 0%;
-    border-bottom: 0.1px groove var(--color-orange);
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    font-size: var(--font-semi-small);
-  }
-
-  .meetTime{
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .time, .date{
-    width: fit-content;
-    padding-right: 10px;
-  }
-
-  .meetDetailLable, .detailSpan, .participantList, .time, .date {
-    font-size: var(--font-semi-small);
-  }
 
   .btns{
     width: 100%;
     background-color: white;
     margin-top: 10px;
     z-index: 1;
+  }
+
+  .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .participantContainer{
+    margin: 0;
+    padding: 2px;
+    border-radius: 0%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: var(--font-semi-small);
+  }
+
+  .participantContainer{
+    border-radius: 0%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+  }
+
+  .detailSpan {
+    padding: 6px;
+    width: 100%;
+    /* background-color: #ef4b3f; */
+    font-size: var(--font-small);
+    color: var(--color-black);
+  }
+
+  .title > .meetDetailLable {
+    position: static;
+  }
+  
+  .title > .detailSpan{
+    position: static;
+    width: 100%;
+  }
+
+  .content {
+    justify-content: flex-start;
+    height:fit-content;
+  }
+
+  .meetDetailLable{
+    width:100%;
+    /* background-color: lightblue; */
+    text-align: center;
+    font-weight: var(--weight-pretendard-bold);
+  }
+
+  .time{
+    font-size: var(--font-small);
+    padding: 4px;
   }
 
 }

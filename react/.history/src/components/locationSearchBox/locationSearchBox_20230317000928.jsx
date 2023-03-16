@@ -4,19 +4,9 @@ import getData from '../../service/getData';
 import { FaSearch } from 'react-icons/fa';
 
 
-function LocationSearchBox({onSet, isMain, locParam}) {
+function LocationSearchBox({onSet, isMain, locParam, location}) {
 
   const [inputStr, setInputStr] = useState('');
-  
-  const [location, setLocation] = useState([]);
-
-  useEffect(() => {
-    const urlLocation = 'data/location.json';
-    getData(urlLocation)
-    .then(res => {
-      setLocation(res['data']);
-    });
-  }, []);
 
   const autoComplete = (e) => {
     setInputStr(e.target.innerText);
@@ -42,10 +32,7 @@ function LocationSearchBox({onSet, isMain, locParam}) {
             type="text"
             value = {locParam ? locParam : inputStr}
             // onKeyDown = {(e) => onKeyPressHandler(e)}
-            onChange = {(e) => {
-                setInputStr(e.target.value);
-                onSet(e.target.value);
-              }}
+            onChange = {(e) => setInputStr(e.target.value)}
         />
         <FaSearch className={isMain ? styles.inputSearchIcon: styles.infoSearchIcon}/>
       </div>

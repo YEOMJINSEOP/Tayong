@@ -46,12 +46,12 @@ function LocationSelector(props) {
       <div className={styles.location}>
         <div className={styles.departure}>
           <div className={styles.info}><span>"출발지"</span>를 입력해 주세요</div>
-          <Departure className={styles.departureInput} departure={departure} onSet={departureHandler} />
+          <Departure className={styles.departureInput} departure={departure} onSet={departureHandler} location={location}/>
         </div>
         <FaArrowRight className={styles.arrow}/>
         <div className={styles.arrival}>
           <div className={styles.info}><span>"도착지"</span>를 입력해 주세요</div>
-          <Arrival className={styles.arrivalInput} arrival = {arrival} onSet={arrivalHandler} />
+          <Arrival className={styles.arrivalInput} arrival = {arrival} onSet={arrivalHandler} location={location}/>
         </div>
       </div>
       <button 

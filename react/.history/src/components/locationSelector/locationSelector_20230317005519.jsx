@@ -15,6 +15,7 @@ function LocationSelector(props) {
     getData(urlLocation)
     .then(res => {
       setLocationName(res['data'].map((loc) => loc.name));
+      setLocation(res['data']);
     });
   }, []);
 
@@ -34,6 +35,7 @@ function LocationSelector(props) {
   
   const submitHandler = () => {
     console.log('departure: ', departure, 'arrival: ', arrival);
+    console.log(location);
     if(!locationName.includes(departure) || !locationName.includes(arrival)){
       alert(`지원되는 지역으로 검색하세요\n: ${locationName}`);
       return
@@ -46,12 +48,12 @@ function LocationSelector(props) {
       <div className={styles.location}>
         <div className={styles.departure}>
           <div className={styles.info}><span>"출발지"</span>를 입력해 주세요</div>
-          <Departure className={styles.departureInput} departure={departure} onSet={departureHandler} />
+          <Departure className={styles.departureInput} departure={departure} onSet={departureHandler} location={location}/>
         </div>
         <FaArrowRight className={styles.arrow}/>
         <div className={styles.arrival}>
           <div className={styles.info}><span>"도착지"</span>를 입력해 주세요</div>
-          <Arrival className={styles.arrivalInput} arrival = {arrival} onSet={arrivalHandler} />
+          <Arrival className={styles.arrivalInput} arrival = {arrival} onSet={arrivalHandler} location={location}/>
         </div>
       </div>
       <button 

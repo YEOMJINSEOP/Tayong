@@ -4,20 +4,17 @@ import getData from '../../service/getData';
 import { FaSearch } from 'react-icons/fa';
 
 
-function LocationSearchBox({onSet, isMain, locParam}) {
+function LocationSearchBox({onSet, isMain, locParam, location}) {
 
   const [inputStr, setInputStr] = useState('');
-  
-  const [location, setLocation] = useState([]);
-
   useEffect(() => {
     const urlLocation = 'data/location.json';
     getData(urlLocation)
     .then(res => {
+      setLocationName(res['data'].map((loc) => loc.name));
       setLocation(res['data']);
     });
   }, []);
-
   const autoComplete = (e) => {
     setInputStr(e.target.innerText);
     onSet(e.target.innerText);

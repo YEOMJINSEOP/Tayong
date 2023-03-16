@@ -320,6 +320,7 @@ button {
 
 
   .btns{
+    background-color: blue;
     margin-top: 10px;
     z-index: 1;
   }

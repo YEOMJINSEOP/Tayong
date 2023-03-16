@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   width: 48%;
-  height: 560px;
+  height: 548px;
   min-width: 347px;
 }
 
@@ -160,8 +160,8 @@
   height: 114px;
   margin-top: 20px;
   padding-top: 10px;
-  padding-right: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
@@ -170,6 +170,7 @@
 }
 
 .content > .detailSpan{
+  /* width: 100%; */
   padding-top: 1%;
 }
 
@@ -265,11 +266,13 @@ button {
 }
 
 @media screen and (max-width: 1024px){
+
   .container{
     position: static;
     margin-top: 0%;
+    margin: auto;
     width:100%;
-    overflow: hidden;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -277,8 +280,8 @@ button {
   }
 
   .meetContainer{
+    min-width:fit-content;
     width: 100%;
-    min-width: 0;
   }
 
   .image{
@@ -320,6 +323,8 @@ button {
 
 
   .btns{
+    width: 100%;
+    background-color: white;
     margin-top: 10px;
     z-index: 1;
   }
@@ -351,6 +356,7 @@ button {
   .detailSpan {
     padding: 6px;
     width: 100%;
+    /* background-color: #ef4b3f; */
     font-size: var(--font-small);
     color: var(--color-black);
   }
@@ -365,16 +371,13 @@ button {
   }
 
   .content {
+    background-color: #ef4b3f;
     justify-content: flex-start;
-    width: 100%;
     height:fit-content;
-    word-break: break-all;
-    white-space: pre-line;
   }
 
   .content > .detailSpan{
     text-align: center;
-    width: 90%;
   }
 
   .meetDetailLable{

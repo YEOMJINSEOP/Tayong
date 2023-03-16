@@ -278,12 +278,11 @@ button {
 
   .meetContainer{
     width: 100%;
-    min-width: 0;
   }
 
   .image{
     border-radius: 0%;
-    width: 100%;
+    /* width: 100%; */
     height: 80px;
   }
 
@@ -320,6 +319,7 @@ button {
 
 
   .btns{
+    background-color: blue;
     margin-top: 10px;
     z-index: 1;
   }
@@ -374,7 +374,7 @@ button {
 
   .content > .detailSpan{
     text-align: center;
-    width: 90%;
+    max-width: 70%;
   }
 
   .meetDetailLable{

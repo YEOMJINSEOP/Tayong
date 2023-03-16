@@ -11,6 +11,7 @@
   align-items: center;
 }
 .meetContainer{
+  margin-top: 10px;
   width: 50%;
   min-width: 514px;
   display: flex;
@@ -175,7 +176,7 @@
 .btns{
   width: 100%;
   height: 34px;
-  margin-top: 4px;
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
 }

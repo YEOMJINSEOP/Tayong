@@ -13,11 +13,10 @@
 
 .chat_container{
   width: 100%;
-  padding: 0;
+  /* padding: 0; */
+  padding-bottom: 20px;
   overflow: auto;
 }
-
-
 
 .chat_box {
   padding: 0;

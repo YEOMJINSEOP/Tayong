@@ -17,7 +17,9 @@
   overflow: auto;
 }
 
-
+.chat_container > ul {
+  padding-bottom: 10px;
+}
 
 .chat_box {
   padding: 0;

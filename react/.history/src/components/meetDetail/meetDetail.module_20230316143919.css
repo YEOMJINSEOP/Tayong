@@ -369,13 +369,8 @@ button {
   }
 
   .content {
-    background-color: #ef4b3f;
-    justify-content: flex-start;
+    justify-content: center;
     height:fit-content;
-  }
-
-  .content > .detailSpan{
-    text-align: center;
   }
 
   .meetDetailLable{

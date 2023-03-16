@@ -17,8 +17,6 @@
   overflow: auto;
 }
 
-
-
 .chat_box {
   padding: 0;
   list-style: none;
@@ -46,7 +44,6 @@
   width: 40%;
   max-width: 300px;
   padding: 8px;
-
   white-space: pre-wrap;
   word-break:break-all;
 }

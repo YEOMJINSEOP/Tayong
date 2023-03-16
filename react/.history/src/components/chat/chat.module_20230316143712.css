@@ -18,7 +18,6 @@
 }
 
 
-
 .chat_box {
   padding: 0;
   list-style: none;
@@ -41,7 +40,7 @@
   background-color: orange;
   color: black;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
   width: fit-content;
   width: 40%;
   max-width: 300px;

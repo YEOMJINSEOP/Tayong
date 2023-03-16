@@ -92,3 +92,7 @@ button{
   background-color: transparent;
 }
 
+.rootContainer{
+  display: flex;
+  flex-direction: column;
+}

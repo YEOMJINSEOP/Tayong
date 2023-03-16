@@ -11,13 +11,10 @@
   justify-content: space-between;
 }
 
-.chat_container{
+.chat_container > ul{
   width: 100%;
   padding: 0;
-  overflow: auto;
 }
-
-
 
 .chat_box {
   padding: 0;
@@ -46,7 +43,6 @@
   width: 40%;
   max-width: 300px;
   padding: 8px;
-
   white-space: pre-wrap;
   word-break:break-all;
 }
@@ -85,6 +81,7 @@
   font-size: 14px;
   font-weight: bold;
 }
+
 
 .input_container{
   width: 100%;

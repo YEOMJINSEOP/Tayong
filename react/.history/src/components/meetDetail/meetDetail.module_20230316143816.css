@@ -169,7 +169,7 @@
 
 .content > .detailSpan{
   /* width: 100%; */
-  padding-top: 1%;
+  /* padding-left: 1%; */
 }
 
 .btns{
@@ -369,13 +369,8 @@ button {
   }
 
   .content {
-    background-color: #ef4b3f;
     justify-content: flex-start;
     height:fit-content;
-  }
-
-  .content > .detailSpan{
-    text-align: center;
   }
 
   .meetDetailLable{

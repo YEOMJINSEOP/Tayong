@@ -374,10 +374,6 @@ button {
     height:fit-content;
   }
 
-  .content > .detailSpan{
-    text-align: center;
-  }
-
   .meetDetailLable{
     width:100%;
     text-align: center;

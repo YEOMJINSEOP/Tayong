@@ -15,9 +15,8 @@
   width: 100%;
   padding: 0;
   overflow: auto;
+  overflow-clip-margin: 10px;
 }
-
-
 
 .chat_box {
   padding: 0;

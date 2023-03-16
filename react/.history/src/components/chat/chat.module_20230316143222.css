@@ -13,11 +13,9 @@
 
 .chat_container{
   width: 100%;
-  padding: 0;
+  /* padding: 0; */
   overflow: auto;
 }
-
-
 
 .chat_box {
   padding: 0;

@@ -143,10 +143,8 @@
 
 .content{
   width: 100%;
-  overflow-x: hidden;
   height: 114px;
   margin-top: 20px;
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -156,8 +154,8 @@
 }
 
 .content > .detailSpan{
-  /* background-color: hsl(4, 85%, 59%); */
-  padding-left: 1%;
+  background-color: hsl(4, 85%, 59%);
+  padding-top: 4%;
 }
 
 .btns{
@@ -222,6 +220,8 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
+  /* position: absolute;
+  left: 32%; */
 }
 
 

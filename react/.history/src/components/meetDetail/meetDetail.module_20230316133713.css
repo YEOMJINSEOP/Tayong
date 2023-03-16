@@ -143,10 +143,8 @@
 
 .content{
   width: 100%;
-  overflow-x: hidden;
   height: 114px;
   margin-top: 20px;
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -155,9 +153,10 @@
   overflow-y: scroll;
 }
 
-.content > .detailSpan{
-  /* background-color: hsl(4, 85%, 59%); */
-  padding-left: 1%;
+.content > span{
+  /* transform: translateY(-3%); */
+  width: 94%;
+  height: 90%;
 }
 
 .btns{
@@ -222,6 +221,8 @@ button {
   margin-top: 10px;
   padding-left: 0;
   padding-bottom: 4px;
+  /* position: absolute;
+  left: 32%; */
 }
 
 
@@ -358,10 +359,17 @@ button {
   .content {
     justify-content: flex-start;
     height:fit-content;
+    background-color: #ef4b3f;
+  }
+
+  .content > .detailSpan{
+    background-color: #ef4b3f;
+    padding-top: 2px;
   }
 
   .meetDetailLable{
     width:100%;
+    /* background-color: lightblue; */
     text-align: center;
     font-weight: var(--weight-pretendard-bold);
   }

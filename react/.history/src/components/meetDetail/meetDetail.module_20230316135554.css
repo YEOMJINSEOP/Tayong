@@ -152,7 +152,7 @@
   align-items: flex-start;
   text-align: left;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .content > .detailSpan{

@@ -143,6 +143,7 @@
 
 .content{
   width: 100%;
+  /* overflow-x: hidden; */
   height: 114px;
   margin-top: 20px;
   padding-top: 10px;
@@ -151,12 +152,11 @@
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .content > .detailSpan{
-  /* width: 100%; */
+  /* background-color: hsl(4, 85%, 59%); */
   padding-left: 1%;
 }
 

@@ -250,7 +250,7 @@ button {
   height: 100%;
   background-color: orange;
   box-shadow: -2px 2px 6px 6px rgba(194,186,186,0.3);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;

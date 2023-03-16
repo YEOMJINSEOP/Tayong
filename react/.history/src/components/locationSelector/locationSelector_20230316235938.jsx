@@ -30,19 +30,15 @@ function LocationSelector(props) {
   };
 
   const navigate = useNavigate();
-
-  const getLocation = (location) => {
-    return location.map((loc) => loc.name)
-  }
   
   const submitHandler = () => {
     if(departure === ""){
       console.log(location);
-      alert(`지원되는 출발지로 설정하세요\n: ${getLocation(location)}`);
+      alert(`지정된 출발지로 설정하세요\n: ${location}`);
       return
     }
     else if(arrival === ""){
-      alert(`지원되는 도착지로 설정하세요\n: ${getLocation(location)}`);
+      alert('지정된 출발지로 설정하세요\n: 디지털미디어시티, 한국항공대학교, 행신, 홍대, 신촌, 기타');
       return
     }
     navigate(`/list/${departure}/${arrival}`);

@@ -31,7 +31,7 @@ function Header(props) {
         </p>
         {!user && <button className={styles.loginBtn} onClick={handleLogin}>로그인</button>}
         {user && <div className={styles.userInfo}>
-          <img className={styles.userPhoto} src={user.photoURL}/>
+          <img className={styles.userPhoto} src={user.photoURL} alt='userImage'/>
           <span className={styles.userName}>{user.displayName.toUpperCase()}</span>
           <button className={styles.logoutBtn} onClick={handleLogout}>로그아웃</button>
         </div>}        

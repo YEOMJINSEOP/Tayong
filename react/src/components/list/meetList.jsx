@@ -89,6 +89,7 @@ function MeetList(props) {
                />
             ); 
           }
+          return null;
         })}
       </ul>
     </div>

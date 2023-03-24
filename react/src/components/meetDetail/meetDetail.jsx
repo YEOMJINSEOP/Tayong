@@ -50,7 +50,7 @@ function MeetDetail(props) {
   }
 
   const quitHandler = () => {
-    if(meet.host == userMail){
+    if(meet.host === userMail){
       alert('호스트는 모임을 나갈 수 없습니다.');
       return;
     }

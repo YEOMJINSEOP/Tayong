@@ -26,7 +26,12 @@ function LocationSearchBox({onSet, isMain, locParam}) {
   const searchRef = useRef();
   
   let relateLoc = location.filter((loc) => {
-    if(inputStr && loc.name.includes(inputStr)){return loc}
+    if(inputStr && loc.name.includes(inputStr)){
+      return loc
+    }
+    else{
+      return false
+    }
     })
     .map(
       (loc) => {

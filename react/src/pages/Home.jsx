@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import LocationSelector from '../components/locationSelector/locationSelector';
 function Home(props) {
   return (

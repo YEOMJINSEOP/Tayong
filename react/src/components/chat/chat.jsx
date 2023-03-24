@@ -75,7 +75,6 @@ function Chat({meetId}) {
     if(socket){
       socket.on('message', (msg) => {
         setChat([...chat, msg]);
-        notificationHandler(msg);
       });
     }
   }, [socket, chat]);

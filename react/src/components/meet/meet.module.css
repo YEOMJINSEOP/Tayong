@@ -69,9 +69,9 @@
   font-family: var(--font-family-GmarketSansMedium);
   font-weight: 600;
   font-size: 15px;
-  line-height: 15px;
+  line-height: 17px;
 
-  margin-top: 15px;
+  margin-top: 12px;
   padding: 0px;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .recruitment{
-  font-size: 13px;
+  font-size: var(--font-semi-small);
   font-weight: bold;
 }
 
@@ -153,7 +153,7 @@
 
 .time{
   font-weight: bold;
-  font-size: 13px;
+  font-size: var(--font-semi-small);
   padding-right: 4px;
 }
 
@@ -165,4 +165,7 @@
   color: var(--color-orange);
 }
 
+@media screen and (max-width: 768px){
 
+
+}

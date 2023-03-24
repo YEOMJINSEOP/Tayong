@@ -134,6 +134,7 @@
 .infoSet span{
   width: fit-content;
   white-space: nowrap;
+  background-color: firebrick;
 }
 
 .infoRecruitment{

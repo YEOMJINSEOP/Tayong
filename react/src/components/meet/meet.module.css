@@ -167,7 +167,11 @@
 
 @media screen and (max-width: 380px){
 
-.infoRecruitment > p, .infoTime > p, .recruitment, .time, .date {
-  font-size: var(--font-micro);
-}
+  .infoRecruitment > p, .infoTime > p, .infoTime > span, .recruitment, .time, .date {
+  font-size: 8px
+  }
+
+  .infoRecruitment > p, .infoTime > p {
+    margin-right: 1px;
+  }
 }

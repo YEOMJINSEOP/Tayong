@@ -1,0 +1,120 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 3px solid orange;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat_container{
+  width: 100%;
+  padding: 0;
+  overflow: auto;
+}
+
+
+
+.chat_box {
+  padding: 0;
+  list-style: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat_mine{
+  position: relative;
+  left: 26%;
+  
+  flex-wrap: wrap;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: orange;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: fit-content;
+  width: 40%;
+  max-width: 300px;
+  padding: 8px;
+
+  white-space: pre-wrap;
+  word-break:break-all;
+}
+
+.chat_other{
+  position: relative;
+  right: 26%;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  width:40%;
+  max-width: 50%;
+  white-space: pre-wrap;
+  word-break:break-all;
+}
+
+.chat_usermail {
+  font-family: var(--font-family-GmarketSansMedium);
+  font-size: var(--font-micro);
+}
+
+.chat_mine > .chat_usermail{
+  color: white;
+  font-weight: 500;
+}
+
+.chat_other > .chat_usermail{
+  color: var(--color-orange);
+}
+
+.chat_message{
+  font-family: var(--font-family-GmarketSansMedium);
+  font-size: var(--font-semi-small);
+  font-weight: 900;
+  padding-top: 6px;
+}
+
+.input_container{
+  width: 100%;
+  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  min-height: 40px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.chat_input{
+  font-family: var(--font-family-GmarketSansMedium);
+  width: 80%;
+  margin-left: 10px;
+  text-align: start;
+  border-radius: 10px;
+  padding-left: 12px;
+}
+
+.send_btn{
+  width: 80px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  border-bottom-right-radius: 7px;
+}

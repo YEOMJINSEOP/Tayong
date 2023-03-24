@@ -1,0 +1,394 @@
+@import '../../App.module.css';
+
+*{
+  font-family: var(--font-family-GmarketSansMedium);;
+}
+.container {
+  position: absolute;
+  padding: 0;
+  margin: 0;  
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.meetContainer{
+  width: 50%;
+  height: 100%;
+  min-width: 514px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  height: 560px;
+  min-width: 347px;
+}
+
+.departure, .arrival, .meetTime, .recruitment, .transport, .title, .content{
+  position: relative;
+  border: none;
+  outline: none;
+  background: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 8px;
+  text-align: center;
+
+  padding-left: 20px;
+  padding-right: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  font-size: var(--font-small);
+}
+
+.meetDetailLable{
+  height: 14px;
+  margin: 0;
+
+  font-weight: var(--weight-pretendard-bold);
+  font-size: var(--font-small);
+  line-height: 17px;
+
+  color: var(--color-orange);
+}
+
+.image{
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.locAndUserContainer{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.location {
+  width: 50%;
+}
+
+.departure{
+  width: 100%;
+  height: 53px;
+}
+
+.arrival{
+  width: 100%;
+  height: 53px;
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title{
+  width: 100%;
+  height: 49px;
+  margin-top: 20px;
+  padding-right: 20px;
+  justify-content: flex-start;
+}
+
+.title > .meetDetailLable {
+  position: relative;
+  top: 22%;
+}
+
+.title > .detailSpan{
+  position: relative;
+  bottom: 22%;
+  width: 100%;
+}
+
+.info{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recruitment {
+  width: 50%;
+  height: 53px;
+  margin-left: 0;
+}
+
+.meetTime {
+  margin-left: 8px;
+  width: 50%;
+
+  height: 53px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.time {
+  font-size: var(--font-regular);
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+
+.date {
+  font-size: var(--font-small);
+  font-weight: var(--weight-pretendard-regular);
+  color: grey;
+  flex-wrap: wrap;
+  padding-left: 10px;
+}
+
+.content{
+  width: 100%;
+  height: 114px;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.content > .detailSpan{
+  padding-top: 1%;
+}
+
+.btns{
+  width: 100%;
+  height: 34px;
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 35%;
+  height: 34px;
+  border-radius: 10px;
+  font-family: var(--font-family-BMJUA);
+}
+
+
+.btn_join, .btn_chat{
+  background-color: var(--color-orange);
+  color: var(--color-white);
+}
+
+.btn_full{
+  background-color: gray;
+  color: var(--color-white);
+}
+
+.btn_quit, .btn_delete {
+  background-color: #ef4b3f;
+  color: var(--color-white);
+}
+
+.btn_backToList{
+  background-color: var(--color-white);
+  border: 2px solid var(--color-orange);
+  color: orange;
+}
+
+.btn_chat a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+
+.participantContainer{
+  position: relative;
+  width: 50%;
+  margin-left: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 126px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 8px;
+}
+
+.participantList {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 0;
+  padding-bottom: 4px;
+}
+
+
+.participantList > li {
+  font-size: var(--font-small);
+  text-align:start;
+}
+
+
+
+.chat_blocker {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  box-shadow: -2px 2px 6px 6px rgba(194,186,186,0.3);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+@media screen and (max-width: 1240px){
+  .container{
+    margin-top: 1%;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .container{
+    position: static;
+    margin-top: 0%;
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .meetContainer{
+    width: 100%;
+    min-width: 0;
+  }
+
+  .image{
+    border-radius: 0%;
+    width: 100%;
+    height: 80px;
+  }
+
+  .locAndUserContainer{
+    background-color: beige;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .location {
+    width: 100%;
+  }
+
+  .info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .chatContainer{
+    min-width: fit-content;
+    margin-top: 8px;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+
+  .btns{
+    margin-top: 10px;
+    z-index: 1;
+  }
+
+  .departure, .arrival, .meetTime, .recruitment, .transport, .title, .content, .participantContainer{
+    margin: 0;
+    padding: 2px;
+    border-radius: 0%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: var(--font-semi-small);
+  }
+
+  .participantContainer{
+    border-radius: 0%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+  }
+
+  .detailSpan {
+    padding: 6px;
+    width: 100%;
+    font-size: var(--font-small);
+    color: var(--color-black);
+  }
+
+  .title > .meetDetailLable {
+    position: static;
+  }
+  
+  .title > .detailSpan{
+    position: static;
+    width: 100%;
+  }
+
+  .content {
+    justify-content: flex-start;
+    width: 100%;
+    height:fit-content;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+
+  .content > .detailSpan{
+    text-align: center;
+    width: 90%;
+  }
+
+  .meetDetailLable{
+    width:100%;
+    text-align: center;
+    font-weight: var(--weight-pretendard-bold);
+  }
+
+  .time{
+    font-size: var(--font-small);
+    padding: 4px;
+  }
+
+}

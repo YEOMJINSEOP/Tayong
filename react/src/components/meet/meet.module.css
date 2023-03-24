@@ -165,7 +165,7 @@
   color: var(--color-orange);
 }
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 300px){
 
   .infoRecruitment > p, .infoTime > p, .infoTime > span, .recruitment, .time, .date {
   font-size: 8px

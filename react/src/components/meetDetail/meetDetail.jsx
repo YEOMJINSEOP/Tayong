@@ -88,6 +88,10 @@ function MeetDetail(props) {
                 </ul>
             </div>
           </div>
+          <div className={styles.transport}>
+                <p className={styles.meetDetailLable} htmlFor='transport'>이동수단</p>
+                <span className={styles.detailSpan}>{meet.transport}</span>
+          </div>
           <div className={styles.title}>
             <p className={styles.meetDetailLable} htmlFor='title'>제목</p>
             <span className={styles.detailSpan}>{meet.title}</span>

@@ -102,7 +102,7 @@ function Chat({meetId}) {
         <ul className={styles.chat_box}>
           {chat.map((data, idx) => {
             return <li key={idx} className={userMail === data.userMail ? styles.chat_mine : styles.chat_other}>
-                      <p className={styles.chat_usermail}>{data.userMail}</p>
+                      <p className={styles.chat_usermail}>{data.userMail.split('@')[0]}</p>
                       <div className={styles.chat_message}>{data.message}</div>
                     </li>
           })}

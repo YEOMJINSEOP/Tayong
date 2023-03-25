@@ -288,7 +288,8 @@ button {
   align-items: center;
   color: white;
   font-weight: bold;
-  font-size: 24px;
+  font-size: var(--font-regular);
+  white-space: nowrap;
 }
 @media screen and (max-width: 1240px){
   .container{

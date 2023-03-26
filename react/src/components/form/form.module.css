@@ -190,6 +190,7 @@ p{
 }
 
 textarea{
+  width: 100%;
   font-weight: 300;
   font-size: var(--font-semi-small);
   line-height: 17px;

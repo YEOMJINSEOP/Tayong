@@ -1,6 +1,6 @@
 @import '../../App.module.css';
 
-.meetList {
+.meetList{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -25,8 +25,7 @@
 }
 
 
-.locationDeparture,
-.locationArrival {
+.locationDeparture, .locationArrival{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +35,7 @@
   border: none;
 }
 
-.location input {
+.location input{
   width: 152px;
   height: 40px;
 
@@ -52,7 +51,7 @@
 
 }
 
-.locationArrow {
+.locationArrow{
   font-size: var(--font-small);
   color: var(--color-orange);
   transform: translateY(50%);
@@ -61,7 +60,7 @@
 }
 
 
-.locInfo {
+.locInfo{
   position: absolute;
   top: 4%;
   width: 80%;
@@ -71,7 +70,7 @@
 }
 
 
-.location {
+.location{
   left: 0%;
   display: flex;
   flex-direction: row;
@@ -80,7 +79,7 @@
   text-align: center;
 }
 
-.btn_create {
+.btn_create{
   position: absolute;
   right: 0%;
   background-color: #ef4b3f;
@@ -97,14 +96,15 @@
 }
 
 
-.meetUl {
-  position: absolute;
+.meetUl{
+  position:absolute;
   top: 18%;
   width: 80%;
-  overflow-wrap: break-word;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap:break-word;
+  overflow-y:scroll;
   list-style: none;
-
+  
   margin: auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -116,18 +116,18 @@
 }
 
 
-@media screen and (max-width: 1860px) {
+@media screen and (max-width: 1860px){
   .location {
     display: flex;
     flex-direction: row;
   }
 
-  .meetUl {
+  .meetUl{
     display: grid;
     grid-template-columns: repeat(4, auto);
-
+  
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap:  20px;
     padding-bottom: 10px;
   }
 
@@ -135,8 +135,7 @@
     display: flex;
     flex-direction: row;
   }
-
-  /* 
+/* 
   .meet{
     width: 240px;
     height: 170px;
@@ -145,18 +144,17 @@
 }
 
 
-@media screen and (max-width: 1520px) {
+@media screen and (max-width: 1520px){
   .location {
     display: flex;
     flex-direction: row;
   }
-
-  .meetUl {
+  .meetUl{
     display: grid;
     grid-template-columns: repeat(3, auto);
-
+  
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap:  20px;
     padding: 0;
     padding-bottom: 10px;
   }
@@ -169,9 +167,9 @@
 
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px){
 
-  .meetList {
+  .meetList{
     display: flex;
     flex-direction: column;
   }
@@ -180,46 +178,43 @@
     display: flex;
     flex-direction: row;
   }
-
+  
   .locationDeparture .locationArrival .locationArro .locInfoBox {
     display: none;
   }
 
-  .meetUl {
+  .meetUl{
     display: grid;
     grid-template-columns: repeat(2, auto);
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap:  20px;
     padding: 0;
   }
 
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px){
   .btn_create {
     width: 100%;
     margin-top: -20px;
   }
-
-  .meetList {
+  .meetList{
     display: flex;
     flex-direction: column;
     height: 88%;
   }
 
-  .location .locationDeparture,
-  .locationArrow,
-  .locationArrival {
+  .location .locationDeparture, .locationArrow, .locationArrival {
     display: none;
 
   }
 
-  .meetListLabel {
+  .meetListLabel{
     padding: 0;
   }
-
-  .meetUl {
+  
+  .meetUl{
     top: 8%;
     display: flex;
     flex-direction: column;

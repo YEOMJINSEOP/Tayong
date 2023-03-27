@@ -13,7 +13,6 @@ function MeetDetail(props) {
   const [isFull, setIsFull] = useState(false);
   const [isHost, setIsHost] = useState(false);
   
-  /** User & setUserMail */
   useEffect(() => {
     onUserStateChange(
       (user) => {
@@ -21,8 +20,7 @@ function MeetDetail(props) {
       } 
     );
   }, []);
-  /** */
-  
+
   useEffect(() => {
     const meetId = params.meetId;
     getMeetDataById(meetId)
@@ -81,6 +79,10 @@ function MeetDetail(props) {
                 <div className={styles.detailSpan}>{meet.arrival}</div>
               </div>
             </div>
+            <div className={styles.transport}>
+                <p className={styles.meetDetailLable} htmlFor='transport'>이동수단</p>
+                <div className={styles.detailSpan}>{meet.transport}</div>
+            </div>
             <div className={styles.participantContainer}>
                 <p className={styles.meetDetailLable}>참여자</p>
                 <ul className={styles.participantList}>
@@ -89,10 +91,6 @@ function MeetDetail(props) {
                   )}
                 </ul>
             </div>
-          </div>
-          <div className={styles.transport}>
-                <p className={styles.meetDetailLable} htmlFor='transport'>이동수단</p>
-                <span className={styles.detailSpan}>{meet.transport}</span>
           </div>
           <div className={styles.title}>
             <p className={styles.meetDetailLable} htmlFor='title'>제목</p>

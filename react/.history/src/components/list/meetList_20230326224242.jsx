@@ -16,8 +16,7 @@ function MeetList(props) {
     onUserStateChange((user) => {
       setUser(user);
     }) 
-  }, [user]); 
-  /** */
+  }, [user]);
 
   const [meetList, setMeetList] = useState([]);
   let params = useParams();

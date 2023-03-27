@@ -8,16 +8,14 @@ import LocationSearchBox from '../locationSearchBox/locationSearchBox';
 import { getAllMeetData, onUserStateChange } from '../../apis/firebase';
 
 function MeetList(props) {
+  const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  /** User & setUser */
-  const [user, setUser] = useState();
   useEffect(() => {
     onUserStateChange((user) => {
       setUser(user);
     }) 
-  }, [user]); 
-  /** */
+  }, [user]);
 
   const [meetList, setMeetList] = useState([]);
   let params = useParams();

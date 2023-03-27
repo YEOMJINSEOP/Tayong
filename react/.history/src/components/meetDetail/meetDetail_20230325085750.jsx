@@ -13,7 +13,6 @@ function MeetDetail(props) {
   const [isFull, setIsFull] = useState(false);
   const [isHost, setIsHost] = useState(false);
   
-  /** User & setUserMail */
   useEffect(() => {
     onUserStateChange(
       (user) => {
@@ -21,8 +20,7 @@ function MeetDetail(props) {
       } 
     );
   }, []);
-  /** */
-  
+
   useEffect(() => {
     const meetId = params.meetId;
     getMeetDataById(meetId)

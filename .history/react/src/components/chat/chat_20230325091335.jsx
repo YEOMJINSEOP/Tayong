@@ -13,36 +13,35 @@ function Chat({meetId}) {
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
-
-  // const notificationHandler = (msg) => {
-  //   console.log('inside');
-  //   if (!Notification) {
-  //     console.warn('Notifications not supported in this browser.');
-  //     return;
-  //   }
-  
-  //   if (Notification.permission !== 'granted') {
-  //     try {
-  //       Notification.requestPermission().then((permission) => {
-  //         if (permission !== 'granted') {
-  //           return;
-  //         } 
-  //       })
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   } else {
-  //     console.log('active');
-  //     const notificationOptions = {
-  //       body: msg.message,
-  //       icon: 'image/Tayong_Logo.png'
-  //     }
-  //     new Notification('타용', notificationOptions);
-  //   }
-  // }
-
-  /** User & setUserMail */
   const [userMail, setUserMail] = useState("");
+
+  const notificationHandler = (msg) => {
+    console.log('inside');
+    if (!Notification) {
+      console.warn('Notifications not supported in this browser.');
+      return;
+    }
+  
+    if (Notification.permission !== 'granted') {
+      try {
+        Notification.requestPermission().then((permission) => {
+          if (permission !== 'granted') {
+            return;
+          } 
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log('active');
+      const notificationOptions = {
+        body: msg.message,
+        icon: 'image/Tayong_Logo.png'
+      }
+      new Notification('타용', notificationOptions);
+    }
+  }
+
   useEffect(() => {
     onUserStateChange(
       (user) => {
@@ -50,8 +49,6 @@ function Chat({meetId}) {
       } 
     );
   }, [])
-
-  /** */
   
   useEffect(() => {
     setSocket(io(process.env.REACT_APP_CHAT_SERVER_URL, {

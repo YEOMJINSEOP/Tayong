@@ -22,7 +22,6 @@ function MeetDetail(props) {
     );
   }, []);
   /** */
-  
   useEffect(() => {
     const meetId = params.meetId;
     getMeetDataById(meetId)

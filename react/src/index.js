@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import List from './pages/List';
 import Create from './pages/Create';
 import Detail from './pages/Detail';
+import {RecoilRoot} from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -24,8 +25,11 @@ const router = createBrowserRouter([
         ]
     }
 ])
+
 root.render(
-    <RouterProvider router={router} />
+    <RecoilRoot>
+        <RouterProvider router={router} />
+    </RecoilRoot>
 );
 
 reportWebVitals();

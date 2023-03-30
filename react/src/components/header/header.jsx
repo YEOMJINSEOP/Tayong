@@ -2,11 +2,16 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { login, logout, onUserStateChange } from '../../apis/firebase';
+import { userState } from '../../recoil/user';
+
 import styles from './header.module.css';
 
 function Header(props) {
   const navigate = useNavigate();
+
+  const [testUser, setTestUser] = useRecoilState(userState);
   
   /** User & setUser */
   const [user, setUser] = useState();

@@ -28,7 +28,9 @@ const router = createBrowserRouter([
 
 root.render(
     <RecoilRoot>
-        <RouterProvider router={router} />
+        <React.Suspense fallback = {<div>Loading...</div>}>
+            <RouterProvider router={router} />
+        </React.Suspense>
     </RecoilRoot>
 );
 

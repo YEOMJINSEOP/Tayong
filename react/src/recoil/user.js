@@ -1,4 +1,5 @@
-import {atom} from 'recoil';
+import {atom, selector} from 'recoil';
+import { getCurrentUserState, onUserStateChange } from '../apis/firebase';
 
 // interface User {
 //   id: string;
@@ -12,5 +13,13 @@ export const userState = atom({
     id: 'default',
     name: 'default',
     email: 'default',
+  }
+})
+
+export const currentUserState = selector({
+  key: 'currentUserState',
+  get: async () => {
+    const user = await getCurrentUserState();
+    return user;
   }
 })

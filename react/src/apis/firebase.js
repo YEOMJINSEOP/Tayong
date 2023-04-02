@@ -55,6 +55,21 @@ export async function logout(){
 }
 
 /** User */
+function getUserData(user) {
+  if (!user) return null;
+
+  const { uid, email, displayName, photoURL } = user;
+  return { uid, email, displayName, photoURL };
+}
+
+export async function getCurrentUserState() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe(); // Stop listening to changes in user authentication state
+      resolve(getUserData(user));
+    }, reject);
+  });
+}
 
 export function onUserStateChange(callback){
   onAuthStateChanged(auth, (user) => {

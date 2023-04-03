@@ -1,5 +1,5 @@
 import React from 'react';
-import LocationSearchBox from '../locationSearchBox/LocationSearchBox';
+import LocationSearchBox from '../locationSearchBox/locationSearchBox';
 
 function Arrival({onSet, location}) {
   return (

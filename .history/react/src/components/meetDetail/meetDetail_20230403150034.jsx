@@ -3,24 +3,25 @@ import styles from './meetDetail.module.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMeetDataById, onUserStateChange, addMeetParticipant, removeMeetParticipant, removeMeetbyId } from '../../apis/firebase';
 import Chat from '../chat/Chat';
-import { useRecoilValue } from 'recoil';
-import { currentUserState } from '../../recoil/user';
-
 
 function MeetDetail(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [meet, setMeet]= useState({meetId: '', host:'', departure:'', arrival:'', meetTime: '', recruitment: 0, participant: [], transport: '', title: '', content: ''});
-
+  const [userMail, setUserMail] = useState('');
   const [isParticipate, setIsParticipate] = useState(false);
   const [isFull, setIsFull] = useState(false);
   const [isHost, setIsHost] = useState(false);
   
-  const [userMail, setUserMail] = useState();
-  const userState = useRecoilValue(currentUserState);
+  /** User & setUserMail */
   useEffect(() => {
-    setUserMail(userState.email);
-  }, [])
+    onUserStateChange(
+      (user) => {
+        setUserMail(user.email);
+      } 
+    );
+  }, []);
+  /** */
   
   useEffect(() => {
     const meetId = params.meetId;

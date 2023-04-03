@@ -5,7 +5,7 @@ import {useNavigate, useParams } from 'react-router-dom';
 import { getAllMeetData, onUserStateChange } from '../../apis/firebase';
 import styles from './meetList.module.css';
 import Meet from '../meet/Meet';
-import LocationSearchBox from '../locationSearchBox/LocationSearchBox';
+import LocationSearchBox from '../locationSearchBox/locationSearchBox';
 
 
 function MeetList(props) {

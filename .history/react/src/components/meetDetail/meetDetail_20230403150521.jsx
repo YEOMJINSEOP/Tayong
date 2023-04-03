@@ -21,6 +21,17 @@ function MeetDetail(props) {
   useEffect(() => {
     setUserMail(userState.email);
   }, [])
+
+  /** User & setUserMail */
+  // const [userMail, setUserMail] = useState('');
+  // useEffect(() => {
+  //   onUserStateChange(
+  //     (user) => {
+  //       setUserMail(user.email);
+  //     } 
+  //   );
+  // }, []);
+  /** */
   
   useEffect(() => {
     const meetId = params.meetId;

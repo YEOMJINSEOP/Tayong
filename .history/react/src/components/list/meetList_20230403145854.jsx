@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import styles from './meetList.module.css';
 import { FaArrowRight } from 'react-icons/fa';
 import {useNavigate, useParams } from 'react-router-dom';
-import { getAllMeetData, onUserStateChange } from '../../apis/firebase';
-import styles from './meetList.module.css';
 import Meet from '../meet/Meet';
-import LocationSearchBox from '../locationSearchBox/LocationSearchBox';
-
+import LocationSearchBox from '../locationSearchBox/locationSearchBox';
+import { getAllMeetData, onUserStateChange } from '../../apis/firebase';
 
 function MeetList(props) {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React from 'react';
-import MeetList from '../components/list/MeetList';
+import MeetList from '../components/list/meetList';
 
 function List(props) {
   return (

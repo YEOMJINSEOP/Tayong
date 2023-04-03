@@ -3,9 +3,6 @@ import styles from './meetDetail.module.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMeetDataById, onUserStateChange, addMeetParticipant, removeMeetParticipant, removeMeetbyId } from '../../apis/firebase';
 import Chat from '../chat/Chat';
-import { useRecoilValue } from 'recoil';
-import { currentUserState } from '../../recoil/user';
-
 
 function MeetDetail(props) {
   const params = useParams();
@@ -21,6 +18,17 @@ function MeetDetail(props) {
   useEffect(() => {
     setUserMail(userState.email);
   }, [])
+
+  /** User & setUserMail */
+  // const [userMail, setUserMail] = useState('');
+  // useEffect(() => {
+  //   onUserStateChange(
+  //     (user) => {
+  //       setUserMail(user.email);
+  //     } 
+  //   );
+  // }, []);
+  /** */
   
   useEffect(() => {
     const meetId = params.meetId;

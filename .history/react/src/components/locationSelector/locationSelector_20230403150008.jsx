@@ -2,7 +2,7 @@ import React, {useEffect, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import styles from './locationSelector.module.css';
 import Departure from '../departure/Departure';
-import Arrival from '../arrival/Arrival';
+import Arrival from '../arrival/arrival';
 import { FaArrowRight } from 'react-icons/fa';
 import getData from '../../service/getData';
 

@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './chat.module.css';
 import {io} from 'socket.io-client';
 import { addChat, getChat, onUserStateChange } from '../../apis/firebase';
-import { useRecoilValue } from 'recoil';
-import { currentUserState } from '../../recoil/user';
 
 function Chat({meetId}) {
   const chatRef = useRef(null);
@@ -43,11 +41,13 @@ function Chat({meetId}) {
   //   }
   // }
 
+  /** User & setUserMail */
   const [userMail, setUserMail] = useState("");
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
     setUserMail(userState.email);
   }, []);
+  /** */
   
   useEffect(() => {
     setSocket(io(process.env.REACT_APP_CHAT_SERVER_URL, {

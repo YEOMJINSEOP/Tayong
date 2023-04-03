@@ -43,11 +43,13 @@ function Chat({meetId}) {
   //   }
   // }
 
+  /** User & setUserMail */
   const [userMail, setUserMail] = useState("");
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
     setUserMail(userState.email);
   }, []);
+  /** */
   
   useEffect(() => {
     setSocket(io(process.env.REACT_APP_CHAT_SERVER_URL, {

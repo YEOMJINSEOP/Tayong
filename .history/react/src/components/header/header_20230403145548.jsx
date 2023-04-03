@@ -10,7 +10,7 @@ import styles from './header.module.css';
 
 function Header(props) {
   const navigate = useNavigate();  
-
+  
   const [user, setUser] = useState();
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {

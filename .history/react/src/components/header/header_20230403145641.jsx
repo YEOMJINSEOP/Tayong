@@ -11,10 +11,11 @@ import styles from './header.module.css';
 function Header(props) {
   const navigate = useNavigate();  
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
     setUser(userState);
+    console.log(user);
   }, [])
 
   const handleLogin = () => {

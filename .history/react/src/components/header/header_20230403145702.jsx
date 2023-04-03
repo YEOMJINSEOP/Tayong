@@ -13,9 +13,9 @@ function Header(props) {
 
   const [user, setUser] = useState();
   const userState = useRecoilValue(currentUserState);
-  useEffect(() => {
-    setUser(userState);
-  }, [])
+  // useEffect(() => {
+  //   setUser(userState);
+  // }, [])
 
   const handleLogin = () => {
     login().then(setUser);

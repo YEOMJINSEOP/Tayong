@@ -9,13 +9,20 @@ import { currentUserState } from '../../recoil/user';
 import styles from './header.module.css';
 
 function Header(props) {
-  const navigate = useNavigate();  
-
   const [user, setUser] = useState();
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
     setUser(userState);
   }, [])
+
+  const navigate = useNavigate();  
+//   /** User & setUser */
+//   useEffect(() => {
+//     onUserStateChange((user) => {
+//       setUser(user);
+//     }) 
+//   }, [user]);
+//  /** */
 
   const handleLogin = () => {
     login().then(setUser);

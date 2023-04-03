@@ -19,23 +19,8 @@ function Form(props) {
   const [meetTime, setMeetTime] = useState({date: 0, time: 0});
   useEffect(() => {
     setMeet((meet) => ({...meet, meetTime: meetTime }));
-  }, [meetTime]);
+  }, [meetTime])
 
-  const [user, setUser] = useState();
-  const userState = useRecoilValue(currentUserState);
-  useEffect(() => {
-    setMeet((meet) => ({...meet, host:userState.email, participant: [userState.email]}));
-    setUser(userState);
-  }, []);
-
-  const [prevDate, setPrevDate] = useState('2022-03-01');
-  useEffect(() => {
-    const yesterday = new Date();
-    const year = yesterday.getFullYear();
-    const month = (yesterday.getMonth() + 1).toString().padStart(2, '0');
-    const date = yesterday.getDate().toString().padStart(2, '0');
-    setPrevDate(`${year}-${month}-${date}`);
-  }, [prevDate]);
 
   const validateMeet = () => {
     if(!meet.meetId){
@@ -60,6 +45,34 @@ function Form(props) {
     }
     return true;
   }
+
+  const [user, setUser] = useState();
+  const userState = useRecoilValue(currentUserState);
+  useEffect(() => {
+    setMeet((meet) => ({...meet, host:userState.email, participant: [userState.email]}));
+    setUser(userState);
+  }, [])
+
+
+  /** User & setUser */
+  // const [user, setUser] = useState();
+  // useEffect(() => {
+  //   onUserStateChange(
+  //     (user) => {
+  //       setMeet((meet) => ({...meet, host:user.email, participant: [user.email]}));
+  //       setUser(user);
+  //     } 
+  //   );
+  // }, [])
+
+  const [prevDate, setPrevDate] = useState('2022-03-01');
+  useEffect(() => {
+    const yesterday = new Date();
+    const year = yesterday.getFullYear();
+    const month = (yesterday.getMonth() + 1).toString().padStart(2, '0');
+    const date = yesterday.getDate().toString().padStart(2, '0');
+    setPrevDate(`${year}-${month}-${date}`);
+  }, [prevDate]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

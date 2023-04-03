@@ -18,15 +18,6 @@ function MeetList(props) {
     setUser(userState);
   }, []);
 
-  const createBtnHandler = () => {
-    if(!user){
-      alert('로그인이 필요합니다.');
-    }
-    else{
-      navigate(`/create/${depLoc}/${arrLoc}`);
-    }
-  };
-
   const [meetList, setMeetList] = useState([]);
   let params = useParams();
   const depLoc = params.departure;
@@ -53,6 +44,15 @@ function MeetList(props) {
       )
   }, []);
 
+  const createBtnHandler = () => {
+    if(!user){
+      alert('로그인이 필요합니다.');
+      return;
+    }
+    else{
+      navigate(`/create/${depLoc}/${arrLoc}`);
+    }
+  }
   
   return (
     <div className={styles.meetList}>

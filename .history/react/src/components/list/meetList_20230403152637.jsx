@@ -25,7 +25,7 @@ function MeetList(props) {
     else{
       navigate(`/create/${depLoc}/${arrLoc}`);
     }
-  };
+  }
 
   const [meetList, setMeetList] = useState([]);
   let params = useParams();

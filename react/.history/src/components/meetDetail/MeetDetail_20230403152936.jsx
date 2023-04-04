@@ -18,7 +18,7 @@ function MeetDetail(props) {
   
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
-    userState && setUserMail(userState.email);
+    setUserMail(userState.email);
   }, [])
   
   useEffect(() => {

@@ -46,7 +46,7 @@ function Chat({meetId}) {
   const [userMail, setUserMail] = useState("");
   const userState = useRecoilValue(currentUserState);
   useEffect(() => {
-    userState && setUserMail(userState.email);
+    setUserMail(userState.email);
   }, []);
   
   useEffect(() => {
